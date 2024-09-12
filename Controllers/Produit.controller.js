@@ -39,7 +39,6 @@ module.exports = {
         return res.status(200).json({data:response,message:"Liste des produits"});
     } catch (error) {
         console.log(error);
-        
     }
   }
 };
