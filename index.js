@@ -1,5 +1,5 @@
 const express = require('express');
-const connection = require('./Models/index');
+require('./Models/index');
 const port = 3000; 
 const app = express();
 
