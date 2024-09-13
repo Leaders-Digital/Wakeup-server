@@ -5,9 +5,10 @@ const app = express();
 app.use(express.json()); 
 // Routers 
 const ProductRouter = require('./Routers/Product.router');
+const OrderRouter = require('./Routers/Order.router');
 
 app.use("/product",ProductRouter);
-
+app.use("/order",OrderRouter);
 
 
 
