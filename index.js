@@ -1,6 +1,6 @@
 const express = require('express');
 require('./Models/index');
-const port = 3000; 
+const port = 7000; 
 const app = express();
 app.use(express.json()); 
 // Routers 
@@ -16,5 +16,5 @@ app.use("/order",OrderRouter);
 
 // server listening
 app.listen(port,()=>{
-    console.log("Our server is running on port 3000");
+    console.log(`Our server is running on port ${port}`);
 })
