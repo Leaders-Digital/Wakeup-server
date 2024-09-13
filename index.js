@@ -6,11 +6,12 @@ app.use(express.json());
 // Routers 
 const ProductRouter = require('./Routers/Product.router');
 const OrderRouter = require('./Routers/Order.router');
-
+const reviewRouter = require('./Routers/Review.router');
+const PartenaireRouter = require('./Routers/Partenaire.router');
 app.use("/product",ProductRouter);
 app.use("/order",OrderRouter);
-
-
+app.use("/review",reviewRouter);
+app.use("/partenaire",PartenaireRouter);
 
 
 
