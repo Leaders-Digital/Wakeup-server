@@ -1,20 +1,42 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const productController = require('../Controllers/Produit.controller'); // Adjust path as needed
+const productController = require("../Controllers/Produit.controller"); // Adjust path as needed
+const { uploadFile } = require("../Middleware/imageUpload"); // Adjust path
+const upload  = require("../Middleware/upload");
 
-// Route to create a new product
-router.post('/create', productController.createProduct);
+// Middleware for handling file uploads
 
-// Route to put a product on sale
-router.put('/sale', productController.putProductOnSale);
+// Route for creating a new product
+router.post(
+  "/create",
+  uploadFile({
+    folder: "./uploads/products",
+    acceptedTypes: [".png", ".jpeg", ".jpg"],
+    fieldName: "mainPicture", // This should match the form field name
+    multiple: false,
+  }),
+  productController.createProduct
+);
+router.post(
+    "/add-variant",
+    upload.fields([
+        { name: 'icon', maxCount: 1 },
+        { name: 'picture', maxCount: 1 }
+      ]),
+    productController.addVariantToProduct
+  );
+// Route for updating a product to be on sale
+router.put("/put-sale", productController.putProductOnSale);
 
-// Route to update a variant's quantity
-router.put('/update-variant', productController.updateVariantQuantity);
+// Route for updating a variant's quantity
+router.put("/update-variant-quantity", productController.updateVariantQuantity);
 
-// Route to get all products on sale
-router.get('/on-sale', productController.getProductsOnSale);
+// Route for getting all products on sale
+router.get("/on-sale", productController.getProductsOnSale);
 
-// Route to get all products
-router.get('/all', productController.getAllProducts);
+// Route for getting all products
+router.get("/all", productController.getAllProducts);
 
+// route for update variant
+router.put("/update-variant", productController.updateVariantDetails);
 module.exports = router;
