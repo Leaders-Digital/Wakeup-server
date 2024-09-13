@@ -1,57 +1,47 @@
-const Product = require("../Models/Produit.model");
+const Product = require("../Models/Produit.model"); // Adjust the path according to your project structure
 
-module.exports = {
-  addProduct: async (req, res) => {
-    const {
-      nom,
-      description,
-      reference,
-      prix,
-      solde,
-      soldePourcentage,
-      varient,
-    } = req.body;
+// Controller function to create a new product
+const createProduct = async (req, res) => {
+  try {
+    const { nom, description, prix, solde, soldePourcentage, variants } =
+      req.body;
+    // Validate input
     if (
       !nom ||
       !description ||
-      !reference ||
       !prix ||
-      !solde ||
-      !soldePourcentage ||
-      !varient
+      !Array.isArray(variants) ||
+      variants.length === 0
     ) {
       return res
         .status(400)
-        .json({ data: {}, message: "Tout les champs sont obligatoires" });
+        .json({
+          message:
+            "Product name, description, price, and at least one variant are required",
+        });
     }
-    try {
-      const response = await Product.create(req.body);
-      return res
-        .status(201)
-        .json({ message: "Produit ajouté avec succès", data: response });
-    } catch (error) {
-      throw error;
-    }
-  },
-  getProduct : async (req,res)=>{
-    try {
-        const response = await Product.find().sort({createdAt:-1});
-        return res.status(200).json({data:response,message:"Liste des produits"});
-    } catch (error) {
-        console.log(error);
-    }
-  },
-  addNewVarient : async (req,res)=>{
-    const {id} = req.params;
-    const {varient} = req.body;
-    if(!varient){
-        return res.status(400).json({message:"Veuillez remplir le champ varient"})
-    }
-    try {
-        const response = await Product.findByIdAndUpdate(id,{$push:{varient:varient}},{new:true});
-        return res.status(200).json({data:response,message:"Varient ajouté avec succès"})
-    } catch (error) {
-        console.log(error)
-    }
-  },
+    // Create the product with variants
+    const product = new Product({
+      nom,
+      description,
+      prix,
+      solde,
+      soldePourcentage,
+      variants,
+    });
+
+    // Save the product to the database
+    await product.save();
+
+    // Send a success response
+    res.status(201).json({ message: "Product created successfully", product });
+  } catch (error) {
+    // Handle errors
+    console.error(error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+module.exports = {
+  createProduct,
 };
