@@ -1,6 +1,5 @@
-import Product from "../Models/Produit.model"; // Adjust the path according to your project structure
-
-export default {
+const Product = require("../Models/Produit.model");
+module.exports =  {
 // Controller function to create a new product
 createProduct : async (req, res) => {
   try {
