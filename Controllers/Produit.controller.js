@@ -3,7 +3,7 @@ module.exports = {
   // Controller function to create a new product
   createProduct: async (req, res) => {
     try {
-      const { nom, description, prix,categorie } = req.body;
+      const { nom, description, prix, categorie } = req.body;
       const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
       console.log(req.file);
 
@@ -208,4 +208,30 @@ module.exports = {
     }
   },
   // Export all functions using ES6 export default
+  // Controller function to get the count of products in each category
+  getProductsCountByCategory: async (req, res) => {
+    try {
+      // Use aggregation to group by category and count the products in each one
+      const categoryCounts = await Product.aggregate([
+        {
+          $group: {
+            _id: "$categorie", // Group by category field
+            count: { $sum: 1 }, // Count the number of products in each category
+          },
+        },
+        {
+          $sort: { count: -1 }, // Optional: sort by count in descending order
+        },
+      ]);
+
+      if (!categoryCounts.length) {
+        return res.status(404).json({ message: "No products found" });
+      }
+
+      res.status(200).json({ categoryCounts });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  },
 };

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const productController = require("../Controllers/Produit.controller"); // Adjust path as needed
 const { uploadFile } = require("../Middleware/imageUpload"); // Adjust path
-const upload  = require("../Middleware/upload");
+const upload = require("../Middleware/upload");
 
 // Middleware for handling file uploads
 
@@ -18,13 +18,14 @@ router.post(
   productController.createProduct
 );
 router.post(
-    "/add-variant",
-    upload.fields([
-        { name: 'icon', maxCount: 1 },
-        { name: 'picture', maxCount: 1 }
-      ]),
-    productController.addVariantToProduct
-  );
+  "/add-variant",
+  upload.fields([
+    { name: "icon", maxCount: 1 },
+    { name: "picture", maxCount: 1 },
+  ]),
+  productController.addVariantToProduct
+);
+router.get("/get-category", productController.getProductsCountByCategory);
 // Route for updating a product to be on sale
 router.put("/put-sale", productController.putProductOnSale);
 
