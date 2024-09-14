@@ -8,7 +8,7 @@ const variantSchema = new mongoose.Schema({
   color: { type: String },
   icon: { type: String },
   reference: { type: String, required: true },
-  codeAbarre: { type: String, unique: true },
+  codeAbarre: { type: String, unique: true , sparse: true },
 });
 
 // Define the schema for a product
@@ -20,10 +20,10 @@ const productSchema = new mongoose.Schema({
   mainPicture: { type: String },
   soldePourcentage: { type: Number },
   variants: [variantSchema], // Array of variants
-  categorie: { 
-    type: String, 
-    enum: ['FACE', 'Brush', 'EYES', 'FACE AND BODY', 'BODY', 'HAIR', 'LIPS'], 
-    required: true 
+  categorie: {
+    type: String,
+    enum: ["FACE", "Brush", "EYES", "FACE AND BODY", "BODY", "HAIR", "LIPS"],
+    required: true,
   }, // Add categorie enum
 });
 
