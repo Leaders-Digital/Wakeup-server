@@ -1,4 +1,6 @@
+const { default: mongoose } = require("mongoose");
 const Product = require("../Models/Produit.model");
+const Variant = require("../Models/variant.model");
 module.exports = {
   // Controller function to create a new product
   createProduct: async (req, res) => {
@@ -109,18 +111,44 @@ module.exports = {
   // Controller function to get all products
   getAllProducts: async (req, res) => {
     try {
-      const products = await Product.find();
+      const page = parseInt(req.query.page) || 1; // Default to page 1
+      const limit = parseInt(req.query.limit) || 10; // Default to 10 products per page
+      const category = req.query.categorie; // Get category from query (if provided)
+      const skip = (page - 1) * limit;
+      console.log(req.query);
+
+      // Create a filter object to apply category filtering if a category is provided
+      let filter = {};
+      if (category) {
+        filter.categorie = category;
+      }
+
+      // Fetch products with pagination and optional category filter
+      const products = await Product.find(filter)
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit);
+
+      // Fetch total number of products (with the filter applied, if any)
+      const totalProducts = await Product.countDocuments(filter);
 
       if (!products.length) {
         return res.status(404).json({ message: "No products found" });
       }
 
-      res.status(200).json({ products });
+      // Return paginated response including the total number of products
+      res.status(200).json({
+        products,
+        totalPages: Math.ceil(totalProducts / limit),
+        currentPage: page,
+        totalProducts, // Include the total number of products (filtered if applicable)
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
     }
   },
+
   updateVariantDetails: async (req, res) => {
     try {
       const { productId, variantId, updateData } = req.body;
@@ -153,13 +181,15 @@ module.exports = {
   addVariantToProduct: async (req, res) => {
     try {
       const { productId, color, reference, codeAbarre } = req.body;
+      console.log(req.body);
 
-      // Validate input
       if (!productId) {
         return res.status(400).json({ message: "Product ID is required" });
       }
+      if (!mongoose.Types.ObjectId.isValid(productId)) {
+        return res.status(400).json({ message: "Invalid Product ID format" });
+      }
 
-      // Ensure variantData is an object with necessary fields
       if (!reference || !codeAbarre) {
         return res
           .status(400)
@@ -167,44 +197,51 @@ module.exports = {
       }
 
       // Handle file uploads
-      const picture = req.files["picture"]
-        ? req.files["picture"][0].path
-        : null;
-      const icon = req.files["icon"] ? req.files["icon"][0].path : null;
+      const picture = req.files?.["picture"]?.[0]?.path || null;
+      const icon = req.files?.["icon"]?.[0]?.path || null;
 
-      // Check if a variant with the same reference already exists
+      // Check if a product with the given ID exists
       const product = await Product.findById(productId);
-
       if (!product) {
         return res.status(404).json({ message: "Product not found" });
       }
 
-      const existingVariant = product.variants.find(
-        (variant) => variant.reference === reference
-      );
-
+      // Check if a variant with the same reference already exists
+      const existingVariant = await Variant.findOne({ reference });
       if (existingVariant) {
         return res
           .status(400)
           .json({ message: "Variant with the same reference already exists" });
       }
 
-      // Find the product and update it by pushing the new variant
+      // Create the new variant
+      const newVariant = new Variant({
+        color,
+        reference,
+        codeAbarre,
+        picture,
+        icon,
+        product: productId, // Reference to the product
+      });
+
+      const savedVariant = await newVariant.save();
+
+      // Update the product to include the new variant
       const updatedProduct = await Product.findByIdAndUpdate(
         productId,
         {
-          $push: { variants: { color, reference, codeAbarre, picture, icon } },
+          $push: { variants: savedVariant._id }, // Add variant reference
         },
         { new: true }
-      );
+      ).populate("variants"); // Populate to return variant details
 
       res.status(200).json({
         message: "Variant added successfully",
         product: updatedProduct,
       });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Server error", error });
+      console.error("Error adding variant:", error);
+      res.status(500).json({ message: "Server error", error: error.message });
     }
   },
   // Export all functions using ES6 export default
@@ -224,11 +261,38 @@ module.exports = {
         },
       ]);
 
+      // Calculate the total sum of all counts
+      const totalCount = categoryCounts.reduce(
+        (acc, category) => acc + category.count,
+        0
+      );
+
       if (!categoryCounts.length) {
         return res.status(404).json({ message: "No products found" });
       }
 
-      res.status(200).json({ categoryCounts });
+      res.status(200).json({
+        categoryCounts: [
+          { _id: "Tous les catégories", count: totalCount },
+          ...categoryCounts,
+        ],
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  },
+  getProductsByid: async (req, res) => {
+    try {
+      const product = await Product.findById({ _id: req.params.id })
+        .populate("variants")
+        .populate("retings");
+
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+
+      res.status(200).json({ product });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });

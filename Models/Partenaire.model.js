@@ -7,7 +7,7 @@ const partenaireSchema = new mongoose.Schema({
     logo: { type: String, required: true },
     lien: { type: String, required: true },
     status: { type: Boolean, default: false }
-});
+}, { timestamps: true });
 
 
 
