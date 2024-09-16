@@ -9,7 +9,7 @@ const infoDataSchema = new mongoose.Schema({
   facebook : {type:String}, 
   instagram: {type: String}, 
   tiktok : {type:String},
-});
+}, { timestamps: true });
 
 const infoData = mongoose.model("info", infoDataSchema);
 module.exports = infoData;

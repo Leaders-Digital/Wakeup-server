@@ -12,7 +12,7 @@ const ordersSchema = new mongoose.Schema({
   ], // Referencing products
   adresse: { type: String, required: true },
   prixTotal: { type: Number, required: true },
-});
+}, { timestamps: true });
 
 const Order = mongoose.model("Order", ordersSchema);
 module.exports = Order;

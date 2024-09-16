@@ -40,4 +40,7 @@ router.get("/all", productController.getAllProducts);
 
 // route for update variant
 router.put("/update-variant", productController.updateVariantDetails);
+
+// Route for getting a product by ID
+router.get("/:id", productController.getProductsByid);
 module.exports = router;
