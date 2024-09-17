@@ -8,6 +8,7 @@ app.use(express.json());
 const ProductRouter = require("./Routers/Product.router");
 const OrderRouter = require("./Routers/Order.router");
 const reviewRouter = require("./Routers/Review.router");
+const PartenaireRouter = require("./Routers/Partenaire.router");
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use("/api/product", ProductRouter);
 app.use("/api/order", OrderRouter);
 app.use("/api/review", reviewRouter);
+app.use("/api/partenaire", PartenaireRouter);
 
 // server listening
 app.listen(port, () => {
