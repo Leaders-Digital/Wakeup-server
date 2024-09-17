@@ -119,7 +119,7 @@ module.exports = {
 
       // Create a filter object to apply category filtering if a category is provided
       let filter = {};
-      if (category) {
+      if (category && category !== "Tous les catégories") {
         filter.categorie = category;
       }
 
@@ -127,7 +127,7 @@ module.exports = {
       const products = await Product.find(filter)
         .sort({ createdAt: -1 })
         .skip(skip)
-        .limit(limit);
+        .limit(limit).populate("variants");
 
       // Fetch total number of products (with the filter applied, if any)
       const totalProducts = await Product.countDocuments(filter);
