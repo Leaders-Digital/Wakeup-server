@@ -6,7 +6,7 @@ module.exports = {
   addReview: async (req, res) => {
     const { rating, comment, name, email, productId } = req.body;
     console.log(req.body);
-    
+
     if (!rating || !comment || !name || !email || !productId) {
       return res
         .status(400)
@@ -32,8 +32,8 @@ module.exports = {
           $push: { retings: newReveiw._id }, // Add variant reference
         },
         { new: true }
-      ).populate('retings'); // Populate to return variant details
-  
+      ).populate("retings"); // Populate to return variant details
+
       return res
         .status(201)
         .json({ message: "Review created successfully", updatedProduct });
@@ -43,7 +43,9 @@ module.exports = {
   },
   getReview: async (req, res) => {
     try {
-      const response = await Review.find();
+      const response = await Review.find({ accepted: "true" }).populate(
+        "productId"
+      );
       return res.status(200).json({ message: "Review fetched", response });
     } catch (error) {
       throw error;
