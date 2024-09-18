@@ -15,7 +15,10 @@ router.post(
     fieldName: "mainPicture", // This should match the form field name
     multiple: false,
   }),
-  productController.createProduct
+  productController.createProduct  
+
+
+
 );
 router.post(
   "/add-variant",
