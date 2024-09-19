@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 // Define the schema for a product
 const productSchema = new Schema({
   nom: { type: String, required: true },
@@ -14,6 +13,40 @@ const productSchema = new Schema({
   categorie: {
     type: String,
     enum: ["FACE", "Brush", "EYES", "FACE AND BODY", "BODY", "HAIR", "LIPS"],
+    required: true,
+  },
+  subCategorie: {
+    type: String,
+    enum: [
+      "Foundation",
+      "Concealer",
+      "Powder",
+      "Primer",
+      "Setting Spray",
+      "Highlighter",
+      "Bronzer",
+      "Blush",
+      "Contour",
+      "Brush",
+      "Mascara",
+      "Eyeliner",
+      "Eyeshadow",
+      "Eyebrow",
+      "False Lashes",
+      "Eye Primer",
+      "Eye Sets",
+      "Face Palette",
+      "Lipstick",
+      "Lip Gloss",
+      "Lip Liner",
+      "Lip Sets",
+      "Hair",
+      "Hair Tools",
+      "Hair Sets",
+      "Body",
+      "Body Care",
+      "Body Sets",
+    ],
     required: true,
   },
 }, { timestamps: true });
