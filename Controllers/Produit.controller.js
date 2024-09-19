@@ -114,28 +114,40 @@ module.exports = {
       const page = parseInt(req.query.page) || 1; // Default to page 1
       const limit = parseInt(req.query.limit) || 10; // Default to 10 products per page
       const category = req.query.categorie; // Get category from query (if provided)
+      const solde = req.query.solde; // Get solde (sale) from query if provided
       const skip = (page - 1) * limit;
       console.log(req.query);
-
+  
       // Create a filter object to apply category filtering if a category is provided
       let filter = {};
       if (category && category !== "Tous les catégories") {
         filter.categorie = category;
       }
-
-      // Fetch products with pagination and optional category filter
+  
+      // Add a condition to filter products that have at least one variant
+      filter.variants = { $exists: true, $not: { $size: 0 } };
+  
+      // Add a condition to filter products based on the 'solde' (on sale) field, if provided
+      if (solde === 'true') {
+        filter.solde = true;
+      } else if (solde === 'false') {
+        filter.solde = false;
+      }
+  
+      // Fetch products with pagination and optional category and solde filter
       const products = await Product.find(filter)
         .sort({ createdAt: -1 })
         .skip(skip)
-        .limit(limit).populate("variants");
-
+        .limit(limit)
+        .populate("variants");
+  
       // Fetch total number of products (with the filter applied, if any)
       const totalProducts = await Product.countDocuments(filter);
-
+  
       if (!products.length) {
-        return res.status(404).json({ message: "No products found" });
+        return res.status(200).json({products:[], message: "No products found" });
       }
-
+  
       // Return paginated response including the total number of products
       res.status(200).json({
         products,
@@ -148,6 +160,8 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
+  
+  
 
   updateVariantDetails: async (req, res) => {
     try {
