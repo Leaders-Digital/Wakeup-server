@@ -1,0 +1,99 @@
+const Blog = require("../Models/blog.model");
+
+module.exports = {
+  createArticle: async (req, res) => {
+    const { title, content, image } = req.body;
+
+    try {
+      // Check if all required fields are provided
+      if (!title || !content) {
+        return res.status(400).json({ message: "Title and content are required fields" });
+      }
+
+      // Create the new blog article
+      const response = await Blog.create({
+        title,
+        content,
+        image,
+      });
+
+      return res.status(201).json({ message: "Article created successfully", data: response });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "An error occurred while creating the article" });
+    }
+  },
+
+  getArticles: async (req, res) => {
+    try {
+      // Fetch all blog articles
+      const response = await Blog.find();
+      return res.status(200).json({ data: response, message: "List of articles" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "An error occurred while fetching articles" });
+    }
+  },
+
+  getArticleById: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      // Fetch article by ID
+      const response = await Blog.findById(id);
+      if (!response) {
+        return res.status(404).json({ message: "Article not found" });
+      }
+      return res.status(200).json({ data: response, message: "Article details" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "An error occurred while fetching the article" });
+    }
+  },
+
+  updateArticle: async (req, res) => {
+    const { id } = req.params;
+    const { title, content, image, isArchived } = req.body;
+
+    try {
+      // Update the blog article
+      const response = await Blog.findByIdAndUpdate(
+        id,
+        {
+          title,
+          content,
+          image,
+          isArchived,
+        },
+        { new: true }
+      );
+
+      if (!response) {
+        return res.status(404).json({ message: "Article not found" });
+      }
+
+      return res.status(200).json({ message: "Article updated successfully", data: response });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "An error occurred while updating the article" });
+    }
+  },
+
+  deleteArticle: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      // Delete the blog article
+      const response = await Blog.findByIdAndDelete(id);
+
+      if (!response) {
+        return res.status(404).json({ message: "Article not found" });
+      }
+
+      return res.status(200).json({ message: "Article deleted successfully" });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "An error occurred while deleting the article" });
+    }
+  }
+};
