@@ -40,6 +40,7 @@ router.get("/on-sale", productController.getProductsOnSale);
 
 // Route for getting all products
 router.get("/all", productController.getAllProducts);
+router.get("/all/dashboard", productController.getAllProductsForDashboard);
 
 // route for update variant
 router.put("/update-variant", productController.updateVariantDetails);
