@@ -20,7 +20,7 @@ const productSchema = new Schema({
     enum: [
       "FONDATIONS",
       "BB CREAM",
-      "BLUSH",
+      "BLUSH",  
       "HIGHLIGHTER",
       "BRONZER & POWDER",
       "PRIMER",
