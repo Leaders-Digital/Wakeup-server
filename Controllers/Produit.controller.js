@@ -5,12 +5,12 @@ module.exports = {
   // Controller function to create a new product
   createProduct: async (req, res) => {
     try {
-      const { nom, description, prix, categorie, subCategorie } = req.body;
+      const { nom, description, prix, categorie, subCategorie,solde,soldePourcentage } = req.body;
       const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
       console.log(req.file);
 
       // Validate input
-      if (!nom || !description || !prix || !categorie || !subCategorie) {
+      if (!nom || !description || !prix || !categorie || !subCategorie || !solde ) {
         return res.status(400).json({
           message: "Product name, description, and price are required",
         });
@@ -24,6 +24,8 @@ module.exports = {
         categorie,
         mainPicture,
         subCategorie,
+        solde,
+        soldePourcentage
       });
 
       // Save the product to the database
