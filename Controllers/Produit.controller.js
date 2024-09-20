@@ -134,51 +134,74 @@ module.exports = {
       const category = req.query.categorie; // Get category from query (if provided)
       const solde = req.query.solde; // Get solde (sale) from query if provided
       const skip = (page - 1) * limit;
-      console.log(req.query);
-
+      const search = req.query.search;
+  
       // Create a filter object to apply category filtering if a category is provided
       let filter = {};
       if (category && category !== "Tous les catégories") {
         filter.categorie = category;
       }
-
+  
       // Add a condition to filter products that have at least one variant
       filter.variants = { $exists: true, $not: { $size: 0 } };
-
+  
       // Add a condition to filter products based on the 'solde' (on sale) field, if provided
       if (solde === "true") {
         filter.solde = true;
       } 
-      
-
+  
+      if (search) {
+        filter.$or = [
+          { nom: { $regex: search, $options: 'i' } },
+          { description: { $regex: search, $options: 'i' } },
+          { categorie: { $regex: search, $options: 'i' } },
+          { subCategorie: { $regex: search, $options: 'i' } },
+        ];
+      }
+  
       // Fetch products with pagination and optional category and solde filter
       const products = await Product.find(filter)
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
         .populate("variants");
-
+  
       // Fetch total number of products (with the filter applied, if any)
       const totalProducts = await Product.countDocuments(filter);
-
+  
+      // Aggregate to find the lowest and highest prices
+      const priceStats = await Product.aggregate([
+        { $match: filter },
+        { $group: {
+            _id: null,
+            lowestPrice: { $min: "$prix" },
+            highestPrice: { $max: "$prix" }
+          }
+        }
+      ]);
+  
+      const lowestPrice = priceStats.length ? priceStats[0].lowestPrice : null;
+      const highestPrice = priceStats.length ? priceStats[0].highestPrice : null;
+  
       if (!products.length) {
-        return res
-          .status(200)
-          .json({ products: [], message: "No products found" });
+        return res.status(200).json({ products: [], message: "No products found" });
       }
-
-      // Return paginated response including the total number of products
+  
+      // Return paginated response including the total number of products and price stats
       res.status(200).json({
         products,
         totalPages: Math.ceil(totalProducts / limit),
         currentPage: page,
-        totalProducts, // Include the total number of products (filtered if applicable)
+        totalProducts,  
+        lowestPrice,
+        highestPrice,
       });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
     }
   },
+
 
   updateVariantDetails: async (req, res) => {
     try {
