@@ -49,4 +49,5 @@ router.delete("/:productId", productController.deleteProductById);
 
 router.get("/all/home", productController.getProductForHomePage);
 
+router.put("/:productId", productController.updateProduct);
 module.exports = router;
