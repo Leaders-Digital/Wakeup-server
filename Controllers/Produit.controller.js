@@ -436,4 +436,51 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
+    // Controller function to update a product
+    updateProduct: async (req, res) => {
+      try {
+        const { productId } = req.params;
+        const {
+          nom,
+          description,
+          prix,
+          categorie,
+          subCategorie,
+          solde,
+          soldePourcentage,
+        } = req.body;
+  
+        // Validate product ID
+        if (!mongoose.Types.ObjectId.isValid(productId)) {
+          return res.status(400).json({ message: "Invalid Product ID" });
+        }
+  
+        // Find the product by its ID
+        const product = await Product.findById(productId);
+        if (!product) {
+          return res.status(404).json({ message: "Product not found" });
+        }
+        // Handle file upload for the main picture
+        const mainPicture = req.file ? req.file.path : product.mainPicture; // Use existing picture if no new file
+        // Update the product fields
+        product.nom = nom || product.nom;
+        product.description = description || product.description;
+        product.prix = prix || product.prix;
+        product.categorie = categorie || product.categorie;
+        product.subCategorie = subCategorie || product.subCategorie;
+        product.solde = solde !== undefined ? solde : product.solde; // Allow for false solde values
+        product.soldePourcentage =
+          soldePourcentage !== undefined ? soldePourcentage : product.soldePourcentage;
+        product.mainPicture = mainPicture;
+        // Save the updated product to the database
+        const updatedProduct = await product.save();
+        // Send a success response
+        res
+          .status(200)
+          .json({ message: "Product updated successfully", product: updatedProduct });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error", error });
+      }
+    },
 };
