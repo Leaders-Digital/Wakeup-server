@@ -15,10 +15,7 @@ router.post(
     fieldName: "mainPicture", // This should match the form field name
     multiple: false,
   }),
-  productController.createProduct  
-
-
-
+  productController.createProduct
 );
 router.post(
   "/add-variant",
@@ -47,7 +44,10 @@ router.put("/update-variant", productController.updateVariantDetails);
 
 // Route for getting a product by ID
 router.get("/:id", productController.getProductsByid);
-// route for delete product by ID 
+// route for delete product by ID
 router.delete("/:productId", productController.deleteProductById);
+
+router.get("/all/home", productController.getProductForHomePage);
+
 router.put("/:productId", productController.updateProduct);
 module.exports = router;
