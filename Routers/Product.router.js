@@ -47,4 +47,6 @@ router.put("/update-variant", productController.updateVariantDetails);
 
 // Route for getting a product by ID
 router.get("/:id", productController.getProductsByid);
+// route for delete product by ID 
+router.delete("/:productId", productController.deleteProductById);
 module.exports = router;
