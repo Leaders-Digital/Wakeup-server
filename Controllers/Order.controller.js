@@ -3,21 +3,31 @@ const Order = require("../Models/orders.model");
 module.exports = {
   createOrder: async (req, res) => {
     const {
-      nomPrenom,
+      nom,
+      prenom,
       email,
       numTelephone,
-      listeDesProduits,
       adresse,
+      listeDesProduits,
+      gouvernorat,
+      ville,
+      codePostal,
+      note,
       prixTotal,
     } = req.body;
     try {
+     
       if (
-        !nomPrenom ||
+        !nom ||
+        !prenom ||
         !email ||
         !numTelephone ||
-        !listeDesProduits ||
         !adresse ||
-        !prixTotal
+        !gouvernorat ||
+        !ville ||
+        !codePostal ||
+        !prixTotal ||
+        listeDesProduits.length === 0
       ) {
         return res
           .status(400)
