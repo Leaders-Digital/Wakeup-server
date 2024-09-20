@@ -443,12 +443,13 @@ module.exports = {
   getProductForHomePage: async (req, res) => {
     try {
       console.log(req.query);
-      
       const products = await Product.find({
         categorie: req.query.categorie,
-      }).limit(6);
+      })
+        .populate("variants")
+        .limit(6);
       if (!products.length) {
-        return res.status(201).json({ message: "No products found",products});
+        return res.status(201).json({ message: "No products found", products });
       }
 
       res.status(200).json({ products });
