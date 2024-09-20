@@ -197,11 +197,14 @@ module.exports = {
   // Controller function to add a variant to a product
   addVariantToProduct: async (req, res) => {
     try {
-      const { productId, color, reference, codeAbarre } = req.body;
+      const { productId, color, reference, codeAbarre , quantity } = req.body;
       console.log(req.body);
 
       if (!productId) {
         return res.status(400).json({ message: "Product ID is required" });
+      }
+      if (!quantity) {
+        return res.status(400).json({ message: "Quantity is required" });
       }
       if (!mongoose.Types.ObjectId.isValid(productId)) {
         return res.status(400).json({ message: "Invalid Product ID format" });
@@ -216,7 +219,6 @@ module.exports = {
       // Handle file uploads
       const picture = req.files?.["picture"]?.[0]?.path || null;
       const icon = req.files?.["icon"]?.[0]?.path || null;
-
       // Check if a product with the given ID exists
       const product = await Product.findById(productId);
       if (!product) {
@@ -224,11 +226,11 @@ module.exports = {
       }
 
       // Check if a variant with the same reference already exists
-      const existingVariant = await Variant.findOne({ reference });
+      const existingVariant = await Variant.findOne({ codeAbarre });
       if (existingVariant) {
         return res
           .status(400)
-          .json({ message: "Variant with the same reference already exists" });
+          .json({ message: "Variant with the same codeAbarre already exists" });
       }
 
       // Create the new variant
@@ -238,6 +240,7 @@ module.exports = {
         codeAbarre,
         picture,
         icon,
+        quantity,
         product: productId, // Reference to the product
       });
 
@@ -301,7 +304,7 @@ module.exports = {
   },
   getProductsByid: async (req, res) => {
     try {
-      const product = await Product.findById({ _id: req.params.id })
+      const product = await Product.findOne({ _id: req.params.id })
         .populate("variants")
         .populate("retings");
 
@@ -309,7 +312,7 @@ module.exports = {
         return res.status(404).json({ message: "Product not found" });
       }
 
-      res.status(200).json({ product });
+      res.status(200).json(product);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
