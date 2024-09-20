@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+  const Schema = mongoose.Schema;
 // Define the schema for a product
 const productSchema = new Schema({
   nom: { type: String, required: true },
@@ -12,7 +12,7 @@ const productSchema = new Schema({
   retings: [{ type: Schema.Types.ObjectId, ref: 'Review' }], // Array of variant references
   categorie: {
     type: String,
-    enum: ["FACE", "Brush", "EYES", "FACE AND BODY", "BODY", "HAIR", "LIPS"],
+    enum: ["FACE", "Brush", "EYES", "Produits de soin", "LIPS"],
     required: true,
   },
   subCategorie: {
@@ -35,6 +35,7 @@ const productSchema = new Schema({
       "LIPGLOSS",
       "LIPLINER",
       "BAUMES",
+      "Nettoyants",
       "SOIN DE VISAGE",
       "SOIN DE CORPS",
       "SOIN DE CHEVEUX",
