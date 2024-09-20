@@ -5,12 +5,27 @@ module.exports = {
   // Controller function to create a new product
   createProduct: async (req, res) => {
     try {
-      const { nom, description, prix, categorie, subCategorie,solde,soldePourcentage } = req.body;
+      const {
+        nom,
+        description,
+        prix,
+        categorie,
+        subCategorie,
+        solde,
+        soldePourcentage,
+      } = req.body;
       const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
       console.log(req.file);
 
       // Validate input
-      if (!nom || !description || !prix || !categorie || !subCategorie || !solde ) {
+      if (
+        !nom ||
+        !description ||
+        !prix ||
+        !categorie ||
+        !subCategorie ||
+        !solde
+      ) {
         return res.status(400).json({
           message: "Product name, description, and price are required",
         });
@@ -25,7 +40,7 @@ module.exports = {
         mainPicture,
         subCategorie,
         solde,
-        soldePourcentage
+        soldePourcentage,
       });
 
       // Save the product to the database
@@ -197,7 +212,7 @@ module.exports = {
   // Controller function to add a variant to a product
   addVariantToProduct: async (req, res) => {
     try {
-      const { productId, color, reference, codeAbarre , quantity } = req.body;
+      const { productId, color, reference, codeAbarre, quantity } = req.body;
       console.log(req.body);
 
       if (!productId) {
@@ -326,37 +341,38 @@ module.exports = {
       const solde = req.query.solde; // Get solde (sale) from query if provided
       const skip = (page - 1) * limit;
       console.log(req.query);
-  
+
       // Create a filter object to apply category filtering if a category is provided
       let filter = {};
       if (category && category !== "Tous les catégories") {
         filter.categorie = category;
       }
-  
+
       // Add a condition to filter products that have at least one variant
-      
-  
+
       // Add a condition to filter products based on the 'solde' (on sale) field, if provided
-      if (solde === 'true') {
+      if (solde === "true") {
         filter.solde = true;
-      } else if (solde === 'false') {
+      } else if (solde === "false") {
         filter.solde = false;
       }
-  
+
       // Fetch products with pagination and optional category and solde filter
       const products = await Product.find(filter)
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
         .populate("variants");
-  
+
       // Fetch total number of products (with the filter applied, if any)
       const totalProducts = await Product.countDocuments(filter);
-  
+
       if (!products.length) {
-        return res.status(200).json({products:[], message: "No products found" });
+        return res
+          .status(200)
+          .json({ products: [], message: "No products found" });
       }
-  
+
       // Return paginated response including the total number of products
       res.status(200).json({
         products,
@@ -369,5 +385,33 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
-  
+
+  // Controller function to delete a product by its ID
+  deleteProductById: async (req, res) => {
+    try {
+      const { productId } = req.params;
+
+      // Validate product ID
+      if (!mongoose.Types.ObjectId.isValid(productId)) {
+        return res.status(400).json({ message: "Invalid Product ID" });
+      }
+
+      // Find and delete the product by its ID
+      const deletedProduct = await Product.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+
+      res
+        .status(200)
+        .json({
+          message: "Product deleted successfully",
+          product: deletedProduct,
+        });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  },
 };
