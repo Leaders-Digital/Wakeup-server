@@ -233,7 +233,17 @@ module.exports = {
       const variant = await Variant.findById(variantId);
       if (!variant) {
         return res.status(404).json({ message: "Variant not found" });
-      } 
+      }
+  
+      // Check for duplicate codeAbarre within the same product, excluding the current variant
+      const existingVariant = await Variant.findOne({ 
+        codeAbarre, 
+        product: productId,
+      });
+      if (existingVariant) {
+        return res.status(400).json({ message: "Code à barre déjà utilisé par un autre variant." });
+      }
+  
       console.log(req.files);
       // Use existing picture and icon if no new file is uploaded
       const picture = req.files?.picture?.[0]?.path || variant.picture;
@@ -253,7 +263,7 @@ module.exports = {
         },
         { new: true } // This option returns the updated document
       );
-
+  
       // Send a success response
       res.status(200).json({
         message: "Variant updated successfully",
@@ -264,6 +274,7 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
+  
   
   // Controller function to add a variant to a product
   addVariantToProduct: async (req, res) => {
@@ -538,4 +549,63 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
+  getVariantById: async (req, res) => {
+    try {
+      const { variantId } = req.params;
+  
+      // Validate variant ID
+      if (!mongoose.Types.ObjectId.isValid(variantId)) {
+        return res.status(400).json({ message: "Invalid Variant ID" });
+      }
+  
+      // Find the variant by its ID
+      const variant = await Variant.findById(variantId);
+      
+      if (!variant) {
+        return res.status(404).json({ message: "Variant not found" });
+      }
+  
+      res.status(200).json({ variant });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  },
+  deleteVariantById: async (req, res) => {
+    try {
+      const { variantId } = req.params;
+  
+      // Validate variant ID
+      if (!mongoose.Types.ObjectId.isValid(variantId)) {
+        return res.status(400).json({ message: "Invalid Variant ID" });
+      }
+  
+      // Find the variant to delete
+      const variant = await Variant.findById(variantId);
+      if (!variant) {
+        return res.status(404).json({ message: "Variant not found" });
+      }
+  
+      // Find the associated product
+      const productId = variant.product;
+  
+      // Delete the variant
+      const deletedVariant = await Variant.findByIdAndDelete(variantId);
+  
+      // Remove the variant ID from the product's variants array
+      await Product.findByIdAndUpdate(
+        productId,
+        { $pull: { variants: variantId } },
+        { new: true }
+      );
+  
+      res.status(200).json({
+        message: "Variant deleted successfully",
+        variant: deletedVariant,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  }
 };
