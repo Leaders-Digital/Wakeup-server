@@ -49,5 +49,10 @@ router.delete("/:productId", productController.deleteProductById);
 
 router.get("/all/home", productController.getProductForHomePage);
 
-router.put("/:productId", productController.updateProduct);
+router.put("/:productId",  uploadFile({
+  folder: "./uploads/products",
+  acceptedTypes: [".png", ".jpeg", ".jpg"],
+  fieldName: "mainPicture", // This should match the form field name
+  multiple: false,
+}), productController.updateProduct);
 module.exports = router;
