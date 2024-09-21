@@ -40,7 +40,10 @@ router.get("/all", productController.getAllProducts);
 router.get("/all/dashboard", productController.getAllProductsForDashboard);
 
 // route for update variant
-router.put("/update-variant", productController.updateVariantDetails);
+router.put("/update/variant",  upload.fields([
+  { name: "icon", maxCount: 1 },
+  { name: "picture", maxCount: 1 },
+]), productController.updateVariant);
 
 // Route for getting a product by ID
 router.get("/:id", productController.getProductsByid);
