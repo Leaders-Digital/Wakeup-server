@@ -236,13 +236,13 @@ module.exports = {
       }
   
       // Check for duplicate codeAbarre within the same product, excluding the current variant
-      const existingVariant = await Variant.findOne({ 
-        codeAbarre, 
-        product: productId,
-      });
-      if (existingVariant) {
-        return res.status(400).json({ message: "Code à barre déjà utilisé par un autre variant." });
-      }
+      // const existingVariant = await Variant.findOne({ 
+      //   codeAbarre, 
+      //   product: productId,
+      // });
+      // if (existingVariant) {
+      //   return res.status(400).json({ message: "Code à barre déjà utilisé par un autre variant." });
+      // }
   
       console.log(req.files);
       // Use existing picture and icon if no new file is uploaded
