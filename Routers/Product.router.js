@@ -49,8 +49,10 @@ router.put("/update/variant",  upload.fields([
 router.get("/:id", productController.getProductsByid);
 // route for delete product by ID
 router.delete("/:productId", productController.deleteProductById);
+router.delete("/variant/:variantId", productController.deleteVariantById);
 
 router.get("/all/home", productController.getProductForHomePage);
+router.get("/get/variant/:variantId", productController.getVariantById);
 
 router.put("/:productId",  uploadFile({
   folder: "./uploads/products",
