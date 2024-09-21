@@ -16,7 +16,6 @@ module.exports = {
       prixTotal,
     } = req.body;
     try {
-     
       if (
         !nom ||
         !prenom ||
@@ -41,12 +40,38 @@ module.exports = {
       console.log(error);
     }
   },
-  getOrders : async(req,res)=>{
+  getOrders: async (req, res) => {
     try {
-        const response = await Order.find(); 
-        return res.status(200).json({data:response,message:"Liste des commandes"});
+      const response = await Order.find().populate("listeDesProduits");
+      return res
+        .status(200)
+        .json({ data: response, message: "Liste des commandes" });
     } catch (error) {
-        throw error
+      throw error;
     }
-  }
+  },
+
+  // Controller to get order by ID and populate variants
+  getOrderById: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const order = await Order.findById(id).populate({
+        path: "listeDesProduits.variant",
+        populate: { path: "product" }, // Populate the product field in variant
+      });
+
+      if (!order) {
+        return res.status(404).json({ message: "Commande non trouvée" });
+      }
+
+      return res
+        .status(200)
+        .json({ data: order, message: "Commande récupérée avec succès" });
+    } catch (error) {
+      console.log(error);
+      return res
+        .status(500)
+        .json({ message: "Erreur lors de la récupération de la commande" });
+    }
+  },
 };
