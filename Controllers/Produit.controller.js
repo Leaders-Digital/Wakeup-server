@@ -408,6 +408,9 @@ module.exports = {
       const category = req.query.categorie; // Get category from query (if provided)
       const solde = req.query.solde; // Get solde (sale) from query if provided
       const skip = (page - 1) * limit;
+      const search = req.query.search;
+      const sortByPrice = req.query.sortByPrice;
+
       console.log(req.query);
 
       // Create a filter object to apply category filtering if a category is provided
@@ -415,9 +418,6 @@ module.exports = {
       if (category && category !== "Tous les catégories") {
         filter.categorie = category;
       }
-
-      // Add a condition to filter products that have at least one variant
-
       // Add a condition to filter products based on the 'solde' (on sale) field, if provided
       if (solde === "true") {
         filter.solde = true;
@@ -426,12 +426,26 @@ module.exports = {
       }
 
       // Fetch products with pagination and optional category and solde filter
+      if (search) {
+        filter.$or = [
+          { nom: { $regex: search, $options: "i" } },
+          { description: { $regex: search, $options: "i" } },
+          { categorie: { $regex: search, $options: "i" } },
+          { subCategorie: { $regex: search, $options: "i" } },
+        ];
+      }
+      let sortOption = {createdAt: -1 };
+      if (sortByPrice === 'asc') {
+        sortOption = { prix: 1 }; // Sort by price ascending (lowest to highest)
+      } else if (sortByPrice === 'desc') {
+        sortOption = { prix: -1 }; // Sort by price descending (highest to lowest)
+      }
       const products = await Product.find(filter)
-        .sort({ createdAt: -1 })
+        .sort(sortOption)
+        // .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
         .populate("variants");
-
       // Fetch total number of products (with the filter applied, if any)
       const totalProducts = await Product.countDocuments(filter);
 
