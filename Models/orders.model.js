@@ -18,6 +18,11 @@ const ordersSchema = new mongoose.Schema(
     codePostal: { type: String, required: true },
     note: { type: String },
     prixTotal: { type: Number, required: true },
+    statut: {
+      type: String,
+      enum: ["en cours", "validé", "annulé", "livré"], // Define possible statuses
+      default: "en cours", // Default status
+    },
   },
   { timestamps: true }
 );
