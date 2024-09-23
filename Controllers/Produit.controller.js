@@ -207,34 +207,75 @@ module.exports = {
     }
   },
 
-  updateVariantDetails: async (req, res) => {
+  updateVariant: async (req, res) => {
+    console.log(req.body, "hereee");
+  
     try {
-      const { productId, variantId, updateData } = req.body;
-
-      // Validate input
-      if (!productId || !variantId || !updateData) {
-        return res.status(400).json({ message: "Missing required fields" });
+      const { productId, variantId, quantity, color, reference, codeAbarre } = req.body;
+  
+      // Validate product ID
+      if (!mongoose.Types.ObjectId.isValid(productId)) {
+        return res.status(400).json({ message: "Invalid Product ID" });
       }
-
-      // Update variant details
-      const product = await Product.findOneAndUpdate(
-        { _id: productId, "variants._id": variantId },
-        { $set: { "variants.$": updateData } },
-        { new: true }
-      );
-
+  
+      // Validate variant ID
+      if (!mongoose.Types.ObjectId.isValid(variantId)) {
+        return res.status(400).json({ message: "Invalid Variant ID" });
+      }
+  
+      // Find the product by its ID
+      const product = await Product.findById(productId);
       if (!product) {
-        return res
-          .status(404)
-          .json({ message: "Product or variant not found" });
+        return res.status(404).json({ message: "Product not found" });
       }
-
-      res.status(200).json({ message: "Variant details updated", product });
+  
+      // Find the existing variant before updating
+      const variant = await Variant.findById(variantId);
+      if (!variant) {
+        return res.status(404).json({ message: "Variant not found" });
+      }
+  
+      // Check for duplicate codeAbarre within the same product, excluding the current variant
+      // const existingVariant = await Variant.findOne({ 
+      //   codeAbarre, 
+      //   product: productId,
+      // });
+      // if (existingVariant) {
+      //   return res.status(400).json({ message: "Code à barre déjà utilisé par un autre variant." });
+      // }
+  
+      console.log(req.files);
+      // Use existing picture and icon if no new file is uploaded
+      const picture = req.files?.picture?.[0]?.path || variant.picture;
+      const icon = req.files?.icon?.[0]?.path || variant.icon;
+      console.log(picture, icon);
+      
+      // Update the variant
+      const updatedVariant = await Variant.findByIdAndUpdate(
+        variantId,
+        {
+          quantity,
+          color,
+          reference,
+          codeAbarre,
+          picture,
+          icon
+        },
+        { new: true } // This option returns the updated document
+      );
+  
+      // Send a success response
+      res.status(200).json({
+        message: "Variant updated successfully",
+        variant: updatedVariant
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
     }
   },
+  
+  
   // Controller function to add a variant to a product
   addVariantToProduct: async (req, res) => {
     try {
@@ -367,6 +408,9 @@ module.exports = {
       const category = req.query.categorie; // Get category from query (if provided)
       const solde = req.query.solde; // Get solde (sale) from query if provided
       const skip = (page - 1) * limit;
+      const search = req.query.search;
+      const sortByPrice = req.query.sortByPrice;
+
       console.log(req.query);
 
       // Create a filter object to apply category filtering if a category is provided
@@ -374,9 +418,6 @@ module.exports = {
       if (category && category !== "Tous les catégories") {
         filter.categorie = category;
       }
-
-      // Add a condition to filter products that have at least one variant
-
       // Add a condition to filter products based on the 'solde' (on sale) field, if provided
       if (solde === "true") {
         filter.solde = true;
@@ -385,12 +426,26 @@ module.exports = {
       }
 
       // Fetch products with pagination and optional category and solde filter
+      if (search) {
+        filter.$or = [
+          { nom: { $regex: search, $options: "i" } },
+          { description: { $regex: search, $options: "i" } },
+          { categorie: { $regex: search, $options: "i" } },
+          { subCategorie: { $regex: search, $options: "i" } },
+        ];
+      }
+      let sortOption = {createdAt: -1 };
+      if (sortByPrice === 'asc') {
+        sortOption = { prix: 1 }; // Sort by price ascending (lowest to highest)
+      } else if (sortByPrice === 'desc') {
+        sortOption = { prix: -1 }; // Sort by price descending (highest to lowest)
+      }
       const products = await Product.find(filter)
-        .sort({ createdAt: -1 })
+        .sort(sortOption)
+        // .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
         .populate("variants");
-
       // Fetch total number of products (with the filter applied, if any)
       const totalProducts = await Product.countDocuments(filter);
 
@@ -458,51 +513,113 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
-    // Controller function to update a product
-    updateProduct: async (req, res) => {
-      try {
-        const { productId } = req.params;
-        const {
-          nom,
-          description,
-          prix,
-          categorie,
-          subCategorie,
-          solde,
-          soldePourcentage,
-        } = req.body;
-  
-        // Validate product ID
-        if (!mongoose.Types.ObjectId.isValid(productId)) {
-          return res.status(400).json({ message: "Invalid Product ID" });
-        }
-  
-        // Find the product by its ID
-        const product = await Product.findById(productId);
-        if (!product) {
-          return res.status(404).json({ message: "Product not found" });
-        }
-        // Handle file upload for the main picture
-        const mainPicture = req.file ? req.file.path : product.mainPicture; // Use existing picture if no new file
-        // Update the product fields
-        product.nom = nom || product.nom;
-        product.description = description || product.description;
-        product.prix = prix || product.prix;
-        product.categorie = categorie || product.categorie;
-        product.subCategorie = subCategorie || product.subCategorie;
-        product.solde = solde !== undefined ? solde : product.solde; // Allow for false solde values
-        product.soldePourcentage =
-          soldePourcentage !== undefined ? soldePourcentage : product.soldePourcentage;
-        product.mainPicture = mainPicture;
-        // Save the updated product to the database
-        const updatedProduct = await product.save();
-        // Send a success response
-        res
-          .status(200)
-          .json({ message: "Product updated successfully", product: updatedProduct });
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Server error", error });
+  // Controller function to update a product
+  updateProduct: async (req, res) => {
+    try {
+      const { productId } = req.params;
+      const {
+        nom,
+        description,
+        prix,
+        categorie,
+        subCategorie,
+        solde,
+        soldePourcentage,
+      } = req.body;
+
+      // Validate product ID
+      if (!mongoose.Types.ObjectId.isValid(productId)) {
+        return res.status(400).json({ message: "Invalid Product ID" });
       }
-    },
+
+      // Find the product by its ID
+      const product = await Product.findById(productId);
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+      // Handle file upload for the main picture
+      const mainPicture = req.file ? req.file.path : product.mainPicture; // Use existing picture if no new file
+      // Update the product fields
+      product.nom = nom || product.nom;
+      product.description = description || product.description;
+      product.prix = prix || product.prix;
+      product.categorie = categorie || product.categorie;
+      product.subCategorie = subCategorie || product.subCategorie;
+      product.solde = solde !== undefined ? solde : product.solde; // Allow for false solde values
+      product.soldePourcentage =
+        soldePourcentage !== undefined
+          ? soldePourcentage
+          : product.soldePourcentage;
+      product.mainPicture = mainPicture;
+      // Save the updated product to the database
+      const updatedProduct = await product.save();
+      // Send a success response
+      res.status(200).json({
+        message: "Product updated successfully",
+        product: updatedProduct,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  },
+  getVariantById: async (req, res) => {
+    try {
+      const { variantId } = req.params;
+  
+      // Validate variant ID
+      if (!mongoose.Types.ObjectId.isValid(variantId)) {
+        return res.status(400).json({ message: "Invalid Variant ID" });
+      }
+  
+      // Find the variant by its ID
+      const variant = await Variant.findById(variantId);
+      
+      if (!variant) {
+        return res.status(404).json({ message: "Variant not found" });
+      }
+  
+      res.status(200).json({ variant });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  },
+  deleteVariantById: async (req, res) => {
+    try {
+      const { variantId } = req.params;
+  
+      // Validate variant ID
+      if (!mongoose.Types.ObjectId.isValid(variantId)) {
+        return res.status(400).json({ message: "Invalid Variant ID" });
+      }
+  
+      // Find the variant to delete
+      const variant = await Variant.findById(variantId);
+      if (!variant) {
+        return res.status(404).json({ message: "Variant not found" });
+      }
+  
+      // Find the associated product
+      const productId = variant.product;
+  
+      // Delete the variant
+      const deletedVariant = await Variant.findByIdAndDelete(variantId);
+  
+      // Remove the variant ID from the product's variants array
+      await Product.findByIdAndUpdate(
+        productId,
+        { $pull: { variants: variantId } },
+        { new: true }
+      );
+  
+      res.status(200).json({
+        message: "Variant deleted successfully",
+        variant: deletedVariant,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  }
 };
