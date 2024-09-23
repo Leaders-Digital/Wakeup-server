@@ -74,4 +74,32 @@ module.exports = {
         .json({ message: "Erreur lors de la récupération de la commande" });
     }
   },
+
+  updateOrderStatus: async (req, res) => {
+    const { id } = req.params;
+    const { statut } = req.body;
+
+    try {
+      // Find the order by ID and update the status
+      const order = await Order.findByIdAndUpdate(
+        id,
+        { statut },
+        { new: true } // Return the updated document
+      );
+
+      if (!order) {
+        return res.status(404).json({ message: "Commande non trouvée" });
+      }
+
+      return res
+        .status(200)
+        .json({ message: "Statut de la commande mis à jour", data: order });
+    } catch (error) {
+      console.log(error);
+      return res
+        .status(500)
+        .json({ message: "Erreur lors de la mise à jour du statut" });
+    }
+  },
+
 };
