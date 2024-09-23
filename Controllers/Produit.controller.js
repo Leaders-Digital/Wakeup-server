@@ -409,7 +409,8 @@ module.exports = {
       const solde = req.query.solde; // Get solde (sale) from query if provided
       const skip = (page - 1) * limit;
       const search = req.query.search;
-      const sortByPrice = req.query.sortByPrice;
+      const sortByPrice = req.query.sortByPrice || 'desc'; // Default to sorting by price descending
+
 
       console.log(req.query);
 
@@ -435,11 +436,13 @@ module.exports = {
         ];
       }
       let sortOption = {createdAt: -1 };
+      if(sortByPrice){
       if (sortByPrice === 'asc') {
         sortOption = { prix: 1 }; // Sort by price ascending (lowest to highest)
       } else if (sortByPrice === 'desc') {
         sortOption = { prix: -1 }; // Sort by price descending (highest to lowest)
       }
+    }
       const products = await Product.find(filter)
         .sort(sortOption)
         // .sort({ createdAt: -1 })
