@@ -1,3 +1,4 @@
+const { sendOrderEmail } = require("../helpers/email");
 const Order = require("../Models/orders.model");
 
 module.exports = {
@@ -15,7 +16,9 @@ module.exports = {
       note,
       prixTotal,
     } = req.body;
+
     try {
+      // Check if all required fields are present
       if (
         !nom ||
         !prenom ||
@@ -30,16 +33,42 @@ module.exports = {
       ) {
         return res
           .status(400)
-          .json({ message: "Tout les champs sont obligatoires" });
+          .json({ message: "Tous les champs sont obligatoires" });
       }
-      const response = await Order.create(req.body);
-      return res
-        .status(201)
-        .json({ message: "Commande ajoutée avec succès", data: response });
+
+      // Create a new order instance
+      const newOrder = new Order({
+        nom,
+        prenom,
+        email,
+        numTelephone,
+        adresse,
+        listeDesProduits,
+        gouvernorat,
+        ville,
+        codePostal,
+        note,
+        prixTotal,
+      });
+
+      // Save the order to the database
+      const savedOrder = await newOrder.save();
+      await sendOrderEmail(email, savedOrder.orderCode); // Send email with order code
+
+      // Return the created order and the generated custom order code
+      return res.status(201).json({
+        message: "Commande ajoutée avec succès",
+        data: savedOrder,
+        orderCode: savedOrder.orderCode, // Return the custom order code
+      });
     } catch (error) {
-      console.log(error);
+      console.error("Error while creating order: ", error);
+      return res
+        .status(500)
+        .json({ message: "Erreur serveur, veuillez réessayer plus tard." });
     }
   },
+
   getOrders: async (req, res) => {
     try {
       const response = await Order.find().populate("listeDesProduits");
@@ -101,5 +130,30 @@ module.exports = {
         .json({ message: "Erreur lors de la mise à jour du statut" });
     }
   },
+  // Controller to get order by orderCode and populate variants and products
+  getOrderByCode: async (req, res) => {
+    const { orderCode } = req.params;
+    console.log(orderCode);
 
+    try {
+      const order = await Order.findOne({ orderCode }) // Query by orderCode, not _id
+        .populate({
+          path: "listeDesProduits.variant",
+          populate: { path: "product" }, // Populate the product field in the variant
+        });
+
+      if (!order) {
+        return res.status(404).json({ message: "Commande non trouvée" });
+      }
+
+      return res
+        .status(200)
+        .json({ data: order, message: "Commande récupérée avec succès" });
+    } catch (error) {
+      console.log(error);
+      return res
+        .status(500)
+        .json({ message: "Erreur lors de la récupération de la commande" });
+    }
+  },
 };
