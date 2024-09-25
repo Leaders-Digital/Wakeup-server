@@ -5,7 +5,7 @@ const Product = require("../Models/Produit.model");
 module.exports = {
   addReview: async (req, res) => {
     const { rating, comment, name, email, productId } = req.body;
-    console.log(req.body);
+
     
     if (!rating || !comment || !name || !email || !productId) {
       return res

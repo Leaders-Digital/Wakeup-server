@@ -15,7 +15,7 @@ module.exports = {
         soldePourcentage,
       } = req.body;
       const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
-      console.log(req.file);
+
 
       // Validate input
       if (
@@ -135,6 +135,12 @@ module.exports = {
       const solde = req.query.solde; // Get solde (sale) from query if provided
       const skip = (page - 1) * limit;
       const search = req.query.search;
+      const sortByPrice = req.query.sortByPrice || "desc"; // Default to sorting by price descending
+      const searchArray = Array.isArray(req.query.searchArray) ? req.query.searchArray : []; // Ensure it's an array
+
+
+
+    
 
       // Create a filter object to apply category filtering if a category is provided
       let filter = {};
@@ -158,10 +164,21 @@ module.exports = {
           { subCategorie: { $regex: search, $options: "i" } },
         ];
       }
-
+      if (searchArray.length > 0) {
+        
+        filter.subCategorie = { $in: searchArray };
+      }
+      let sortOption = { createdAt: -1 };
+      if (sortByPrice) {
+        if (sortByPrice === "asc") {
+          sortOption = { prix: 1 }; // Sort by price ascending (lowest to highest)
+        } else if (sortByPrice === "desc") {
+          sortOption = { prix: -1 }; // Sort by price descending (highest to lowest)
+        }
+      }
       // Fetch products with pagination and optional category and solde filter
       const products = await Product.find(filter)
-        .sort({ createdAt: -1 })
+        .sort(sortOption)
         .skip(skip)
         .limit(limit)
         .populate("variants");
@@ -208,48 +225,47 @@ module.exports = {
   },
 
   updateVariant: async (req, res) => {
-    console.log(req.body, "hereee");
-  
     try {
-      const { productId, variantId, quantity, color, reference, codeAbarre } = req.body;
-  
+      const { productId, variantId, quantity, color, reference, codeAbarre } =
+        req.body;
+
       // Validate product ID
       if (!mongoose.Types.ObjectId.isValid(productId)) {
         return res.status(400).json({ message: "Invalid Product ID" });
       }
-  
+
       // Validate variant ID
       if (!mongoose.Types.ObjectId.isValid(variantId)) {
         return res.status(400).json({ message: "Invalid Variant ID" });
       }
-  
+
       // Find the product by its ID
       const product = await Product.findById(productId);
       if (!product) {
         return res.status(404).json({ message: "Product not found" });
       }
-  
+
       // Find the existing variant before updating
       const variant = await Variant.findById(variantId);
       if (!variant) {
         return res.status(404).json({ message: "Variant not found" });
       }
-  
+
       // Check for duplicate codeAbarre within the same product, excluding the current variant
-      // const existingVariant = await Variant.findOne({ 
-      //   codeAbarre, 
+      // const existingVariant = await Variant.findOne({
+      //   codeAbarre,
       //   product: productId,
       // });
       // if (existingVariant) {
       //   return res.status(400).json({ message: "Code à barre déjà utilisé par un autre variant." });
       // }
-  
-      console.log(req.files);
+
+     
       // Use existing picture and icon if no new file is uploaded
       const picture = req.files?.picture?.[0]?.path || variant.picture;
       const icon = req.files?.icon?.[0]?.path || variant.icon;
-      console.log(picture, icon);
-      
+   
+
       // Update the variant
       const updatedVariant = await Variant.findByIdAndUpdate(
         variantId,
@@ -259,29 +275,26 @@ module.exports = {
           reference,
           codeAbarre,
           picture,
-          icon
+          icon,
         },
         { new: true } // This option returns the updated document
       );
-  
+
       // Send a success response
       res.status(200).json({
         message: "Variant updated successfully",
-        variant: updatedVariant
+        variant: updatedVariant,
       });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
     }
   },
-  
-  
+
   // Controller function to add a variant to a product
   addVariantToProduct: async (req, res) => {
     try {
       const { productId, color, reference, codeAbarre, quantity } = req.body;
-      console.log(req.body);
-
       if (!productId) {
         return res.status(400).json({ message: "Product ID is required" });
       }
@@ -409,10 +422,9 @@ module.exports = {
       const solde = req.query.solde; // Get solde (sale) from query if provided
       const skip = (page - 1) * limit;
       const search = req.query.search;
-      const sortByPrice = req.query.sortByPrice || 'desc'; // Default to sorting by price descending
+      const sortByPrice = req.query.sortByPrice || "desc"; // Default to sorting by price descending
 
-
-      console.log(req.query);
+    
 
       // Create a filter object to apply category filtering if a category is provided
       let filter = {};
@@ -433,14 +445,14 @@ module.exports = {
           { subCategorie: { $regex: search, $options: "i" } },
         ];
       }
-      let sortOption = {createdAt: -1 };
-      if(sortByPrice){
-      if (sortByPrice === 'asc') {
-        sortOption = { prix: 1 }; // Sort by price ascending (lowest to highest)
-      } else if (sortByPrice === 'desc') {
-        sortOption = { prix: -1 }; // Sort by price descending (highest to lowest)
+      let sortOption = { createdAt: -1 };
+      if (sortByPrice) {
+        if (sortByPrice === "asc") {
+          sortOption = { prix: 1 }; // Sort by price ascending (lowest to highest)
+        } else if (sortByPrice === "desc") {
+          sortOption = { prix: -1 }; // Sort by price descending (highest to lowest)
+        }
       }
-    }
       const products = await Product.find(filter)
         .sort(sortOption)
         // .sort({ createdAt: -1 })
@@ -498,7 +510,6 @@ module.exports = {
 
   getProductForHomePage: async (req, res) => {
     try {
-      console.log(req.query);
       const products = await Product.find({
         categorie: req.query.categorie,
       })
@@ -567,19 +578,19 @@ module.exports = {
   getVariantById: async (req, res) => {
     try {
       const { variantId } = req.params;
-  
+
       // Validate variant ID
       if (!mongoose.Types.ObjectId.isValid(variantId)) {
         return res.status(400).json({ message: "Invalid Variant ID" });
       }
-  
+
       // Find the variant by its ID
       const variant = await Variant.findById(variantId);
-      
+
       if (!variant) {
         return res.status(404).json({ message: "Variant not found" });
       }
-  
+
       res.status(200).json({ variant });
     } catch (error) {
       console.error(error);
@@ -589,31 +600,31 @@ module.exports = {
   deleteVariantById: async (req, res) => {
     try {
       const { variantId } = req.params;
-  
+
       // Validate variant ID
       if (!mongoose.Types.ObjectId.isValid(variantId)) {
         return res.status(400).json({ message: "Invalid Variant ID" });
       }
-  
+
       // Find the variant to delete
       const variant = await Variant.findById(variantId);
       if (!variant) {
         return res.status(404).json({ message: "Variant not found" });
       }
-  
+
       // Find the associated product
       const productId = variant.product;
-  
+
       // Delete the variant
       const deletedVariant = await Variant.findByIdAndDelete(variantId);
-  
+
       // Remove the variant ID from the product's variants array
       await Product.findByIdAndUpdate(
         productId,
         { $pull: { variants: variantId } },
         { new: true }
       );
-  
+
       res.status(200).json({
         message: "Variant deleted successfully",
         variant: deletedVariant,
@@ -622,5 +633,5 @@ module.exports = {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
     }
-  }
+  },
 };

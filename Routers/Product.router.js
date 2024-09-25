@@ -35,10 +35,14 @@ router.get("/on-sale", productController.getProductsOnSale);
 router.get("/all", productController.getAllProducts);
 router.get("/all/dashboard", productController.getAllProductsForDashboard);
 // route for update variant
-router.put("/update/variant",  upload.fields([
-  { name: "icon", maxCount: 1 },
-  { name: "picture", maxCount: 1 },
-]), productController.updateVariant);
+router.put(
+  "/update/variant",
+  upload.fields([
+    { name: "icon", maxCount: 1 },
+    { name: "picture", maxCount: 1 },
+  ]),
+  productController.updateVariant
+);
 // Route for getting a product by ID
 router.get("/:id", productController.getProductsByid);
 // route for delete product by ID
@@ -46,10 +50,14 @@ router.delete("/:productId", productController.deleteProductById);
 router.delete("/variant/:variantId", productController.deleteVariantById);
 router.get("/all/home", productController.getProductForHomePage);
 router.get("/get/variant/:variantId", productController.getVariantById);
-router.put("/:productId",  uploadFile({
-  folder: "./uploads/products",
-  acceptedTypes: [".png", ".jpeg", ".jpg"],
-  fieldName: "mainPicture", // This should match the form field name
-  multiple: false,
-}), productController.updateProduct);
+router.put(
+  "/:productId",
+  uploadFile({
+    folder: "./uploads/products",
+    acceptedTypes: [".png", ".jpeg", ".jpg"],
+    fieldName: "mainPicture", // This should match the form field name
+    multiple: false,
+  }),
+  productController.updateProduct
+);
 module.exports = router;
