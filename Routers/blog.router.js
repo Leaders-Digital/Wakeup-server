@@ -20,6 +20,6 @@ BlogRouter.post('/create',uploadFile({
 BlogRouter.get('/get', getArticles);
 BlogRouter.get('/get/article/:id', getArticleById);
 BlogRouter.put('/update/article/:id', updateArticle);
-BlogRouter.delete('/delete/article/:id', deleteArticle);
+BlogRouter.delete('/delete/:id', deleteArticle);
 
 module.exports = BlogRouter;
