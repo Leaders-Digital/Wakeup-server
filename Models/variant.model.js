@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Define the schema for a single variant
 const variantSchema = new Schema({
-  quantity: { type: String },
+  quantity: { type: Number },
   picture: { type: String },
   color: { type: String },
   icon: { type: String },
