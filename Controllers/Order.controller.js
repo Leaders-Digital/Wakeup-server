@@ -1,8 +1,10 @@
 const { sendOrderEmail } = require("../helpers/email");
+const { sendOwnerEmail } = require("../helpers/orderMail");
 const Order = require("../Models/orders.model");
+const Variant = require("../Models/variant.model");
 
 module.exports = {
-  createOrder: async (req, res) => {
+   createOrder : async (req, res) => {
     const {
       nom,
       prenom,
@@ -16,7 +18,7 @@ module.exports = {
       note,
       prixTotal,
     } = req.body;
-
+  
     try {
       // Check if all required fields are present
       if (
@@ -35,7 +37,28 @@ module.exports = {
           .status(400)
           .json({ message: "Tous les champs sont obligatoires" });
       }
-
+  
+      // Loop through the products to check stock and reduce quantities
+      for (const item of listeDesProduits) {
+        const variant = await Variant.findById(item.variant);
+        if (!variant) {
+          return res
+            .status(400)
+            .json({ message: `Variant with ID ${item.variant} not found` });
+        }
+  
+        // Check if there's enough stock
+        if (variant.quantity < item.quantite) {
+          return res
+            .status(400)
+            .json({ message: `Not enough stock for variant ${variant.reference}` });
+        }
+  
+        // Reduce the stock quantity
+        variant.quantity -= item.quantite;
+        await variant.save(); // Save the updated variant quantity
+      }
+  
       // Create a new order instance
       const newOrder = new Order({
         nom,
@@ -50,11 +73,12 @@ module.exports = {
         note,
         prixTotal,
       });
-
+  
       // Save the order to the database
       const savedOrder = await newOrder.save();
-      await sendOrderEmail(email, savedOrder.orderCode); // Send email with order code
-
+      await sendOrderEmail(email, savedOrder.orderCode); // Send email to customer
+      await sendOwnerEmail({ nom, prenom, prixTotal }); // Notify the owner
+  
       // Return the created order and the generated custom order code
       return res.status(201).json({
         message: "Commande ajoutée avec succès",
@@ -68,6 +92,7 @@ module.exports = {
         .json({ message: "Erreur serveur, veuillez réessayer plus tard." });
     }
   },
+  
 
   getOrders: async (req, res) => {
     try {
@@ -133,7 +158,6 @@ module.exports = {
   // Controller to get order by orderCode and populate variants and products
   getOrderByCode: async (req, res) => {
     const { orderCode } = req.params;
-    console.log(orderCode);
 
     try {
       const order = await Order.findOne({ orderCode }) // Query by orderCode, not _id
