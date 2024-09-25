@@ -3,8 +3,8 @@ const Blog = require("../Models/blog.model");
 module.exports = {
   createArticle: async (req, res) => {
     try {
-      const { title, content } = req.body;
-      const blogPicture = req.file ? req.file.path : null;
+      const { title, content , description } = req.body;
+      const blogImage = req.file ? req.file.path : null;
 
       if (!title || !content) {
         return res.status(400).json({
@@ -15,7 +15,8 @@ module.exports = {
       const newBlog = new Blog({
         title,
         content,
-        image: blogPicture,
+        description, 
+        blogImage: blogImage,
       });
       await newBlog.save();
 
