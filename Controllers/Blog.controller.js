@@ -2,25 +2,30 @@ const Blog = require("../Models/blog.model");
 
 module.exports = {
   createArticle: async (req, res) => {
-    const { title, content, image } = req.body;
-
     try {
-      // Check if all required fields are provided
+      const { title, content , description } = req.body;
+      const blogImage = req.file ? req.file.path : null;
+
       if (!title || !content) {
-        return res.status(400).json({ message: "Title and content are required fields" });
+        return res.status(400).json({
+          message: "Product title, content are required",
+        });
       }
 
-      // Create the new blog article
-      const response = await Blog.create({
+      const newBlog = new Blog({
         title,
         content,
-        image,
+        description, 
+        blogImage: blogImage,
       });
+      await newBlog.save();
 
-      return res.status(201).json({ message: "Article created successfully", data: response });
+      res
+        .status(201)
+        .json({ message: "Blog created successfully", newBlog });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "An error occurred while creating the article" });
+      res.status(500).json({ message: "Server error", error });
     }
   },
 
@@ -28,10 +33,14 @@ module.exports = {
     try {
       // Fetch all blog articles
       const response = await Blog.find();
-      return res.status(200).json({ data: response, message: "List of articles" });
+      return res
+        .status(200)
+        .json({ data: response, message: "List of articles" });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "An error occurred while fetching articles" });
+      return res
+        .status(500)
+        .json({ message: "An error occurred while fetching articles" });
     }
   },
 
@@ -44,10 +53,14 @@ module.exports = {
       if (!response) {
         return res.status(404).json({ message: "Article not found" });
       }
-      return res.status(200).json({ data: response, message: "Article details" });
+      return res
+        .status(200)
+        .json({ data: response, message: "Article details" });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "An error occurred while fetching the article" });
+      return res
+        .status(500)
+        .json({ message: "An error occurred while fetching the article" });
     }
   },
 
@@ -72,10 +85,14 @@ module.exports = {
         return res.status(404).json({ message: "Article not found" });
       }
 
-      return res.status(200).json({ message: "Article updated successfully", data: response });
+      return res
+        .status(200)
+        .json({ message: "Article updated successfully", data: response });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "An error occurred while updating the article" });
+      return res
+        .status(500)
+        .json({ message: "An error occurred while updating the article" });
     }
   },
 
@@ -93,7 +110,9 @@ module.exports = {
       return res.status(200).json({ message: "Article deleted successfully" });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "An error occurred while deleting the article" });
+      return res
+        .status(500)
+        .json({ message: "An error occurred while deleting the article" });
     }
-  }
+  },
 };
