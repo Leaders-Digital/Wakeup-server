@@ -422,8 +422,6 @@ module.exports = {
       // Add a condition to filter products based on the 'solde' (on sale) field, if provided
       if (solde === "true") {
         filter.solde = true;
-      } else if (solde === "false") {
-        filter.solde = false;
       }
 
       // Fetch products with pagination and optional category and solde filter
