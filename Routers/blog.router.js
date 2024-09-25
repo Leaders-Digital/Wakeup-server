@@ -6,7 +6,8 @@ const {
   getArticles,
   getArticleById,
   updateArticle,
-  deleteArticle
+  deleteArticle,
+  mainPageArticle
 } = require('../Controllers/Blog.controller');
 const { uploadFile } = require('../Middleware/imageUpload');
 
@@ -18,6 +19,7 @@ BlogRouter.post('/create',uploadFile({
   multiple: false,
 }), createArticle);
 BlogRouter.get('/get', getArticles);
+BlogRouter.get('/main', mainPageArticle);
 BlogRouter.get('/get/article/:id', getArticleById);
 BlogRouter.put('/update/article/:id', updateArticle);
 BlogRouter.delete('/delete/article/:id', deleteArticle);

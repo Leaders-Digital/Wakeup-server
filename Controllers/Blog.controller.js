@@ -32,7 +32,21 @@ module.exports = {
   getArticles: async (req, res) => {
     try {
       // Fetch all blog articles
-      const response = await Blog.find();
+      const response = await Blog.find()
+      return res
+        .status(200)
+        .json({ data: response, message: "List of articles" });
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ message: "An error occurred while fetching articles" });
+    }
+  },
+  mainPageArticle: async (req, res) => {
+    try {
+      // Fetch all blog articles
+      const response = await Blog.find().limit(4).sort({ createdAt: -1 });
       return res
         .status(200)
         .json({ data: response, message: "List of articles" });
