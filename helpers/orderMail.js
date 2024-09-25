@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendOwnerEmail = async (orderDetails) => {
+const sendOwnerEmail = async (orderDetails) => {    
   const mailOptions = {
     from: process.env.EMAIL,
     to: "jesserbenkhiria911@gmail.com", // Store owner's email
