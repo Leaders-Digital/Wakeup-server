@@ -15,7 +15,7 @@ module.exports = {
         soldePourcentage,
       } = req.body;
       const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
-      console.log(req.file);
+
 
       // Validate input
       if (
@@ -140,7 +140,7 @@ module.exports = {
 
 
 
-      console.log(req.query);
+    
 
       // Create a filter object to apply category filtering if a category is provided
       let filter = {};
@@ -260,11 +260,11 @@ module.exports = {
       //   return res.status(400).json({ message: "Code à barre déjà utilisé par un autre variant." });
       // }
 
-      console.log(req.files);
+     
       // Use existing picture and icon if no new file is uploaded
       const picture = req.files?.picture?.[0]?.path || variant.picture;
       const icon = req.files?.icon?.[0]?.path || variant.icon;
-      console.log(picture, icon);
+   
 
       // Update the variant
       const updatedVariant = await Variant.findByIdAndUpdate(
@@ -424,7 +424,7 @@ module.exports = {
       const search = req.query.search;
       const sortByPrice = req.query.sortByPrice || "desc"; // Default to sorting by price descending
 
-      console.log(req.query);
+    
 
       // Create a filter object to apply category filtering if a category is provided
       let filter = {};
