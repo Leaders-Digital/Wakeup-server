@@ -416,11 +416,9 @@ module.exports = {
 
   getAllProductsForDashboard: async (req, res) => {
     try {
-      const page = parseInt(req.query.page) || 1; // Default to page 1
-      const limit = parseInt(req.query.limit) || 10; // Default to 10 products per page
+  
       const category = req.query.categorie; // Get category from query (if provided)
       const solde = req.query.solde; // Get solde (sale) from query if provided
-      const skip = (page - 1) * limit;
       const search = req.query.search;
       const sortByPrice = req.query.sortByPrice || "desc"; // Default to sorting by price descending
 
@@ -456,8 +454,6 @@ module.exports = {
       const products = await Product.find(filter)
         .sort(sortOption)
         // .sort({ createdAt: -1 })
-        .skip(skip)
-        .limit(limit)
         .populate("variants");
       // Fetch total number of products (with the filter applied, if any)
       const totalProducts = await Product.countDocuments(filter);
@@ -471,8 +467,8 @@ module.exports = {
       // Return paginated response including the total number of products
       res.status(200).json({
         products,
-        totalPages: Math.ceil(totalProducts / limit),
-        currentPage: page,
+        // totalPages: Math.ceil(totalProducts / limit),
+        // currentPage: page,
         totalProducts, // Include the total number of products (filtered if applicable)
       });
     } catch (error) {
