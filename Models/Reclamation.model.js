@@ -10,10 +10,6 @@ const ReclamationSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
-    },
-    telephone: {
-        type: String,
     },
     message: {
         type: String,
