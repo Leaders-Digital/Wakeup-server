@@ -12,7 +12,7 @@ const productSchema = new Schema({
   retings: [{ type: Schema.Types.ObjectId, ref: 'Review' }], // Array of variant references
   categorie: {
     type: String,
-    enum: ["FACE", "Brush", "EYES", "Produits de soin", "LIPS"],
+    enum: ["FACE", "Brush", "EYES", "Produits de soin", "LIPS","PACK"],
     required: true,
   },
   subCategorie: {
@@ -44,7 +44,7 @@ const productSchema = new Schema({
       "PINCEAUX DES LÈVRES",
       "BRUSH CLEANSER"
     ],
-    required: true,
+    // required: true,
   },
 }, { timestamps: true });
 
