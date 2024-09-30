@@ -23,6 +23,10 @@ const InternUserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    numberOfTries : {
+      type : Number,
+      default :2
+    }
   },
   { timestamps: true }
 );
