@@ -17,7 +17,9 @@ module.exports = {
       codePostal,
       note,
       prixTotal,
+      listeDesPack
     } = req.body;
+  console.log(req.body);
   
     try {
       // Check if all required fields are present
@@ -31,7 +33,8 @@ module.exports = {
         !ville ||
         !codePostal ||
         !prixTotal ||
-        listeDesProduits.length === 0
+        listeDesProduits.length === 0||
+         !listeDesPack.length === 0
       ) {
         return res
           .status(400)
@@ -67,6 +70,7 @@ module.exports = {
         numTelephone,
         adresse,
         listeDesProduits,
+        listeDesPack,
         gouvernorat,
         ville,
         codePostal,
@@ -89,7 +93,7 @@ module.exports = {
       console.error("Error while creating order: ", error);
       return res
         .status(500)
-        .json({ message: "Erreur serveur, veuillez réessayer plus tard." });
+        .json({ message: "Erreur serveur, veuillez réessayer plus tard.", error });
     }
   },
   
@@ -109,18 +113,40 @@ module.exports = {
   getOrderById: async (req, res) => {
     const { id } = req.params;
     try {
-      const order = await Order.findById(id).populate({
-        path: "listeDesProduits.variant",
-        populate: { path: "product" }, // Populate the product field in variant
-      });
-
+      const order = await Order.findById(id)
+        .populate({
+          path: "listeDesProduits.variant",
+          populate: { path: "product" }, // Populate the product field in variant
+        })
+        .populate({
+          path: "listeDesPack.pack", // Populate the pack field in listeDesPack
+        });
+  
       if (!order) {
         return res.status(404).json({ message: "Commande non trouvée" });
       }
-
-      return res
-        .status(200)
-        .json({ data: order, message: "Commande récupérée avec succès" });
+  
+      // Combine listeDesProduits and listeDesPack into one array
+      const combinedList = [
+        ...order.listeDesProduits.map(item => ({
+          variant: item.variant,
+          quantite: item.quantite,
+        })),
+        ...order.listeDesPack.map(item => ({
+          pack: item.pack,
+          quantite: item.quantite,
+        })),
+      ];
+  
+      return res.status(200).json({
+        data: {
+          order: {
+            ...order.toObject(),
+            combinedList, // Include the combined list in the response
+          },
+        },
+        message: "Commande récupérée avec succès",
+      });
     } catch (error) {
       console.log(error);
       return res
@@ -128,6 +154,7 @@ module.exports = {
         .json({ message: "Erreur lors de la récupération de la commande" });
     }
   },
+  
 
   updateOrderStatus: async (req, res) => {
     const { id } = req.params;

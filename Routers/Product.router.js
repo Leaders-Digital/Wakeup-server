@@ -60,4 +60,5 @@ router.put(
   }),
   productController.updateProduct
 );
+router.get("/get/packs", productController.getAllPacks);
 module.exports = router;
