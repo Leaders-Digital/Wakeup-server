@@ -16,22 +16,15 @@ module.exports = {
       } = req.body;
       const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
 
-
       // Validate input
-      if (
-        !nom ||
-        !description ||
-        !prix ||
-        !categorie ||
-        !solde
-      ) {
+      if (!nom || !description || !prix || !categorie || !solde) {
         return res.status(400).json({
           message: "Product name, description, and price are required",
         });
       }
-        if(categorie==="PACK"){
-          subCategorie ="PACK"
-        }
+      if (categorie === "PACK") {
+        subCategorie = "PACK";
+      }
       // Create the product with the main image
       const product = new Product({
         nom,
@@ -137,7 +130,9 @@ module.exports = {
       const skip = (page - 1) * limit;
       const search = req.query.search;
       const sortByPrice = req.query.sortByPrice || "desc"; // Default to sorting by price descending
-      const searchArray = Array.isArray(req.query.searchArray) ? req.query.searchArray : []; // Ensure it's an array
+      const searchArray = Array.isArray(req.query.searchArray)
+        ? req.query.searchArray
+        : []; // Ensure it's an array
 
       // Create a filter object to apply category filtering if a category is provided
       let filter = {};
@@ -162,7 +157,6 @@ module.exports = {
         ];
       }
       if (searchArray.length > 0) {
-        
         filter.subCategorie = { $in: searchArray };
       }
       let sortOption = { createdAt: -1 };
@@ -257,11 +251,9 @@ module.exports = {
       //   return res.status(400).json({ message: "Code à barre déjà utilisé par un autre variant." });
       // }
 
-     
       // Use existing picture and icon if no new file is uploaded
       const picture = req.files?.picture?.[0]?.path || variant.picture;
       const icon = req.files?.icon?.[0]?.path || variant.icon;
-   
 
       // Update the variant
       const updatedVariant = await Variant.findByIdAndUpdate(
@@ -362,6 +354,9 @@ module.exports = {
       // Use aggregation to group by category and count the products in each one
       const categoryCounts = await Product.aggregate([
         {
+          $match: { categorie: { $ne: "PACK" } }, // Exclude products with category 'PACK'
+        },
+        {
           $group: {
             _id: "$categorie", // Group by category field
             count: { $sum: 1 }, // Count the number of products in each category
@@ -413,13 +408,10 @@ module.exports = {
 
   getAllProductsForDashboard: async (req, res) => {
     try {
-  
       const category = req.query.categorie; // Get category from query (if provided)
       const solde = req.query.solde; // Get solde (sale) from query if provided
       const search = req.query.search;
       const sortByPrice = req.query.sortByPrice || "desc"; // Default to sorting by price descending
-
-    
 
       // Create a filter object to apply category filtering if a category is provided
       let filter = {};
@@ -637,13 +629,12 @@ module.exports = {
       const sortByPrice = req.query.sortByPrice || "desc"; // Default to sorting by price descending
 
       // Create a filter object to apply category filtering if a category is provided
-      let filter = {categorie: "PACK"};
-    
+      let filter = { categorie: "PACK" };
+
       // Add a condition to filter products based on the 'solde' (on sale) field, if provided
       if (solde === "true") {
         filter.solde = true;
       }
-
 
       if (search) {
         filter.$or = [
@@ -665,7 +656,7 @@ module.exports = {
       const products = await Product.find(filter)
         .sort(sortOption)
         .skip(skip)
-        .limit(limit)
+        .limit(limit);
 
       // Fetch total number of products (with the filter applied, if any)
       const totalProducts = await Product.countDocuments(filter);
