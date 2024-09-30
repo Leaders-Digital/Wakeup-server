@@ -42,7 +42,8 @@ const productSchema = new Schema({
       "PINCEAUX DE VISAGE",
       "PINCEAUX DES YEUX",
       "PINCEAUX DES LÈVRES",
-      "BRUSH CLEANSER"
+      "BRUSH CLEANSER",
+      "PACK"
     ],
     // required: true,
   },

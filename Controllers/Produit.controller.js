@@ -5,7 +5,7 @@ module.exports = {
   // Controller function to create a new product
   createProduct: async (req, res) => {
     try {
-      const {
+      let {
         nom,
         description,
         prix,
@@ -23,14 +23,15 @@ module.exports = {
         !description ||
         !prix ||
         !categorie ||
-        !subCategorie ||
         !solde
       ) {
         return res.status(400).json({
           message: "Product name, description, and price are required",
         });
       }
-
+        if(categorie==="PACK"){
+          subCategorie ="PACK"
+        }
       // Create the product with the main image
       const product = new Product({
         nom,
