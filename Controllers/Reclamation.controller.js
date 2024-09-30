@@ -31,4 +31,17 @@ module.exports = {
       console.log(error);
     }
   },
+  updateReclamationStatus : async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { etat } = req.body;
+      const reclamation = await Reclamation.findByIdAndUpdate(id, { etat }, { new: true });
+        if (!reclamation) {
+            return res.status(404).json({ message: "Reclamation introuvable" });
+        }
+        res.status(200).json({ message: "Reclamation mise à jour avec succès", reclamation });
+    } catch (error) {
+        console.log(error);
+    }
+  }
 };
