@@ -11,6 +11,7 @@ const reviewRouter = require("./Routers/Review.router");
 const PartenaireRouter = require("./Routers/Partenaire.router");
 const BlogRouter = require("./Routers/blog.router");
 const InternUserRouter = require("./Routers/InternUser.router");
+const reclamationRouter = require("./Routers/Reclamation.router");
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 
@@ -23,6 +24,7 @@ app.use("/api/review", reviewRouter);
 app.use("/api/partenaire", PartenaireRouter);
 app.use("/api/blog" , BlogRouter)
 app.use ("/api/internUser", InternUserRouter)
+app.use("/api/reclamation", reclamationRouter);
 
 // server listening
 app.listen(port, () => {
