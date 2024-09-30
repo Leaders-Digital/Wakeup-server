@@ -127,24 +127,11 @@ module.exports = {
       }
   
       // Combine listeDesProduits and listeDesPack into one array
-      const combinedList = [
-        ...order.listeDesProduits.map(item => ({
-          variant: item.variant,
-          quantite: item.quantite,
-        })),
-        ...order.listeDesPack.map(item => ({
-          pack: item.pack,
-          quantite: item.quantite,
-        })),
-      ];
-  
       return res.status(200).json({
-        data: {
-          order: {
-            ...order.toObject(),
-            combinedList, // Include the combined list in the response
-          },
-        },
+        data: order,
+           // Include the combined list in the response
+          
+        
         message: "Commande récupérée avec succès",
       });
     } catch (error) {
