@@ -20,6 +20,12 @@ const ordersSchema = new mongoose.Schema(
         quantite: { type: Number, required: true },
       },
     ],
+    listeDesPack: [
+      {
+        pack: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        quantite: { type: Number, required: true },
+      },
+    ],
     adresse: { type: String, required: true },
     gouvernorat: { type: String, required: true },
     ville: { type: String, required: true },
