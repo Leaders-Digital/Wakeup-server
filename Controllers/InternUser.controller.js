@@ -1,5 +1,5 @@
 const InternUser = require("../Models/InternUser.js");
-
+const Info = require("../Models/info.model.js");
 module.exports = {
   createInternUser: async (req, res) => {
     try {
@@ -66,5 +66,24 @@ module.exports = {
        console.log(error);
        ;
     }
-  }
+  },
+      codePromoCheck : async (req,res) => {
+        try {
+          const {codePromo} = req.body;
+          let UserCode = codePromo.split("-")[1]; 
+          const Intern = await InternUser.findOne({codePromo : UserCode});
+          if (!Intern) {
+            return res.status(200).json({message: "Code promo invalide",solde:0});
+          }
+            if (Intern.numberOfTries === 0) {
+              return res.status(200).json({message: "Vous avez atteint le nombre maximal d'essais",solde:0});
+            }
+            // const getSoldeFromInfo = await Info.findOne()
+            res.status(200).json({message: "Code promo valide",solde:40});
+            Intern.numberOfTries = Intern.numberOfTries - 1;
+        } catch (error) {
+          console.log(error);
+          
+        }
+      }
 };
