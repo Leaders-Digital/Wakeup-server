@@ -9,6 +9,9 @@ const infoDataSchema = new mongoose.Schema({
   facebook : {type:String}, 
   instagram: {type: String}, 
   tiktok : {type:String},
+  promo : {
+    type : Number,
+  }
 }, { timestamps: true });
 
 const infoData = mongoose.model("info", infoDataSchema);
