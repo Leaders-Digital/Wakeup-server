@@ -3,7 +3,7 @@ const Reclamation = require("../Models/Reclamation.model");
 module.exports = {
   createReclamation: async (req, res) => {
     try {
-      const { nom, email, telephone, message } = req.body;
+      const { nom, email, message } = req.body;
       if (!nom || !email || !message) {
         return res
           .status(400)
@@ -12,7 +12,6 @@ module.exports = {
       const reclamation = new Reclamation({
         nom,
         email,
-        telephone,
         message,
       });
       await reclamation.save();
