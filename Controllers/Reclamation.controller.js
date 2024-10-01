@@ -24,7 +24,7 @@ module.exports = {
   },
   getReclamation: async (req, res) => {
     try {
-      const result = await Reclamation.find();
+      const result = await Reclamation.find().sort({ createdAt: -1 });
       res.status(200).json({ data: result });
     } catch (error) {
       console.log(error);
