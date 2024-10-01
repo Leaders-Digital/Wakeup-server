@@ -15,6 +15,10 @@ const ReclamationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    telephone: {
+        type: String,
+        required: true,
+    },
     etat: {
         type: String,
         enum: ['En attente', 'Résolu','Impossible'],

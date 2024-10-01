@@ -3,8 +3,8 @@ const Reclamation = require("../Models/Reclamation.model");
 module.exports = {
   createReclamation: async (req, res) => {
     try {
-      const { nom, email, message } = req.body;
-      if (!nom || !email || !message) {
+      const { nom, email, message,telephone } = req.body;
+      if (!nom || !email || !message || !telephone) {
         return res
           .status(400)
           .json({ message: "Tous les champs sont obligatoires" });
@@ -13,6 +13,7 @@ module.exports = {
         nom,
         email,
         message,
+        telephone
       });
       await reclamation.save();
       res
