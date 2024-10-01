@@ -43,5 +43,17 @@ module.exports = {
     } catch (error) {
         console.log(error);
     }
-  }
+  },
+  deleteReclamation: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const reclamation = await Reclamation.findByIdAndDelete(id);
+      if (!reclamation) {
+        return res.status(404).json({ message: "Reclamation introuvable" });
+      }
+      res.status(200).json({ message: "Reclamation supprimée avec succès" });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
