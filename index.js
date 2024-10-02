@@ -12,6 +12,9 @@ const PartenaireRouter = require("./Routers/Partenaire.router");
 const BlogRouter = require("./Routers/blog.router");
 const InternUserRouter = require("./Routers/InternUser.router");
 const reclamationRouter = require("./Routers/Reclamation.router");
+const promoRouters = require("./Routers/promoCode.router");
+const infoRouters = require("./Routers/info.router");
+
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 
@@ -25,6 +28,8 @@ app.use("/api/partenaire", PartenaireRouter);
 app.use("/api/blog" , BlogRouter)
 app.use ("/api/internUser", InternUserRouter)
 app.use("/api/reclamation", reclamationRouter);
+app.use("/api/promo", promoRouters);
+app.use("/api/info", infoRouters);
 
 // server listening
 app.listen(port, () => {

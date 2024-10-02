@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const InternUserSchema = new mongoose.Schema(
   {
     nom: {
@@ -10,11 +9,6 @@ const InternUserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // email: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    // },
     telephone: {
       type: String,
     },
@@ -23,10 +17,10 @@ const InternUserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    numberOfTries : {
-      type : Number,
-      default :2
-    }
+    numberOfTries: {
+      type: Number,
+      default: 2,
+    },
   },
   { timestamps: true }
 );
