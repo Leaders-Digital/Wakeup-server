@@ -14,6 +14,7 @@ const InternUserRouter = require("./Routers/InternUser.router");
 const reclamationRouter = require("./Routers/Reclamation.router");
 const promoRouters = require("./Routers/promoCode.router");
 const infoRouters = require("./Routers/info.router");
+const userRouter = require("./Routers/user.router");
 
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
@@ -30,7 +31,7 @@ app.use ("/api/internUser", InternUserRouter)
 app.use("/api/reclamation", reclamationRouter);
 app.use("/api/promo", promoRouters);
 app.use("/api/info", infoRouters);
-
+app.use("/api/user", userRouter);
 // server listening
 app.listen(port, () => {
   console.log(`Our server is running on port ${port}`);
