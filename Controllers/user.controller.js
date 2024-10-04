@@ -107,6 +107,22 @@ const authController = {
     }
   },
 
+  // Get user info controller
+  getUserInfo: async (req, res) => {
+    try {
+      const userId = req.user.id;
+      console.log(userId);
+      
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.status(200).json({ user });
+    } catch (error) {
+      res.status(500).json({ error: "Error fetching user info" });
+    }
+  },
+
   // Delete user controller
   deleteUser: async (req, res) => {
     try {
@@ -122,7 +138,6 @@ const authController = {
   changeRole: async (req, res) => {
     try {
       const { id, newRole } = req.body;
-      console.log(id, newRole);
 
       // Check if the role is valid (you can define valid roles)
       const validRoles = ["admin", "editor", "viewer"];
