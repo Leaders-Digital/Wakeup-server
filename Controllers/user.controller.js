@@ -31,6 +31,7 @@ const authController = {
 
       res.status(201).json({ message: "User created successfully" });
     } catch (error) {
+      console.log(error);
       res.status(500).json({ error: "Error creating user" });
     }
   },
@@ -39,8 +40,6 @@ const authController = {
   login: async (req, res) => {
     try {
       const { username, password } = req.body;
-console.log(username , password);
-
 
       // Find user by email
       const user = await User.findOne({ username });
@@ -62,6 +61,8 @@ console.log(username , password);
           expiresIn: "1h", // Token will expire in 1 hour
         }
       );
+      const lastLogin = Date.now();
+      await User.findByIdAndUpdate(user._id, { lastLogin });
 
       res.status(200).json({ token });
     } catch (error) {
@@ -94,6 +95,56 @@ console.log(username , password);
     res
       .status(200)
       .json({ message: `Welcome to the dashboard, ${req.user.role}!` });
+  },
+
+  // Get all users controller
+  getAllusers: async (req, res) => {
+    try {
+      const users = await User.find().sort({ createdAt: -1 });
+      res.status(200).json({ data: users });
+    } catch (error) {
+      res.status(500).json({ error: "Error getting users" });
+    }
+  },
+
+  // Delete user controller
+  deleteUser: async (req, res) => {
+    try {
+      const { id } = req.params;
+      await User.findByIdAndDelete(id);
+      res.status(200).json({ message: "User deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ error: "Error deleting user" });
+    }
+  },
+
+  // Change user role controller
+  changeRole: async (req, res) => {
+    try {
+      const { id, newRole } = req.body;
+      console.log(id, newRole);
+
+      // Check if the role is valid (you can define valid roles)
+      const validRoles = ["admin", "editor", "viewer"];
+      if (!validRoles.includes(newRole)) {
+        return res.status(400).json({ message: "Invalid role" });
+      }
+
+      // Find user by ID and update role
+      const user = await User.findByIdAndUpdate(
+        id,
+        { role: newRole },
+        { new: true }
+      );
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      res.status(200).json({ message: "Role updated successfully", user });
+    } catch (error) {
+      res.status(500).json({ error: "Error updating role" });
+    }
   },
 };
 
