@@ -6,13 +6,16 @@ const {
   getAllusers,
   deleteUser,
   changeRole,
+  getUserInfo,
+  verifyToken,
 } = require("../Controllers/user.controller");
+const authenticateToken = require("../Middleware/verifyToken");
 
 userRouter.post("/signup", signup);
 userRouter.post("/login", login);
 userRouter.get("/getAll", getAllusers);
-userRouter.delete("/:id",deleteUser);
+userRouter.delete("/:id", deleteUser);
 userRouter.put("/changeRole", changeRole);
-
+userRouter.get("/me", authenticateToken, getUserInfo);
 
 module.exports = userRouter;
