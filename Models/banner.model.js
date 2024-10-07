@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const bannerSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true , unique: true},
   picture: { type: String, required: true },
   isBanner: { type: Boolean, default: true }
 }, { timestamps: true });
