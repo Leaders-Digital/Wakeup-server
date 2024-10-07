@@ -23,6 +23,9 @@ bannerRouter.put("/:id",
     multiple: false,
   }), bannerController.updateBanner);
 
+
+bannerRouter.get("/object", bannerController.getAllBannersObject);
+
 // Delete a banner by ID
 bannerRouter.delete("/:id", bannerController.deleteBanner);
 
