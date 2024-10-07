@@ -34,7 +34,16 @@ const bannerController = {
       res.status(500).json({ message: error.message });
     }
   },
-
+getBannerByname : async (req, res) => {
+ try {
+  const banner = await Banner.findOne({ name: req.params.name });
+  if (!banner) return res.status(404).json({ message: "Banner not found" });
+  res.status(200).json(banner)
+  
+ } catch (error) {
+  res.status(500).json({ message: error.message });
+ }
+},
   // Update a banner by ID
   updateBanner: async (req, res) => {
     try {
@@ -63,6 +72,22 @@ const bannerController = {
       res.status(500).json({ message: error.message });
     }
   },
+  // Get all banners with name as key and picture as value
+getAllBannersObject: async (req, res) => {
+  try {
+    const banners = await Banner.find(); // Fetch all banners
+    const bannerMap = {}; // Initialize an empty object
+
+    banners.forEach((banner) => {
+      bannerMap[banner.name] = banner.picture; // Add name as key and picture as value
+    });
+
+    res.status(200).json(bannerMap); // Respond with the object
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+},
+
 };
 
 module.exports = bannerController;
