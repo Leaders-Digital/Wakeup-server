@@ -21,3 +21,15 @@ exports.subscribeEmail = async (req, res) => {
     res.status(500).json({ message: "Erreur serveur." }); // "Server error."
   }
 };
+
+// New getAllSubscriptions function
+exports.getAllSubscriptions = async (req, res) => {
+  try {
+    const subscriptions = await Subscription.find().sort({ createdAt: -1 });
+    res.status(200).json({ data: subscriptions });
+  } catch (error) {
+    console.error("Erreur lors de la récupération des abonnements:", error);
+    res.status(500).json({ message: "Erreur serveur." }); // "Server error."
+  }
+};
+
