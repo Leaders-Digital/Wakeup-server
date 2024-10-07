@@ -7,7 +7,6 @@ const {
   deleteUser,
   changeRole,
   getUserInfo,
-  verifyToken,
 } = require("../Controllers/user.controller");
 const authenticateToken = require("../Middleware/verifyToken");
 
