@@ -16,6 +16,7 @@ const promoRouters = require("./Routers/promoCode.router");
 const infoRouters = require("./Routers/info.router");
 const userRouter = require("./Routers/user.router");
 const bannerRouter = require("./Routers/banner.router");
+const subscribeRouter = require("./Routers/subscribe.router");
 
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
@@ -34,6 +35,7 @@ app.use("/api/promo", promoRouters);
 app.use("/api/info", infoRouters);
 app.use("/api/user", userRouter);
 app.use("/api/banner", bannerRouter);
+app.use("/api/subscribe", subscribeRouter);
 // server listening
 app.listen(port, () => {
   console.log(`Our server is running on port ${port}`);
