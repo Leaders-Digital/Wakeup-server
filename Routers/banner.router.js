@@ -15,14 +15,16 @@ bannerRouter.post(
 );
 bannerRouter.get("/get", bannerController.getAllBanners);
 // Update a banner by ID
-bannerRouter.put("/:id",
+bannerRouter.put(
+  "/:id",
   uploadFile({
     folder: "./uploads/banners",
     acceptedTypes: [".png", ".jpeg", ".jpg"],
     fieldName: "picture", // This should match the form field name
     multiple: false,
-  }), bannerController.updateBanner);
-
+  }),
+  bannerController.updateBanner
+);
 
 bannerRouter.get("/object", bannerController.getAllBannersObject);
 
