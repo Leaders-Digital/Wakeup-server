@@ -43,7 +43,7 @@ module.exports = {
   },
   getReview: async (req, res) => {
     try {
-      const response = await Review.find({ accepted: "true" }).populate(
+      const response = await Review.find().populate(
         "productId"
       );
       return res.status(200).json({ message: "Review fetched", response });
@@ -51,4 +51,30 @@ module.exports = {
       throw error;
     }
   },
+
+  updateAcceptedStatus: async (req, res) => {
+    const { reviewId, accepted } = req.body;
+
+    if (!reviewId || typeof accepted !== "boolean") {
+      return res.status(400).json({ message: "Invalid data" });
+    }
+
+    try {
+      const updatedReview = await Review.findByIdAndUpdate(
+        reviewId,
+        { accepted },
+        { new: true }
+      );
+
+      if (!updatedReview) {
+        return res.status(404).json({ message: "Review not found" });
+      }
+
+      return res.status(200).json({ message: "Status updated", updatedReview });
+    } catch (error) {
+      console.error("Error updating status:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
 };

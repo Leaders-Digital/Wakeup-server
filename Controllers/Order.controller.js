@@ -104,12 +104,30 @@ module.exports = {
   },
   getOrders: async (req, res) => {
     try {
-      const response = await Order.find().populate("listeDesProduits");
+      // Use the $ne (not equal) operator to exclude orders with status "livré"
+      const response = await Order.find({ statut: { $ne: "Livré"  } ||  { $ne: "livré" } })
+        .populate("listeDesProduits")
+        .populate("listeDesPack.pack"); // Add this if you want to populate packs as well
+  
       return res
         .status(200)
         .json({ data: response, message: "Liste des commandes" });
     } catch (error) {
-      throw error;
+      return res.status(500).json({ message: "Erreur lors de la récupération des commandes", error });
+    }
+  },
+  getDeliveredOrders: async (req, res) => {
+    try {
+      // Filter to get only the orders with status "livré"
+      const response = await Order.find({ statut: "Livré" } || { statut: "livré" })
+        .populate("listeDesProduits")
+        .populate("listeDesPack.pack"); // Add this if you want to populate packs as well
+  
+      return res
+        .status(200)
+        .json({ data: response, message: "Liste des commandes livrées" });
+    } catch (error) {
+      return res.status(500).json({ message: "Erreur lors de la récupération des commandes livrées", error });
     }
   },
   // Controller to get order by ID and populate variants
