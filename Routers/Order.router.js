@@ -2,11 +2,12 @@ const express = require('express');
 
 const OrderRouter =  express.Router();
 
-const {createOrder,getOrders, getOrderById, updateOrderStatus, getOrderByCode} = require('../Controllers/Order.controller');
+const {createOrder,getOrders, getOrderById, updateOrderStatus, getOrderByCode , getDeliveredOrders} = require('../Controllers/Order.controller');
 
 
 OrderRouter.post('/create',createOrder);
 OrderRouter.get('/',getOrders);
+OrderRouter.get('/livre',getDeliveredOrders);
 OrderRouter.get('/code/:orderCode',getOrderByCode);
 
 OrderRouter.get("/:id",getOrderById);
