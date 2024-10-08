@@ -4,7 +4,7 @@ const Order = require("../Models/orders.model");
 const Variant = require("../Models/variant.model");
 
 module.exports = {
-   createOrder : async (req, res) => {
+  createOrder: async (req, res) => {
     const {
       nom,
       prenom,
@@ -17,10 +17,11 @@ module.exports = {
       codePostal,
       note,
       prixTotal,
-      listeDesPack
+      listeDesPack,
     } = req.body;
-  console.log(req.body);
-  
+    console.log(req.body);
+
+
     try {
       // Check if all required fields are present
       if (
@@ -33,14 +34,14 @@ module.exports = {
         !ville ||
         !codePostal ||
         !prixTotal ||
-        listeDesProduits.length === 0||
-         !listeDesPack.length === 0
+        !listeDesProduits ||
+        !listeDesPack
       ) {
         return res
           .status(400)
           .json({ message: "Tous les champs sont obligatoires" });
       }
-  
+
       // Loop through the products to check stock and reduce quantities
       for (const item of listeDesProduits) {
         const variant = await Variant.findById(item.variant);
@@ -49,19 +50,21 @@ module.exports = {
             .status(400)
             .json({ message: `Variant with ID ${item.variant} not found` });
         }
-  
+
         // Check if there's enough stock
         if (variant.quantity < item.quantite) {
           return res
             .status(400)
-            .json({ message: `Not enough stock for variant ${variant.reference}` });
+            .json({
+              message: `Not enough stock for variant ${variant.reference}`,
+            });
         }
-  
+
         // Reduce the stock quantity
         variant.quantity -= item.quantite;
         await variant.save(); // Save the updated variant quantity
       }
-  
+
       // Create a new order instance
       const newOrder = new Order({
         nom,
@@ -77,12 +80,12 @@ module.exports = {
         note,
         prixTotal,
       });
-  
+
       // Save the order to the database
       const savedOrder = await newOrder.save();
-      await sendOrderEmail(email, savedOrder.orderCode); // Send email to customer
-      await sendOwnerEmail({ nom, prenom, prixTotal }); // Notify the owner
-  
+      // await sendOrderEmail(email, savedOrder.orderCode);
+      // await sendOwnerEmail({ nom, prenom, prixTotal });
+
       // Return the created order and the generated custom order code
       return res.status(201).json({
         message: "Commande ajoutée avec succès",
@@ -93,11 +96,12 @@ module.exports = {
       console.error("Error while creating order: ", error);
       return res
         .status(500)
-        .json({ message: "Erreur serveur, veuillez réessayer plus tard.", error });
+        .json({
+          message: "Erreur serveur, veuillez réessayer plus tard.",
+          error,
+        });
     }
   },
-  
-
   getOrders: async (req, res) => {
     try {
       const response = await Order.find().populate("listeDesProduits");
@@ -108,7 +112,6 @@ module.exports = {
       throw error;
     }
   },
-
   // Controller to get order by ID and populate variants
   getOrderById: async (req, res) => {
     const { id } = req.params;
@@ -121,17 +124,16 @@ module.exports = {
         .populate({
           path: "listeDesPack.pack", // Populate the pack field in listeDesPack
         });
-  
+
       if (!order) {
         return res.status(404).json({ message: "Commande non trouvée" });
       }
-  
+
       // Combine listeDesProduits and listeDesPack into one array
       return res.status(200).json({
         data: order,
-           // Include the combined list in the response
-          
-        
+        // Include the combined list in the response
+
         message: "Commande récupérée avec succès",
       });
     } catch (error) {
@@ -141,8 +143,6 @@ module.exports = {
         .json({ message: "Erreur lors de la récupération de la commande" });
     }
   },
-  
-
   updateOrderStatus: async (req, res) => {
     const { id } = req.params;
     const { statut } = req.body;

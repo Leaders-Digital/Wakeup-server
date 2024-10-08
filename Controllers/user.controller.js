@@ -52,6 +52,9 @@ const authController = {
       if (!isPasswordValid) {
         return res.status(400).json({ message: "Invalid email or password" });
       }
+      if (!user.isActive) {
+        return res.status(400).json({ message: "votre compte est desactiver" });
+      }
 
       // Generate JWT token
       const token = jwt.sign(
@@ -112,7 +115,7 @@ const authController = {
     try {
       const userId = req.user.id;
       console.log(userId);
-      
+
       const user = await User.findById(userId);
       if (!user) {
         return res.status(404).json({ message: "User not found" });
@@ -159,6 +162,24 @@ const authController = {
       res.status(200).json({ message: "Role updated successfully", user });
     } catch (error) {
       res.status(500).json({ error: "Error updating role" });
+    }
+  },
+  changeStatus: async (req, res) => {
+    try {
+      const { id, status } = req.body;
+      console.log(id, status);
+
+      const user = await User.findByIdAndUpdate(
+        id,
+        { isActive: status },
+        { new: true }
+      );
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.status(200).json({ message: "Status updated successfully", user });
+    } catch (error) {
+      res.status(500).json({ error: "Error updating status " });
     }
   },
 };
