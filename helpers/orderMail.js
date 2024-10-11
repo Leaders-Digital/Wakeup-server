@@ -17,6 +17,7 @@ const sendOwnerEmail = async (orderDetails) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: "jesserbenkhiria911@gmail.com", // Store owner's email
+    // contact@leaders-makeup.com
     subject: "New Order Created",
     text: `Une nouvelle commande a été créée par ${orderDetails.nom} ${orderDetails.prenom}.
              Prix total : ${orderDetails.prixTotal}.
