@@ -1,13 +1,14 @@
-// emailService.js
-
 const nodemailer = require("nodemailer");
 dotenv = require("dotenv");
 dotenv.config();
+
 const transporter = nodemailer.createTransport({
-  service: "gmail", // Use your email service (e.g., Gmail, SendGrid)
+  host: "ssl0.ovh.net", // OVH SMTP Host
+  port: 587, // or 587 for TLS
+  secure: false, // Use true for port 465 (SSL)
   auth: {
-    user: process.env.EMAIL_USER, // Your email address
-    pass: process.env.EMAIL_PASS, // Your email password or app password
+    user: process.env.EMAIL_USER, // Your OVH email address
+    pass: process.env.EMAIL_PASS, // Your OVH email password
   },
 });
 
@@ -26,13 +27,6 @@ const sendOrderEmail = (recipientEmail, orderCode) => {
           <p>Merci pour votre confiance et à bientôt sur notre site !</p>
         </div>
       `,
-    // attachments: [
-    //   {
-    //     filename: "logo.png", // Replace with your logo file name
-    //     path: "../", // Adjust the path to your logo
-    //     cid: "logo", // Referencing the logo in the HTML
-    //   },
-    // ],
   };
 
   return transporter.sendMail(mailOptions);
