@@ -4,13 +4,16 @@ dotenv.config();
 
 const transporter = nodemailer.createTransport({
   host: "ssl0.ovh.net", // OVH SMTP Host
-  port: 587, // or 587 for TLS
+  port: 578, // or 587 for TLS
   secure: false, // Use true for port 465 (SSL)
   auth: {
     user: process.env.EMAIL_USER, // Your OVH email address
     pass: process.env.EMAIL_PASS, // Your OVH email password
-  },
+  },  
+  debug : true,
+  logger : true 
 });
+console.log(process.env.EMAIL_PASS);
 
 const sendOrderEmail = (recipientEmail, orderCode) => {
   const mailOptions = {
@@ -29,7 +32,12 @@ const sendOrderEmail = (recipientEmail, orderCode) => {
       `,
   };
 
-  return transporter.sendMail(mailOptions);
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending email:", error);
+    } else {
+      console.log("Email sent successfully:", info.response);
+    }
+  });
 };
-
 module.exports = { sendOrderEmail };
