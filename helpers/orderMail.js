@@ -15,12 +15,12 @@ const transporter = nodemailer.createTransport({
 
 const sendOwnerEmail = async (orderDetails) => {    
   const mailOptions = {
-    from: process.env.EMAIL,
+    from: process.env.EMAIL_USER,
     to: "jesserbenkhiria911@gmail.com", // Store owner's email
     subject: "New Order Created",
-    text: `A new order has been created by ${orderDetails.nom} ${orderDetails.prenom}.
-             Total price: ${orderDetails.prixTotal}.
-             Check your admin panel for more details.`,
+    text: `Une nouvelle commande a été créée par ${orderDetails.nom} ${orderDetails.prenom}.
+             Prix total : ${orderDetails.prixTotal}.
+             Consultez votre panneau d'administration pour plus de détails.`,
   };
 
   try {
