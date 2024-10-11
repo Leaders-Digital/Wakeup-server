@@ -4,8 +4,8 @@ dotenv.config();
 
 const transporter = nodemailer.createTransport({
   host: "ssl0.ovh.net", // OVH SMTP Host
-  port: 587, // or 587 for TLS
-  secure: false, // Use true for port 465 (SSL)
+  port: 465, // or 587 for TLS
+  secure: true, // Use true for port 465 (SSL)
   auth: {
     user: process.env.EMAIL_USER, // Your OVH email address
     pass: process.env.EMAIL_PASS, // Your OVH email password

@@ -4,7 +4,9 @@ const nodemailer = require("nodemailer");
 dotenv = require("dotenv");
 dotenv.config();
 const transporter = nodemailer.createTransport({
-  service: "gmail", // Use your email service (e.g., Gmail, SendGrid)
+  host: "ssl0.ovh.net", // Use your email service (e.g., Gmail, SendGrid)
+  port: 465, // or 587 for TLS
+  secure: true, // Use true for port 465 (SSL)
   auth: {
     user: process.env.EMAIL_USER, // Your email address
     pass: process.env.EMAIL_PASS, // Your email password or app password
