@@ -80,8 +80,16 @@ module.exports = {
 
   updateArticle: async (req, res) => {
     const { id } = req.params;
-    const { title, content, image, isArchived } = req.body;
-
+  console.log(req.body);
+  
+    const { title, content, isArchived } = req.body;
+    const blog = await Blog.findById(id);
+    if (!blog){
+      return res.status(404).json({ message: "Article not found" });
+    }
+    const blogImage = req.file ? req.file.path : blog.blogImage;
+    console.log(blogImage,"here");
+    
     try {
       // Update the blog article
       const response = await Blog.findByIdAndUpdate(
@@ -89,7 +97,7 @@ module.exports = {
         {
           title,
           content,
-          image,
+          blogImage,
           isArchived,
         },
         { new: true }
