@@ -105,7 +105,7 @@ module.exports = {
   getOrders: async (req, res) => {
     try {
       // Use the $ne (not equal) operator to exclude orders with status "livré"
-      const response = await Order.find({ statut: { $ne: "Livré"  } ||  { $ne: "livré" } })
+      const response = await Order.find({ statut:{ $ne: "livré" } })
         .populate("listeDesProduits")
         .populate("listeDesPack.pack"); // Add this if you want to populate packs as well
   
@@ -119,7 +119,7 @@ module.exports = {
   getDeliveredOrders: async (req, res) => {
     try {
       // Filter to get only the orders with status "livré"
-      const response = await Order.find({ statut: "Livré" } || { statut: "livré" })
+      const response = await Order.find({ statut: "livré" })
         .populate("listeDesProduits")
         .populate("listeDesPack.pack"); // Add this if you want to populate packs as well
   
