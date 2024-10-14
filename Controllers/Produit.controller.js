@@ -393,7 +393,10 @@ module.exports = {
     try {
       const product = await Product.findOne({ _id: req.params.id })
         .populate("variants")
-        .populate("retings");
+        .populate({
+          path: 'retings',
+          match: { accepted: true } // Only get accepted reviews
+        });
 
       if (!product) {
         return res.status(404).json({ message: "Product not found" });
