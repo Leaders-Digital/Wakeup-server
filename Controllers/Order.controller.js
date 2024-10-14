@@ -83,8 +83,8 @@ module.exports = {
 
       // Save the order to the database
       const savedOrder = await newOrder.save();
-      // await sendOrderEmail(email, savedOrder.orderCode);
-      // await sendOwnerEmail({ nom, prenom, prixTotal });
+      await sendOrderEmail(email, savedOrder.orderCode);
+      await sendOwnerEmail({ nom, prenom, prixTotal });
 
       // Return the created order and the generated custom order code
       return res.status(201).json({
