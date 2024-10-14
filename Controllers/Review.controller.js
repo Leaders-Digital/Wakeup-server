@@ -77,9 +77,7 @@ module.exports = {
     }
   },
   deleteReview: async (req, res) => {
-    const { reviewIds, productId } = req.body; // Get reviewIds from params
-  console.log(req.body,"herererererer");
-  
+    const { reviewIds, productId } = req.body; // Get reviewIds from params  
     if (!reviewIds || !productId) {
       return res.status(400).json({ message: "Review IDs and Product ID are required" });
     }
