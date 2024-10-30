@@ -7,7 +7,8 @@ const partenaireSchema = new mongoose.Schema({
     lien: { type: String, required: true },
     adresse:{ type: String , required: true},
     telephone:{ type: String , required: true},
-    status: { type: Boolean, default: false }
+    status: { type: Boolean, default: false },
+    location: { type: String , required:true },
 }, { timestamps: true });
 
 

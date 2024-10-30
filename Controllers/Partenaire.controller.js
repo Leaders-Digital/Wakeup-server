@@ -8,7 +8,7 @@ module.exports = {
     
     
     try {
-      const { nom, lien, status, adresse, telephone } = req.body;
+      const { nom, lien, status, adresse, telephone,location } = req.body;
       const logo = req.file ? req.file.path : null; // Get the logo path if a file was uploaded
       // Validate input
       if (!nom || !lien || !status || !adresse || !telephone) {
@@ -25,6 +25,7 @@ module.exports = {
         lien,
         adresse,
         telephone,
+        location
       });
   
       // Save the partenaire to the database
@@ -66,7 +67,7 @@ deletePartenaire: async (req, res) => {
 updatePartenaire: async (req, res) => {
   try {
     const { id } = req.params; // Get the ID from the request parameters
-    const { nom, lien, status, adresse, telephone } = req.body;
+    const { nom, lien, status, adresse, telephone,location } = req.body;
     const logo = req.file ? req.file.path : null; // Get the logo path if a new file was uploaded
 
     // Create an update object
@@ -76,6 +77,7 @@ updatePartenaire: async (req, res) => {
       status,
       adresse,
       telephone,
+      location
     };
 
     // Include logo only if it was provided
