@@ -3,7 +3,7 @@ const promoCodeController = require("../Controllers/promoCode.controller");
 
 const router = express.Router();
 
-router.post("/", promoCodeController.createPromoCode);
+router.post("/create", promoCodeController.createPromoCode);
 router.get("/", promoCodeController.getAllPromoCodes);
 router.get("/:id", promoCodeController.getPromoCodeById);
 router.put("/:id", promoCodeController.updatePromoCode);
