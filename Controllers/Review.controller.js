@@ -76,5 +76,34 @@ module.exports = {
       return res.status(500).json({ message: "Internal server error" });
     }
   },
-
+  deleteReview: async (req, res) => {
+    const { reviewIds, productId } = req.body; // Get reviewIds from params  
+    if (!reviewIds || !productId) {
+      return res.status(400).json({ message: "Review IDs and Product ID are required" });
+    }
+  
+    try {
+      // Find and delete reviews
+      const deletedReviews = await Review.deleteMany({ _id: { $in: reviewIds } });
+  
+      if (deletedReviews.deletedCount === 0) {
+        return res.status(404).json({ message: "No reviews found to delete" });
+      }
+  
+      // Update the product to remove the review references
+      await Product.findByIdAndUpdate(
+        productId,
+        {
+          $pull: { ratings: { $in: reviewIds } } // Remove the review IDs from the product's ratings array
+        },
+        { new: true }
+      );
+  
+      return res.status(200).json({ message: `${deletedReviews.deletedCount} review(s) deleted successfully` });
+    } catch (error) {
+      console.error("Error deleting reviews:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  }
+  
 };
