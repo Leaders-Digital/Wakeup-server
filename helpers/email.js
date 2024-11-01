@@ -11,6 +11,9 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS, // Your OVH email password
   },  
   debug : true,
+  tls: {
+    rejectUnauthorized: false, // Ignore unauthorized certificates
+  },
   logger : true 
 });
 console.log(process.env.EMAIL_PASS);
