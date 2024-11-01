@@ -6,6 +6,7 @@ const infoData = require("../Models/info.model.js");
 const createPromoCode = async (req, res) => {
   try {
     const { code, discountValue, expirationDate } = req.body;
+console.log("body",req.body);
 
     // Check if promo code already exists
     const existingCode = await PromoCode.findOne({ code });
@@ -22,6 +23,8 @@ const createPromoCode = async (req, res) => {
     const savedPromoCode = await newPromoCode.save();
     res.status(201).json(savedPromoCode);
   } catch (error) {
+    console.log(error);
+    
     res.status(500).json({ message: "Error creating promo code", error });
   }
 };
