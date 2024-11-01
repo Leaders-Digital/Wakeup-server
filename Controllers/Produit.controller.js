@@ -12,10 +12,10 @@ module.exports = {
         categorie,
         subCategorie,
         solde,
+        metaFields,
         soldePourcentage,
       } = req.body;
       const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
-
       // Validate input
       if (!nom || !description || !prix || !categorie || !solde) {
         return res.status(400).json({
@@ -35,11 +35,10 @@ module.exports = {
         subCategorie,
         solde,
         soldePourcentage,
+        metaFields
       });
-
       // Save the product to the database
       await product.save();
-
       // Send a success response
       res
         .status(201)
@@ -154,6 +153,9 @@ module.exports = {
           { description: { $regex: search, $options: "i" } },
           { categorie: { $regex: search, $options: "i" } },
           { subCategorie: { $regex: search, $options: "i" } },
+          { metaFields: { $regex: search, $options: "i" } },
+
+        
         ];
       }
       if (searchArray.length > 0) {
@@ -525,6 +527,7 @@ module.exports = {
         subCategorie,
         solde,
         soldePourcentage,
+        metaFields
       } = req.body;
 
       // Validate product ID
@@ -543,6 +546,7 @@ module.exports = {
       product.nom = nom || product.nom;
       product.description = description || product.description;
       product.prix = prix || product.prix;
+      product.metaFields = metaFields || product.metaFields;
       product.categorie = categorie || product.categorie;
       product.subCategorie = subCategorie || product.subCategorie;
       product.solde = solde !== undefined ? solde : product.solde; // Allow for false solde values
