@@ -11,14 +11,17 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER, // Your email address
     pass: process.env.EMAIL_PASS, // Your email password or app password
   },
+  tls: {
+    rejectUnauthorized: false, // Ignore unauthorized certificates
+  },
 });
 
-const sendOwnerEmail = async (orderDetails) => {    
+const sendOwnerEmail = async (orderDetails) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: "jesserbenkhiria911@gmail.com", // Store owner's email
+    to: "contact@leadersmakeup.com", // Store owner's email
     // contact@leaders-makeup.com
-    subject: "New Order Created",
+    subject: "Une nouvelle commande a été créée",
     text: `Une nouvelle commande a été créée par ${orderDetails.nom} ${orderDetails.prenom}.
              Prix total : ${orderDetails.prixTotal}.
              Consultez votre panneau d'administration pour plus de détails.`,
