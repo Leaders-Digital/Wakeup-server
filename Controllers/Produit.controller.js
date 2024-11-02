@@ -122,31 +122,24 @@ module.exports = {
   // Controller function to get all products
   getAllProducts: async (req, res) => {
     try {
-      const page = parseInt(req.query.page) || 1; // Default to page 1
-      const limit = parseInt(req.query.limit) || 10; // Default to 10 products per page
-      const category = req.query.categorie; // Get category from query (if provided)
-      const solde = req.query.solde; // Get solde (sale) from query if provided
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 10;
+      const category = req.query.categorie;
+      const solde = req.query.solde;
       const skip = (page - 1) * limit;
       const search = req.query.search;
-      const sortByPrice = req.query.sortByPrice || "desc"; // Default to sorting by price descending
-      const searchArray = Array.isArray(req.query.searchArray)
-        ? req.query.searchArray
-        : []; // Ensure it's an array
-
-      // Create a filter object to apply category filtering if a category is provided
+      const sortByPrice = req.query.sortByPrice || "desc";
+      const searchArray = Array.isArray(req.query.searchArray) ? req.query.searchArray : [];
+  
       let filter = {};
       if (category && category !== "Tous les catégories") {
         filter.categorie = category;
       }
-
-      // Add a condition to filter products that have at least one variant
-      filter.variants = { $exists: true, $not: { $size: 0 } };
-
-      // Add a condition to filter products based on the 'solde' (on sale) field, if provided
+  
       if (solde === "true") {
         filter.solde = true;
       }
-
+  
       if (search) {
         filter.$or = [
           { nom: { $regex: search, $options: "i" } },
@@ -154,34 +147,87 @@ module.exports = {
           { categorie: { $regex: search, $options: "i" } },
           { subCategorie: { $regex: search, $options: "i" } },
           { metaFields: { $regex: search, $options: "i" } },
-
-        
         ];
       }
+  
       if (searchArray.length > 0) {
         filter.subCategorie = { $in: searchArray };
       }
+  
       let sortOption = { createdAt: -1 };
-      if (sortByPrice) {
-        if (sortByPrice === "asc") {
-          sortOption = { prix: 1 }; // Sort by price ascending (lowest to highest)
-        } else if (sortByPrice === "desc") {
-          sortOption = { prix: -1 }; // Sort by price descending (highest to lowest)
-        }
+      if (sortByPrice === "asc") {
+        sortOption = { prix: 1 };
+      } else if (sortByPrice === "desc") {
+        sortOption = { prix: -1 };
       }
-      // Fetch products with pagination and optional category and solde filter
-      const products = await Product.find(filter)
-        .sort(sortOption)
-        .skip(skip)
-        .limit(limit)
-        .populate("variants");
-
-      // Fetch total number of products (with the filter applied, if any)
-      const totalProducts = await Product.countDocuments(filter);
-
-      // Aggregate to find the lowest and highest prices
+  
+      // Filter to only include products with variants that have a total quantity > 0
+      const products = await Product.aggregate([
+        { $match: filter },
+        {
+          $lookup: {
+            from: "variants",
+            localField: "variants",
+            foreignField: "_id",
+            as: "variantDetails",
+          },
+        },
+        {
+          $addFields: {
+            totalVariantQuantity: { $sum: "$variantDetails.quantity" },
+          },
+        },
+        {
+          $match: { totalVariantQuantity: { $gt: 0 } },
+        },
+        { $sort: sortOption },
+        { $skip: skip },
+        { $limit: limit },
+      ]);
+  
+      // Fetch the total number of products with the in-stock filter
+      const totalProducts = await Product.aggregate([
+        { $match: filter },
+        {
+          $lookup: {
+            from: "variants",
+            localField: "variants",
+            foreignField: "_id",
+            as: "variantDetails",
+          },
+        },
+        {
+          $addFields: {
+            totalVariantQuantity: { $sum: "$variantDetails.quantity" },
+          },
+        },
+        {
+          $match: { totalVariantQuantity: { $gt: 0 } },
+        },
+        { $count: "total" },
+      ]);
+  
+      const total = totalProducts.length ? totalProducts[0].total : 0;
+  
+      // Aggregate to find the lowest and highest prices for the filtered products
       const priceStats = await Product.aggregate([
         { $match: filter },
+        {
+          $lookup: {
+            from: "variants",
+            localField: "variants",
+            foreignField: "_id",
+            as: "variantDetails",
+          },
+        },
+        {
+          $addFields: {
+            totalVariantQuantity: { $sum: "$variantDetails.quantity" },
+          },
+        },
+        {
+          $match: { totalVariantQuantity: { $gt: 0 } },
+        },
         {
           $group: {
             _id: null,
@@ -190,24 +236,19 @@ module.exports = {
           },
         },
       ]);
-
+  
       const lowestPrice = priceStats.length ? priceStats[0].lowestPrice : null;
-      const highestPrice = priceStats.length
-        ? priceStats[0].highestPrice
-        : null;
-
+      const highestPrice = priceStats.length ? priceStats[0].highestPrice : null;
+  
       if (!products.length) {
-        return res
-          .status(200)
-          .json({ products: [], message: "No products found" });
+        return res.status(200).json({ products: [], message: "No products found" });
       }
-
-      // Return paginated response including the total number of products and price stats
+  
       res.status(200).json({
         products,
-        totalPages: Math.ceil(totalProducts / limit),
+        totalPages: Math.ceil(total / limit),
         currentPage: page,
-        totalProducts,
+        totalProducts: total,
         lowestPrice,
         highestPrice,
       });
@@ -216,6 +257,7 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
+  
 
   updateVariant: async (req, res) => {
     try {
