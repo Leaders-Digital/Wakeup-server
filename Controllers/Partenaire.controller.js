@@ -3,9 +3,7 @@ const Partenaire = require("../Models/Partenaire.model");
 
 module.exports = {
   addPartenaire: async (req, res) => {
-    console.log(req.body);
-    console.log(req.file);
-    
+  
     
     try {
       const { nom, lien, status, adresse, telephone,location } = req.body;
