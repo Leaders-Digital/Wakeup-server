@@ -10,7 +10,7 @@ const productSchema = new Schema({
   soldePourcentage: { type: Number },
   variants: [{ type: Schema.Types.ObjectId, ref: 'Variant' }], // Array of variant references
   retings: [{ type: Schema.Types.ObjectId, ref: 'Review' }], // Array of variant references
-  metaFields:[{type:"String",required:false}],
+  metaFields:[{type:String,required:false}],
   categorie: {
     type: String,
     enum: ["FACE", "Brush", "EYES", "Produits de soin", "LIPS","PACK"],
