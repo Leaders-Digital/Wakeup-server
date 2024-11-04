@@ -37,6 +37,7 @@ const ordersSchema = new mongoose.Schema(
       enum: ["en cours", "validé", "annulé", "livré"],
       default: "en cours",
     },
+    payed: { type: Boolean, default: false },
     orderCode: { type: String, unique: true }, // Unique order code field
   },
   { timestamps: true }
