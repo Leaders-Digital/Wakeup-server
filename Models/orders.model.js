@@ -39,6 +39,7 @@ const ordersSchema = new mongoose.Schema(
     },
     payed: { type: Boolean, default: false },
     orderCode: { type: String, unique: true }, // Unique order code field
+    paymentRef :{type:String  , unique:true}
   },
   { timestamps: true }
 );
