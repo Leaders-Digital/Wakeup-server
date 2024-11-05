@@ -216,52 +216,58 @@ module.exports = {
   // update order payed status
 
   updateOrderPayed: async (req, res) => {
-      const { id } = req.params;
-  
-      try {
-          // Find the order by ID
-          const order = await Order.findById(id);
-  
-          if (!order) {
-              return res.status(404).json({ message: "Commande non trouvée" });
-          }
-  
-          // Retrieve the payment reference from the order
-          const paymentRef = order.paymentRef; // Adjust according to your order schema
-  
-          if (!paymentRef) {
-              return res.status(400).json({ message: "Référence de paiement manquante" });
-          }
-  
-          // Make a request to Konnect API to check payment status
-          const konnectResponse = await axios.get(`https://api.preprod.konnect.network/api/v2/payments/${paymentRef}`, {
-              headers: {
-                  'x-api-key': '672256c051a38c7f6cb8bb9d:FwrRxNCJDKERkDab8krLhZrq'
-              }
-          });
-  console.log(konnectResponse.data);
-  
-          // Extract the payment status from the response
-          const paymentStatus = konnectResponse.data.payment.status;
-  
-          // Update the order based on the payment status
-          const isPayed = paymentStatus === "completed";
-          const updatedOrder = await Order.findByIdAndUpdate(
-              id,
-              { payed: isPayed },
-              { new: true }
-          );
-  
-          return res.status(200).json({
-              message: isPayed,
-              data: updatedOrder
-          });
-      } catch (error) {
-          console.error(error);
-          return res.status(500).json({ message: "Erreur lors de la mise à jour du statut" });
+    const { id } = req.params;
+
+    try {
+      // Find the order by ID
+      const order = await Order.findById(id);
+
+      if (!order) {
+        return res.status(404).json({ message: "Commande non trouvée" });
       }
+
+      // Retrieve the payment reference from the order
+      const paymentRef = order.paymentRef; // Adjust according to your order schema
+
+      if (!paymentRef) {
+        return res
+          .status(400)
+          .json({ message: "Référence de paiement manquante" });
+      }
+
+      // Make a request to Konnect API to check payment status
+      const konnectResponse = await axios.get(
+        `https://api.preprod.konnect.network/api/v2/payments/${paymentRef}`,
+        {
+          headers: {
+            "x-api-key": "672256c051a38c7f6cb8bb9d:FwrRxNCJDKERkDab8krLhZrq",
+          },
+        }
+      );
+      
+      // Extract the payment status from the response
+      const paymentStatus = konnectResponse.data.payment.status;
+
+      // Update the order based on the payment status
+      const isPayed = paymentStatus === "completed";
+      const updatedOrder = await Order.findByIdAndUpdate(
+        id,
+        { payed: isPayed },
+        { new: true }
+      );
+
+      return res.status(200).json({
+        message: isPayed,
+        data: updatedOrder,
+      });
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ message: "Erreur lors de la mise à jour du statut" });
+    }
   },
-  
+
   //update order paymentRef
   updateOrderPaymentRef: async (req, res) => {
     const { id } = req.params;
