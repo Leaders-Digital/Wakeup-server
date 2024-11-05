@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const { sendOrderEmail } = require("../helpers/email");
 const { sendOwnerEmail } = require("../helpers/orderMail");
 const Order = require("../Models/orders.model");
@@ -19,8 +20,6 @@ module.exports = {
       prixTotal,
       listeDesPack,
     } = req.body;
-    console.log(req.body);
-
 
     try {
       // Check if all required fields are present
@@ -53,11 +52,9 @@ module.exports = {
 
         // Check if there's enough stock
         if (variant.quantity < item.quantite) {
-          return res
-            .status(400)
-            .json({
-              message: `Not enough stock for variant ${variant.reference}`,
-            });
+          return res.status(400).json({
+            message: `Not enough stock for variant ${variant.reference}`,
+          });
         }
 
         // Reduce the stock quantity
@@ -94,26 +91,27 @@ module.exports = {
       });
     } catch (error) {
       console.error("Error while creating order: ", error);
-      return res
-        .status(500)
-        .json({
-          message: "Erreur serveur, veuillez réessayer plus tard.",
-          error,
-        });
+      return res.status(500).json({
+        message: "Erreur serveur, veuillez réessayer plus tard.",
+        error,
+      });
     }
   },
   getOrders: async (req, res) => {
     try {
       // Use the $ne (not equal) operator to exclude orders with status "livré"
-      const response = await Order.find({ statut:{ $ne: "livré" } })
+      const response = await Order.find({ statut: { $ne: "livré" } })
         .populate("listeDesProduits")
         .populate("listeDesPack.pack"); // Add this if you want to populate packs as well
-  
+
       return res
         .status(200)
         .json({ data: response, message: "Liste des commandes" });
     } catch (error) {
-      return res.status(500).json({ message: "Erreur lors de la récupération des commandes", error });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des commandes",
+        error,
+      });
     }
   },
   getDeliveredOrders: async (req, res) => {
@@ -122,12 +120,15 @@ module.exports = {
       const response = await Order.find({ statut: "livré" })
         .populate("listeDesProduits")
         .populate("listeDesPack.pack"); // Add this if you want to populate packs as well
-  
+
       return res
         .status(200)
         .json({ data: response, message: "Liste des commandes livrées" });
     } catch (error) {
-      return res.status(500).json({ message: "Erreur lors de la récupération des commandes livrées", error });
+      return res.status(500).json({
+        message: "Erreur lors de la récupération des commandes livrées",
+        error,
+      });
     }
   },
   // Controller to get order by ID and populate variants
@@ -210,6 +211,81 @@ module.exports = {
       return res
         .status(500)
         .json({ message: "Erreur lors de la récupération de la commande" });
+    }
+  },
+  // update order payed status
+
+  updateOrderPayed: async (req, res) => {
+      const { id } = req.params;
+  
+      try {
+          // Find the order by ID
+          const order = await Order.findById(id);
+  
+          if (!order) {
+              return res.status(404).json({ message: "Commande non trouvée" });
+          }
+  
+          // Retrieve the payment reference from the order
+          const paymentRef = order.paymentRef; // Adjust according to your order schema
+  
+          if (!paymentRef) {
+              return res.status(400).json({ message: "Référence de paiement manquante" });
+          }
+  
+          // Make a request to Konnect API to check payment status
+          const konnectResponse = await axios.get(`https://api.preprod.konnect.network/api/v2/payments/${paymentRef}`, {
+              headers: {
+                  'x-api-key': '672256c051a38c7f6cb8bb9d:FwrRxNCJDKERkDab8krLhZrq'
+              }
+          });
+  console.log(konnectResponse.data);
+  
+          // Extract the payment status from the response
+          const paymentStatus = konnectResponse.data.payment.status;
+  
+          // Update the order based on the payment status
+          const isPayed = paymentStatus === "completed";
+          const updatedOrder = await Order.findByIdAndUpdate(
+              id,
+              { payed: isPayed },
+              { new: true }
+          );
+  
+          return res.status(200).json({
+              message: isPayed,
+              data: updatedOrder
+          });
+      } catch (error) {
+          console.error(error);
+          return res.status(500).json({ message: "Erreur lors de la mise à jour du statut" });
+      }
+  },
+  
+  //update order paymentRef
+  updateOrderPaymentRef: async (req, res) => {
+    const { id } = req.params;
+    const { paymentRef } = req.body;
+    try {
+      // Find the order by ID and update the status
+      const order = await Order.findByIdAndUpdate(
+        id,
+        { paymentRef },
+        { new: true } // Return the updated document
+      );
+
+      if (!order) {
+        return res.status(404).json({ message: "Commande non trouvée" });
+      }
+
+      return res
+        .status(200)
+        .json({ message: "paymentRef de la commande mis à jour", data: order });
+    } catch (error) {
+      console.log(error);
+      return res
+        .status(500)
+        .json({ message: "Erreur lors de la mise à jour du paymentRef" });
     }
   },
 };
