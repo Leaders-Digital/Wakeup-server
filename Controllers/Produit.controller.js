@@ -547,16 +547,27 @@ module.exports = {
       })
         .populate("variants")
         .limit(6);
+  
       if (!products.length) {
         return res.status(201).json({ message: "No products found", products });
       }
-
-      res.status(200).json({ products });
+  
+      // Map products to place populated variants in variantDetails field
+      const modifiedProducts = products.map(product => {
+        const { variants, ...rest } = product.toObject(); // Convert product to plain object
+        return {
+          ...rest,
+          variantDetails: variants, // Place populated variants in variantDetails
+        };
+      });
+  
+      res.status(200).json({ products: modifiedProducts });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
     }
   },
+  
   // Controller function to update a product
   updateProduct: async (req, res) => {
     try {
