@@ -61,4 +61,6 @@ router.put(
   productController.updateProduct
 );
 router.get("/get/packs", productController.getAllPacks);
+
+router.put("/update/all/varients", productController.updateAllVariants);
 module.exports = router;

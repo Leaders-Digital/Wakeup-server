@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const Product = require("../Models/Produit.model");
 const Variant = require("../Models/variant.model");
+const { default: axios } = require("axios");
 module.exports = {
   // Controller function to create a new product
   createProduct: async (req, res) => {
@@ -35,7 +36,7 @@ module.exports = {
         subCategorie,
         solde,
         soldePourcentage,
-        metaFields
+        metaFields,
       });
       // Save the product to the database
       await product.save();
@@ -129,17 +130,19 @@ module.exports = {
       const skip = (page - 1) * limit;
       const search = req.query.search;
       const sortByPrice = req.query.sortByPrice || "desc";
-      const searchArray = Array.isArray(req.query.searchArray) ? req.query.searchArray : [];
-  
+      const searchArray = Array.isArray(req.query.searchArray)
+        ? req.query.searchArray
+        : [];
+
       let filter = {};
       if (category && category !== "Tous les catégories") {
         filter.categorie = category;
       }
-  
+
       if (solde === "true") {
         filter.solde = true;
       }
-  
+
       if (search) {
         filter.$or = [
           { nom: { $regex: search, $options: "i" } },
@@ -149,18 +152,18 @@ module.exports = {
           { metaFields: { $regex: search, $options: "i" } },
         ];
       }
-  
+
       if (searchArray.length > 0) {
         filter.subCategorie = { $in: searchArray };
       }
-  
+
       let sortOption = { createdAt: -1 };
       if (sortByPrice === "asc") {
         sortOption = { prix: 1 };
       } else if (sortByPrice === "desc") {
         sortOption = { prix: -1 };
       }
-  
+
       // Filter to only include products with variants that have a total quantity > 0
       const products = await Product.aggregate([
         { $match: filter },
@@ -184,7 +187,7 @@ module.exports = {
         { $skip: skip },
         { $limit: limit },
       ]);
-  
+
       // Fetch the total number of products with the in-stock filter
       const totalProducts = await Product.aggregate([
         { $match: filter },
@@ -206,9 +209,9 @@ module.exports = {
         },
         { $count: "total" },
       ]);
-  
+
       const total = totalProducts.length ? totalProducts[0].total : 0;
-  
+
       // Aggregate to find the lowest and highest prices for the filtered products
       const priceStats = await Product.aggregate([
         { $match: filter },
@@ -236,14 +239,18 @@ module.exports = {
           },
         },
       ]);
-  
+
       const lowestPrice = priceStats.length ? priceStats[0].lowestPrice : null;
-      const highestPrice = priceStats.length ? priceStats[0].highestPrice : null;
-  
+      const highestPrice = priceStats.length
+        ? priceStats[0].highestPrice
+        : null;
+
       if (!products.length) {
-        return res.status(200).json({ products: [], message: "No products found" });
+        return res
+          .status(200)
+          .json({ products: [], message: "No products found" });
       }
-  
+
       res.status(200).json({
         products,
         totalPages: Math.ceil(total / limit),
@@ -257,7 +264,6 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
-  
 
   updateVariant: async (req, res) => {
     try {
@@ -438,8 +444,8 @@ module.exports = {
       const product = await Product.findOne({ _id: req.params.id })
         .populate("variants")
         .populate({
-          path: 'retings',
-          match: { accepted: true } // Only get accepted reviews
+          path: "retings",
+          match: { accepted: true }, // Only get accepted reviews
         });
 
       if (!product) {
@@ -547,27 +553,27 @@ module.exports = {
       })
         .populate("variants")
         .limit(6);
-  
+
       if (!products.length) {
         return res.status(201).json({ message: "No products found", products });
       }
-  
+
       // Map products to place populated variants in variantDetails field
-      const modifiedProducts = products.map(product => {
+      const modifiedProducts = products.map((product) => {
         const { variants, ...rest } = product.toObject(); // Convert product to plain object
         return {
           ...rest,
           variantDetails: variants, // Place populated variants in variantDetails
         };
       });
-  
+
       res.status(200).json({ products: modifiedProducts });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
     }
   },
-  
+
   // Controller function to update a product
   updateProduct: async (req, res) => {
     try {
@@ -580,7 +586,7 @@ module.exports = {
         subCategorie,
         solde,
         soldePourcentage,
-        metaFields
+        metaFields,
       } = req.body;
 
       // Validate product ID
@@ -752,6 +758,76 @@ module.exports = {
         totalProducts,
         lowestPrice,
         highestPrice,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  },
+  updateAllVariants: async (req, res) => {
+    try {
+      const variants = await Variant.find();
+      console.log("Total Variants:", variants.length);
+
+      const config = {
+        headers: {
+          Authorization: "jkaAVXs852ZPOnlop795",
+          "Content-Type": "application/json",
+        },
+      };
+
+      let updatedCount = 0; // Track updated products
+      let unrecognizedCount = 0; // Track products not recognized by the API
+
+      // Use a for...of loop with async/await for sequential processing
+      for (const [index, variant] of variants.entries()) {
+        const body = {
+          code: variant.codeAbarre,
+        };
+
+        try {
+          const response = await axios.post(
+            "https://expert.leaders-immo.com/api/makeup/article/stock",
+            body,
+            config
+          );
+
+          const { resultat, status } = response.data;
+          if (status === "success") {
+            if (variant.quantity !== resultat) {
+              // Update quantity if it differs
+              variant.quantity = resultat;
+              await variant.save();
+              updatedCount++;
+              console.log(
+                `Updated variant at index ${index} (${variant.codeAbarre}): New quantity is ${resultat}`
+              );
+            } else {
+              console.log(
+                `Same quantity for variant at index ${index} (${variant.codeAbarre}): Quantity is ${resultat}`
+              );
+            }
+          } else {
+            // Handle unrecognized products
+            console.log(
+              `API did not recognize variant at index ${index} (${variant.codeAbarre})`
+            );
+            unrecognizedCount++;
+          }
+        } catch (error) {
+          console.error(
+            `Error for variant at index ${index} (${variant.codeAbarre}):`,
+            error
+          );
+          unrecognizedCount++;
+        }
+      }
+
+      res.json({
+        message: "Variants updated successfully",
+        totalVariants: variants.length,
+        updatedCount,
+        unrecognizedCount,
       });
     } catch (error) {
       console.error(error);
