@@ -4,10 +4,12 @@ const Partenaire = require("../Models/Partenaire.model");
 module.exports = {
   addPartenaire: async (req, res) => {
   
-    
+      console.log(req.body,"here")        
     try {
       const { nom, lien, status, adresse, telephone,location } = req.body;
       const logo = req.file ? req.file.path : null; // Get the logo path if a file was uploaded
+      console.log(req.file);
+      
       // Validate input
       if (!nom || !lien || !status || !adresse || !telephone) {
         return res
