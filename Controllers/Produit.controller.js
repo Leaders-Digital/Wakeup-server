@@ -164,7 +164,7 @@ module.exports = {
         sortOption = { prix: -1 };
       }
 
-      // Filter to only include products with variants that have a total quantity > 0
+      // Get products with their variant quantities and calculate enRupture status
       const products = await Product.aggregate([
         { $match: filter },
         {
@@ -178,39 +178,22 @@ module.exports = {
         {
           $addFields: {
             totalVariantQuantity: { $sum: "$variantDetails.quantity" },
+            enRupture: {
+              $cond: {
+                if: { $eq: [{ $sum: "$variantDetails.quantity" }, 0] },
+                then: true,
+                else: false,
+              },
+            },
           },
-        },
-        {
-          $match: { totalVariantQuantity: { $gt: 0 } },
         },
         { $sort: sortOption },
         { $skip: skip },
         { $limit: limit },
       ]);
 
-      // Fetch the total number of products with the in-stock filter
-      const totalProducts = await Product.aggregate([
-        { $match: filter },
-        {
-          $lookup: {
-            from: "variants",
-            localField: "variants",
-            foreignField: "_id",
-            as: "variantDetails",
-          },
-        },
-        {
-          $addFields: {
-            totalVariantQuantity: { $sum: "$variantDetails.quantity" },
-          },
-        },
-        {
-          $match: { totalVariantQuantity: { $gt: 0 } },
-        },
-        { $count: "total" },
-      ]);
-
-      const total = totalProducts.length ? totalProducts[0].total : 0;
+      // Fetch total count of products (without quantity filtering)
+      const totalProducts = await Product.countDocuments(filter);
 
       // Aggregate to find the lowest and highest prices for the filtered products
       const priceStats = await Product.aggregate([
@@ -227,9 +210,6 @@ module.exports = {
           $addFields: {
             totalVariantQuantity: { $sum: "$variantDetails.quantity" },
           },
-        },
-        {
-          $match: { totalVariantQuantity: { $gt: 0 } },
         },
         {
           $group: {
@@ -253,9 +233,9 @@ module.exports = {
 
       res.status(200).json({
         products,
-        totalPages: Math.ceil(total / limit),
+        totalPages: Math.ceil(totalProducts / limit),
         currentPage: page,
-        totalProducts: total,
+        totalProducts,
         lowestPrice,
         highestPrice,
       });
@@ -441,27 +421,45 @@ module.exports = {
 
   getProductsByid: async (req, res) => {
     try {
-      const product = await Product.findOne({ _id: req.params.id })
+      const productId = req.params.id;
+
+      // Validate ObjectId
+      if (!mongoose.Types.ObjectId.isValid(productId)) {
+        return res.status(400).json({ message: "Invalid product ID" });
+      }
+
+      const product = await Product.findOne({ _id: productId })
         .populate({
           path: "variants",
-          match: { quantity: { $gt: 0 } } // Only include variants with quantity > 0
+          // Remove the match filter to include all variants
+          // If you previously had match: { quantity: { $gt: 0 } }, remove it
         })
         .populate({
-          path: "retings",
+          path: "retings", // Ensure the path is correct
           match: { accepted: true }, // Only get accepted reviews
         });
-  
+
       if (!product) {
         return res.status(404).json({ message: "Product not found" });
       }
-  
-      res.status(200).json(product);
+
+      // Calculate the total variant quantity
+      const totalVariantQuantity = product.variants.reduce(
+        (sum, variant) => sum + variant.quantity,
+        0
+      );
+      const enRupture = totalVariantQuantity === 0;
+
+      // Convert Mongoose document to plain object to add new fields
+      const productObject = product.toObject();
+      productObject.enRupture = enRupture;
+
+      res.status(200).json(productObject);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
     }
   },
-  
 
   getAllProductsForDashboard: async (req, res) => {
     try {
