@@ -442,22 +442,26 @@ module.exports = {
   getProductsByid: async (req, res) => {
     try {
       const product = await Product.findOne({ _id: req.params.id })
-        .populate("variants")
+        .populate({
+          path: "variants",
+          match: { quantity: { $gt: 0 } } // Only include variants with quantity > 0
+        })
         .populate({
           path: "retings",
           match: { accepted: true }, // Only get accepted reviews
         });
-
+  
       if (!product) {
         return res.status(404).json({ message: "Product not found" });
       }
-
+  
       res.status(200).json(product);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
     }
   },
+  
 
   getAllProductsForDashboard: async (req, res) => {
     try {
