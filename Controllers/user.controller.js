@@ -53,7 +53,7 @@ const authController = {
         return res.status(400).json({ message: "Invalid email or password" });
       }
       if (!user.isActive) {
-        return res.status(400).json({ message: "votre compte est desactiver" });
+        return res.status(400).json({ message: "Votre compte est désactivé" });
       }
 
       // Generate JWT token
