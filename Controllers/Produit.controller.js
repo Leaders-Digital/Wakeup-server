@@ -421,45 +421,49 @@ module.exports = {
 
   getProductsByid: async (req, res) => {
     try {
-      const productId = req.params.id;
+        const productId = req.params.id;
 
-      // Validate ObjectId
-      if (!mongoose.Types.ObjectId.isValid(productId)) {
-        return res.status(400).json({ message: "Invalid product ID" });
-      }
+        // Validate ObjectId
+        if (!mongoose.Types.ObjectId.isValid(productId)) {
+            return res.status(400).json({ message: "Invalid product ID" });
+        }
 
-      const product = await Product.findOne({ _id: productId })
-        .populate({
-          path: "variants",
-          // Remove the match filter to include all variants
-          // If you previously had match: { quantity: { $gt: 0 } }, remove it
-        })
-        .populate({
-          path: "retings", // Ensure the path is correct
-          match: { accepted: true }, // Only get accepted reviews
-        });
+        const product = await Product.findOne({ _id: productId })
+            .populate({
+                path: "variants",
+            })
+            .populate({
+                path: "retings",
+                match: { accepted: true },
+            });
 
-      if (!product) {
-        return res.status(404).json({ message: "Product not found" });
-      }
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
 
-      // Calculate the total variant quantity
-      const totalVariantQuantity = product.variants.reduce(
-        (sum, variant) => sum + variant.quantity,
-        0
-      );
-      const enRupture = totalVariantQuantity === 0;
+        // Manually filter out variants with quantity 0
+        const filteredVariants = product.variants.filter(variant => variant.quantity > 0);
 
-      // Convert Mongoose document to plain object to add new fields
-      const productObject = product.toObject();
-      productObject.enRupture = enRupture;
+        // Calculate the total variant quantity after filtering
+        const totalVariantQuantity = filteredVariants.reduce(
+            (sum, variant) => sum + variant.quantity,
+            0
+        );
+        const enRupture = totalVariantQuantity === 0;
 
-      res.status(200).json(productObject);
+        // Convert Mongoose document to plain object to add new fields
+        const productObject = product.toObject();
+        productObject.variants = filteredVariants; // Replace variants with filtered variants
+        productObject.enRupture = enRupture;
+
+        res.status(200).json(productObject);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Server error", error });
+        console.error(error);
+        res.status(500).json({ message: "Server error", error });
     }
-  },
+},
+
+
 
   getAllProductsForDashboard: async (req, res) => {
     try {
