@@ -421,49 +421,49 @@ module.exports = {
 
   getProductsByid: async (req, res) => {
     try {
-        const productId = req.params.id;
+      const productId = req.params.id;
 
-        // Validate ObjectId
-        if (!mongoose.Types.ObjectId.isValid(productId)) {
-            return res.status(400).json({ message: "Invalid product ID" });
-        }
+      // Validate ObjectId
+      if (!mongoose.Types.ObjectId.isValid(productId)) {
+        return res.status(400).json({ message: "Invalid product ID" });
+      }
 
-        const product = await Product.findOne({ _id: productId })
-            .populate({
-                path: "variants",
-            })
-            .populate({
-                path: "retings",
-                match: { accepted: true },
-            });
+      const product = await Product.findOne({ _id: productId })
+        .populate({
+          path: "variants",
+        })
+        .populate({
+          path: "retings",
+          match: { accepted: true },
+        });
 
-        if (!product) {
-            return res.status(404).json({ message: "Product not found" });
-        }
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
 
-        // Manually filter out variants with quantity 0
-        const filteredVariants = product.variants.filter(variant => variant.quantity > 0);
+      // Manually filter out variants with quantity 0
+      const filteredVariants = product.variants.filter(
+        (variant) => variant.quantity > 0
+      );
 
-        // Calculate the total variant quantity after filtering
-        const totalVariantQuantity = filteredVariants.reduce(
-            (sum, variant) => sum + variant.quantity,
-            0
-        );
-        const enRupture = totalVariantQuantity === 0;
+      // Calculate the total variant quantity after filtering
+      const totalVariantQuantity = filteredVariants.reduce(
+        (sum, variant) => sum + variant.quantity,
+        0
+      );
+      const enRupture = totalVariantQuantity === 0;
 
-        // Convert Mongoose document to plain object to add new fields
-        const productObject = product.toObject();
-        productObject.variants = filteredVariants; // Replace variants with filtered variants
-        productObject.enRupture = enRupture;
+      // Convert Mongoose document to plain object to add new fields
+      const productObject = product.toObject();
+      productObject.variants = filteredVariants; // Replace variants with filtered variants
+      productObject.enRupture = enRupture;
 
-        res.status(200).json(productObject);
+      res.status(200).json(productObject);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Server error", error });
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
     }
-},
-
-
+  },
 
   getAllProductsForDashboard: async (req, res) => {
     try {
@@ -835,6 +835,64 @@ module.exports = {
         updatedCount,
         unrecognizedCount,
       });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  },
+  updatePrices: async (req, res) => {
+    try {
+      const variants = await Variant.find();
+      console.log("Total Variants:", variants.length);
+
+      const uniqueVariants = [];
+      const seenProducts = new Set();
+
+      for (const variant of variants) {
+        const product = await Product.findOne({ variants: variant._id });
+        if (!seenProducts.has(product.nom)) {
+          seenProducts.add(product.nom);
+          uniqueVariants.push(variant);
+        }
+      }
+
+      const config = {
+        headers: {
+          Authorization: "jkaAVXs852ZPOnlop795",
+          "Content-Type": "application/json",
+        },
+      };
+
+      for (const [index, variant] of uniqueVariants.entries()) {
+        const body = {
+          code: variant.codeAbarre,
+        };
+        try {
+          const response = await axios.post(
+            "https://expert.leaders-immo.com/api/makeup/article/price",
+            body,
+            config
+          );
+          const newPrice = response.data.resultat;
+
+          const product = await Product.findOneAndUpdate(
+            { variants: variant._id },
+            { $set: { prix: newPrice } },
+            { new: true }
+          );
+
+          console.log(
+            `Updated price for ${product.nom} (${variant.codeAbarre}):`,
+            product.prix
+          );
+        } catch (error) {
+          console.error(
+            `Error for variant at index ${index} (${variant.codeAbarre}):`,
+            error.message
+          );
+        }
+      }
+      return res.json({ msg: "done" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
