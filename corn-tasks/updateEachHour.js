@@ -121,7 +121,7 @@ const updateAllVariants = async () => {
       }
     }
 
-    res.json({
+    console.log({
       message: "Variants updated successfully",
       totalVariants: variants.length,
       updatedCount,
@@ -129,7 +129,7 @@ const updateAllVariants = async () => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server error", error });
+    console.log.json({ message: "Server error", error });
   }
 };
 
