@@ -50,6 +50,7 @@ router.delete("/:productId", productController.deleteProductById);
 router.delete("/variant/:variantId", productController.deleteVariantById);
 router.get("/all/home", productController.getProductForHomePage);
 router.get("/get/variant/:variantId", productController.getVariantById);
+
 router.put(
   "/:productId",
   uploadFile({
