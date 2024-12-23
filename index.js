@@ -20,7 +20,7 @@ const userRouter = require("./Routers/user.router");
 const bannerRouter = require("./Routers/banner.router");
 const subscribeRouter = require("./Routers/subscribe.router");
 const dashboardRouter = require("./Routers/dashboard.router");
-
+const achatRoutes = require('./Routers/achat.router');
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors());
@@ -52,6 +52,7 @@ app.use("/api/info", infoRouters);
 app.use("/api/user", userRouter);
 app.use("/api/banner", bannerRouter);
 app.use("/api/subscribe", subscribeRouter);
+app.use("/api/achat", achatRoutes);
 app.use("/api/dashboard", dashboardRouter);
 // server listening
 app.listen(port, () => {

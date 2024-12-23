@@ -15,6 +15,7 @@ module.exports = {
         solde,
         metaFields,
         soldePourcentage,
+        prixAchat,
       } = req.body;
       const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
       // Validate input
@@ -37,6 +38,7 @@ module.exports = {
         solde,
         soldePourcentage,
         metaFields,
+        prixAchat,
       });
       // Save the product to the database
       await product.save();
@@ -593,6 +595,7 @@ module.exports = {
         solde,
         soldePourcentage,
         metaFields,
+        prixAchat
       } = req.body;
 
       // Validate product ID
@@ -620,6 +623,7 @@ module.exports = {
           ? soldePourcentage
           : product.soldePourcentage;
       product.mainPicture = mainPicture;
+      product.prixAchat = prixAchat || product.prixAchat;
       // Save the updated product to the database
       const updatedProduct = await product.save();
       // Send a success response
