@@ -26,7 +26,7 @@ app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors());
 
-// const { updatePrices, updateAllVariants } = require("./corn-tasks/updateEachHour");
+
 require("./corn-tasks/updateEachHour");
 
 const apiKeyMiddleware = (req, res, next) => {
