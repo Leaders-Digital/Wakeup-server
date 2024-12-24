@@ -21,6 +21,7 @@ const bannerRouter = require("./Routers/banner.router");
 const subscribeRouter = require("./Routers/subscribe.router");
 const dashboardRouter = require("./Routers/dashboard.router");
 const achatRoutes = require('./Routers/achat.router');
+const clientRoutes = require('./Routers/client.router');
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors());
@@ -54,6 +55,7 @@ app.use("/api/banner", bannerRouter);
 app.use("/api/subscribe", subscribeRouter);
 app.use("/api/achat", achatRoutes);
 app.use("/api/dashboard", dashboardRouter);
+app.use("/api/client", clientRoutes);
 // server listening
 app.listen(port, () => {
   console.log(`Our server is running on port ${port}`);
