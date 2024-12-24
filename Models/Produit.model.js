@@ -8,6 +8,7 @@ const productSchema = new Schema({
   solde: { type: Boolean, default: false },
   mainPicture: { type: String },
   prixAchat: { type: Number, required: true },
+  prixGros: { type: Number, required: true },
   soldePourcentage: { type: Number },
   variants: [{ type: Schema.Types.ObjectId, ref: 'Variant' }], // Array of variant references
   retings: [{ type: Schema.Types.ObjectId, ref: 'Review' }], // Array of variant references
