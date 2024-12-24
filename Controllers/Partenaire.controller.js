@@ -66,10 +66,9 @@ deletePartenaire: async (req, res) => {
 },
 updatePartenaire: async (req, res) => {
   try {
-    const { id } = req.params; // Get the ID from the request parameters
+    const { id } = req.params; 
     const { nom, lien, status, adresse, telephone,location } = req.body;
-    const logo = req.file ? req.file.path : null; // Get the logo path if a new file was uploaded
-
+    const logo = req.file ? req.file.path : null; 
     // Create an update object
     const updateData = {
       nom,
@@ -79,22 +78,16 @@ updatePartenaire: async (req, res) => {
       telephone,
       location
     };
-
-    // Include logo only if it was provided
     if (logo) {
       updateData.logo = logo;
     }
-
-    // Find and update the partenaire by ID
     const partenaire = await Partenaire.findByIdAndUpdate(id, updateData, { new: true });
-    
     if (!partenaire) {
       return res.status(404).json({ message: "Partenaire non trouvé" });
     }
-    // Send a success response
     res.status(200).json({ message: "Partenaire mis à jour avec succès", partenaire });
   } catch (error) {
-    console.error(error); // Log the error for debugging
+    console.error(error); 
     res.status(500).json({ message: "Erreur serveur", error });
   }
 },
