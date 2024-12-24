@@ -600,6 +600,7 @@ module.exports = {
         prixAchat,
         prixGros,
       } = req.body;
+      console.log(req.body);
 
       // Validate product ID
       if (!mongoose.Types.ObjectId.isValid(productId)) {
