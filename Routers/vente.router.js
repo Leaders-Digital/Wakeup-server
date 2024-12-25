@@ -4,6 +4,7 @@ const {
   updateVenteStatus,
   updateVente,
   getAllVentes,
+  getVenteById,
 } = require("../Controllers/vente.controller");
 
 const router = express.Router();
@@ -19,5 +20,6 @@ router.put("/update/:id", updateVente);
 
 // Get all Ventes
 router.get("/all", getAllVentes);
+router.get("/:id", getVenteById);
 
 module.exports = router;

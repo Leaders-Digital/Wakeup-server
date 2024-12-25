@@ -156,9 +156,32 @@ const getAllVentes = async (req, res) => {
   }
 };
 
+const getVenteById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const vente = await Vente.findById(id).populate({
+      path: "products.variantId",
+      populate: {
+        path: "product",
+        model: "Product", // Replace 'Product' with the actual name of your Product model
+      },
+    });
+
+    if (!vente) {
+      return res.status(404).json({ error: "Vente not found." });
+    }
+
+    res.status(200).json({ vente });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while fetching the vente." });
+  }
+};
+
 module.exports = {
   createVente,
   updateVenteStatus,
   updateVente,
   getAllVentes,
+  getVenteById,
 };
