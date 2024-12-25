@@ -93,7 +93,10 @@ const updateVenteStatus = async (req, res) => {
 
     res
       .status(200)
-      .json({ message: "Vente status updated successfully.", vente: updatedVente });
+      .json({
+        message: "Vente status updated successfully.",
+        vente: updatedVente,
+      });
   } catch (error) {
     console.error(error);
     res
@@ -125,7 +128,8 @@ const updateVente = async (req, res) => {
     if (totalPrixAchat) vente.totalPrixAchat = totalPrixAchat;
     if (clientType) vente.clientType = clientType;
     if (clientType === "individual" && client) vente.client = client;
-    if (clientType === "enterprise" && entreprise) vente.entreprise = entreprise;
+    if (clientType === "enterprise" && entreprise)
+      vente.entreprise = entreprise;
     if (priceType) vente.priceType = priceType;
     if (totalPrice) vente.totalPrice = totalPrice;
 
