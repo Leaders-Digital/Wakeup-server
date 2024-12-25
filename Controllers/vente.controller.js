@@ -13,7 +13,6 @@ const createVente = async (req, res) => {
   try {
     const {
       products,
-      totalPrixAchat,
       clientType,
       client,
       entreprise,
@@ -53,7 +52,6 @@ const createVente = async (req, res) => {
     const vente = new Vente({
       numFacture,
       products,
-      totalPrixAchat,
       status: "en attente", // Default status in French
       clientType,
       client: clientType === "individual" ? client : undefined,
@@ -110,7 +108,6 @@ const updateVente = async (req, res) => {
     const { id } = req.params;
     const {
       products,
-      totalPrixAchat,
       clientType,
       client,
       entreprise,
@@ -125,7 +122,6 @@ const updateVente = async (req, res) => {
 
     // Update fields if provided
     if (products) vente.products = products;
-    if (totalPrixAchat) vente.totalPrixAchat = totalPrixAchat;
     if (clientType) vente.clientType = clientType;
     if (clientType === "individual" && client) vente.client = client;
     if (clientType === "enterprise" && entreprise)
