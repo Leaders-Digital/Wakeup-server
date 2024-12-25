@@ -16,10 +16,6 @@ const VenteSchema = new mongoose.Schema(
       type: [ProductSchema],
       required: true,
     }, // Array of products
-    totalPrixAchat: {
-      type: Number,
-      required: true,
-    }, // Calculated total price
     status: {
       type: String,
       enum: ["en attente", "terminé", "annulé"],
