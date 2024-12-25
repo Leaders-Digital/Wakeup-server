@@ -20,17 +20,18 @@ const userRouter = require("./Routers/user.router");
 const bannerRouter = require("./Routers/banner.router");
 const subscribeRouter = require("./Routers/subscribe.router");
 const dashboardRouter = require("./Routers/dashboard.router");
-const achatRoutes = require('./Routers/achat.router');
-const clientRoutes = require('./Routers/client.router');
+const achatRoutes = require("./Routers/achat.router");
+const clientRoutes = require("./Routers/client.router");
+const venteRoutes = require("./Routers/vente.router");
+
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors());
 
-
 require("./corn-tasks/updateEachHour");
 
 const apiKeyMiddleware = (req, res, next) => {
-  const apiKey = req.headers['x-api-key']; // API key from request headers
+  const apiKey = req.headers["x-api-key"]; // API key from request headers
   const serverApiKey = process.env.API_KEY; // API key from environment variables
 
   if (!apiKey || apiKey !== serverApiKey) {
@@ -38,15 +39,15 @@ const apiKeyMiddleware = (req, res, next) => {
   }
   next(); // Proceed if API key is valid
 };
-app.use(apiKeyMiddleware)
+app.use(apiKeyMiddleware);
 
 // Routes
 app.use("/api/product", ProductRouter);
 app.use("/api/order", OrderRouter);
 app.use("/api/review", reviewRouter);
 app.use("/api/partenaire", PartenaireRouter);
-app.use("/api/blog" , BlogRouter)
-app.use ("/api/internUser", InternUserRouter)
+app.use("/api/blog", BlogRouter);
+app.use("/api/internUser", InternUserRouter);
 app.use("/api/reclamation", reclamationRouter);
 app.use("/api/promo", promoRouters);
 app.use("/api/info", infoRouters);
@@ -56,6 +57,8 @@ app.use("/api/subscribe", subscribeRouter);
 app.use("/api/achat", achatRoutes);
 app.use("/api/dashboard", dashboardRouter);
 app.use("/api/client", clientRoutes);
+app.use("/api/vente", venteRoutes);
+
 // server listening
 app.listen(port, () => {
   console.log(`Our server is running on port ${port}`);
