@@ -129,44 +129,43 @@ module.exports = {
     try {
       const page = parseInt(req.query.page) || 1;
       const limit = parseInt(req.query.limit) || 10;
-      const category = req.query.categorie;
+      const subCategory = req.query.subCategory; // Correct parameter name
       const solde = req.query.solde;
       const skip = (page - 1) * limit;
       const search = req.query.search;
       const sortByPrice = req.query.sortByPrice || "desc";
-      const searchArray = Array.isArray(req.query.searchArray)
-        ? req.query.searchArray
-        : [];
 
       let filter = {};
-      if (category && category !== "Tous les catégories") {
-        filter.categorie = category;
+
+      // Filter by subCategory
+      if (subCategory && subCategory !== "Tous les sous-catégories") {
+        filter.subCategorie = subCategory;
       }
+      console.log(req.query);
 
       if (solde === "true") {
         filter.solde = true;
       }
 
+      // Search conditions
       if (search) {
         filter.$or = [
           { nom: { $regex: search, $options: "i" } },
           { description: { $regex: search, $options: "i" } },
-          { categorie: { $regex: search, $options: "i" } },
           { subCategorie: { $regex: search, $options: "i" } },
           { metaFields: { $regex: search, $options: "i" } },
         ];
       }
 
-      if (searchArray.length > 0) {
-        filter.subCategorie = { $in: searchArray };
-      }
-
+      // Sort options
       let sortOption = { createdAt: -1 };
       if (sortByPrice === "asc") {
         sortOption = { prix: 1 };
       } else if (sortByPrice === "desc") {
         sortOption = { prix: -1 };
       }
+
+      console.log(filter);
 
       // Get products with their variant quantities and calculate enRupture status
       const products = await Product.aggregate([
@@ -385,38 +384,45 @@ module.exports = {
 
   getProductsCountByCategory: async (req, res) => {
     try {
-      // Use aggregation to group by category and count the products in each one
+      // Use aggregation to group by category and subcategory
       const categoryCounts = await Product.aggregate([
         {
           $match: { categorie: { $ne: "PACK" } }, // Exclude products with category 'PACK'
         },
         {
           $group: {
-            _id: "$categorie", // Group by category field
-            count: { $sum: 1 }, // Count the number of products in each category
+            _id: {
+              categorie: "$categorie",
+              subCategorie: "$subCategorie",
+            }, // Group by both categorie and subCategorie fields
+            count: { $sum: 1 }, // Count the number of products in each subcategory
           },
         },
         {
-          $sort: { count: -1 }, // Optional: sort by count in descending order
+          $group: {
+            _id: "$_id.categorie", // Group by category
+            subcategories: {
+              $push: {
+                name: "$_id.subCategorie",
+                count: "$count",
+              },
+            },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            category: "$_id", // Rename _id to category
+            subcategories: 1,
+          },
         },
       ]);
-
-      // Calculate the total sum of all counts
-      const totalCount = categoryCounts.reduce(
-        (acc, category) => acc + category.count,
-        0
-      );
 
       if (!categoryCounts.length) {
         return res.status(404).json({ message: "No products found" });
       }
 
-      res.status(200).json({
-        categoryCounts: [
-          { _id: "Tous les catégories", count: totalCount },
-          ...categoryCounts,
-        ],
-      });
+      res.status(200).json(categoryCounts);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
