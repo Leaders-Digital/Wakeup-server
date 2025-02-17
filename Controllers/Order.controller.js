@@ -228,6 +228,7 @@ module.exports = {
 
       // Retrieve the payment reference from the order
       const paymentRef = order.paymentRef; // Adjust according to your order schema
+      console.log(order);
 
       if (!paymentRef) {
         return res
@@ -237,14 +238,14 @@ module.exports = {
 
       // Make a request to Konnect API to check payment status
       const konnectResponse = await axios.get(
-        `https://api.preprod.konnect.network/api/v2/payments/${paymentRef}`,
+        `https://api.konnect.network/api/v2/payments/${paymentRef}`,
         {
           headers: {
             "x-api-key": "672256c051a38c7f6cb8bb9d:FwrRxNCJDKERkDab8krLhZrq",
           },
         }
       );
-      
+
       // Extract the payment status from the response
       const paymentStatus = konnectResponse.data.payment.status;
 
