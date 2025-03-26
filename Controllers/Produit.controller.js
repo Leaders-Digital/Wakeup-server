@@ -247,7 +247,6 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
-
   updateVariant: async (req, res) => {
     try {
       const { productId, variantId, quantity, color, reference, codeAbarre } =
@@ -312,7 +311,6 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
-
   // Controller function to add a variant to a product
   addVariantToProduct: async (req, res) => {
     try {
@@ -381,7 +379,6 @@ module.exports = {
       res.status(500).json({ message: "Server error", error: error.message });
     }
   },
-
   getProductsCountByCategory: async (req, res) => {
     try {
       // Use aggregation to group by category and subcategory
@@ -428,7 +425,6 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
-
   getProductsByid: async (req, res) => {
     try {
       const productId = req.params.id;
@@ -475,6 +471,35 @@ module.exports = {
     }
   },
 
+  getProductsByidCRM: async (req, res) => {
+    console.log("getProductsByidCRM");
+    try {
+      const productId = req.params.id;
+
+      // Validate ObjectId
+      if (!mongoose.Types.ObjectId.isValid(productId)) {
+        return res.status(400).json({ message: "Invalid product ID" });
+      }
+
+      const product = await Product.findOne({ _id: productId })
+        .populate({
+          path: "variants",
+        })
+        .populate({
+          path: "retings",
+          match: { accepted: true },
+        });
+
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+
+      res.status(200).json(product);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error", error });
+    }
+  },
   getAllProductsForDashboard: async (req, res) => {
     try {
       const category = req.query.categorie; // Get category from query (if provided)
@@ -534,7 +559,6 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
-
   // Controller function to delete a product by its ID
   deleteProductById: async (req, res) => {
     try {
@@ -561,35 +585,76 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
-
   getProductForHomePage: async (req, res) => {
     try {
-      const products = await Product.find({
-        categorie: req.query.categorie,
-      })
-        .populate("variants")
-        .limit(6);
+      // Use an aggregation pipeline
+      const pipeline = [
+        // 1) Match the category
+        {
+          $match: {
+            categorie: req.query.categorie,
+          },
+        },
+        // 2) Lookup (populate) the variants
+        {
+          $lookup: {
+            from: "variants", // Collection name for your Variant model
+            localField: "variants", // Field in Product
+            foreignField: "_id", // Field in Variant
+            as: "variantDetails", // The resulting array
+          },
+        },
+        // 3) Calculate sum of all variant quantities
+        {
+          $addFields: {
+            totalVariantQuantity: { $sum: "$variantDetails.quantity" },
+          },
+        },
+        // 4) Keep only products whose totalVariantQuantity is > 0
+        {
+          $match: {
+            totalVariantQuantity: { $gt: 0 },
+          },
+        },
+        // 5) Limit to first 6
+        { $limit: 6 },
+      ];
 
+      const products = await Product.aggregate(pipeline);
+
+      // If nothing is found
       if (!products.length) {
         return res.status(201).json({ message: "No products found", products });
       }
 
-      // Map products to place populated variants in variantDetails field
+      // products now each have variantDetails (instead of "variants")
+      // which includes the actual variant documents from the aggregation.
+
+      // If needed, you can further filter out zero-quantity variants or
+      // mark `enRupture` exactly like before:
       const modifiedProducts = products.map((product) => {
-        const { variants, ...rest } = product.toObject(); // Convert product to plain object
+        const filteredVariants = product.variantDetails.filter(
+          (variant) => variant.quantity > 0
+        );
+        const totalVariantQuantity = filteredVariants.reduce(
+          (sum, variant) => sum + variant.quantity,
+          0
+        );
+        const enRupture = totalVariantQuantity === 0;
+
         return {
-          ...rest,
-          variantDetails: variants, // Place populated variants in variantDetails
+          ...product,
+          variantDetails: filteredVariants,
+          enRupture,
         };
       });
 
-      res.status(200).json({ products: modifiedProducts });
+      return res.status(200).json({ products: modifiedProducts });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Server error", error });
+      return res.status(500).json({ message: "Server error", error });
     }
   },
-
   // Controller function to update a product
   updateProduct: async (req, res) => {
     try {

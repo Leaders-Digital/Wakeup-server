@@ -45,6 +45,7 @@ router.put(
 );
 // Route for getting a product by ID
 router.get("/:id", productController.getProductsByid);
+router.get("/crm/:id", productController.getProductsByidCRM);
 // route for delete product by ID
 router.delete("/:productId", productController.deleteProductById);
 router.delete("/variant/:variantId", productController.deleteVariantById);
