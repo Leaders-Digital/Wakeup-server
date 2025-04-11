@@ -17,6 +17,7 @@ module.exports = {
       ville,
       codePostal,
       note,
+      withOffer,
       prixTotal,
       listeDesPack,
     } = req.body;
@@ -72,6 +73,7 @@ module.exports = {
         listeDesProduits,
         listeDesPack,
         gouvernorat,
+        withOffer,
         ville,
         codePostal,
         note,
@@ -101,9 +103,6 @@ module.exports = {
     try {
       // Use the $ne (not equal) operator to exclude orders with status "livré"
       const response = await Order.find({ statut: { $ne: "livré" } })
-        .populate("listeDesProduits")
-        .populate("listeDesPack.pack"); // Add this if you want to populate packs as well
-
       return res
         .status(200)
         .json({ data: response, message: "Liste des commandes" });

@@ -978,4 +978,19 @@ module.exports = {
       res.status(500).json({ message: "Server error", error });
     }
   },
+  resetProductSolde: async (req, res) => {
+    try {
+      const result = await Product.updateMany(
+        {},
+        { solde: false, soldePourcentage: 0 }
+      );
+      res.status(200).json({
+        message: "All products updated successfully",
+        modifiedCount: result.modifiedCount,
+      });
+    } catch (error) {
+      console.error("Error updating products:", error);
+      res.status(500).json({ message: "Failed to update products", error });
+    }
+  },
 };
