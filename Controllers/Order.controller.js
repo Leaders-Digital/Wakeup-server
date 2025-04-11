@@ -213,7 +213,6 @@ module.exports = {
     }
   },
   // update order payed status
-
   updateOrderPayed: async (req, res) => {
     const { id } = req.params;
 
@@ -267,7 +266,6 @@ module.exports = {
         .json({ message: "Erreur lors de la mise à jour du statut" });
     }
   },
-
   //update order paymentRef
   updateOrderPaymentRef: async (req, res) => {
     const { id } = req.params;
