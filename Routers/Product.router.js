@@ -51,6 +51,7 @@ router.delete("/:productId", productController.deleteProductById);
 router.delete("/variant/:variantId", productController.deleteVariantById);
 router.get("/all/home", productController.getProductForHomePage);
 router.get("/get/variant/:variantId", productController.getVariantById);
+router.put("/products/reset-solde", productController.resetProductSolde);
 
 router.put(
   "/:productId",
@@ -66,6 +67,5 @@ router.get("/get/packs", productController.getAllPacks);
 
 router.put("/update/all/varients", productController.updateAllVariants);
 router.put("/update/all/prices", productController.updatePrices);
-
 
 module.exports = router;

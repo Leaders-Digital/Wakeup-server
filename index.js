@@ -59,7 +59,6 @@ app.use("/api/dashboard", dashboardRouter);
 app.use("/api/client", clientRoutes);
 app.use("/api/vente", venteRoutes);
 
-
 // server listening
 app.listen(port, () => {
   console.log(`Our server is running on port ${port}`);
