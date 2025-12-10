@@ -29,7 +29,7 @@ app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors());
 
-require("./corn-tasks/updateEachHour");
+// require("./corn-tasks/updateEachHour");
 
 const apiKeyMiddleware = (req, res, next) => {
   const apiKey = req.headers["x-api-key"]; // API key from request headers
