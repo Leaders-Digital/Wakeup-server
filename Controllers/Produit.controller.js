@@ -4,6 +4,7 @@ const Variant = require("../Models/variant.model");
 const { default: axios } = require("axios");
 const { transformS3UrlsToSigned } = require("../helpers/s3Helper");
 const { generateUniqueHandle } = require("../helpers/handleGenerator");
+const { convertMongooseToPlain } = require("../helpers/mongooseHelper");
 module.exports = {
   // Controller function to create a new product
   createProduct: async (req, res) => {
@@ -607,9 +608,15 @@ module.exports = {
           .json({ products: [], message: "No products found" });
       }
 
+      // Convert Mongoose documents to plain objects
+      const productsPlain = convertMongooseToPlain(products);
+      
+      // Transform S3 URLs to signed URLs
+      const productsWithSignedUrls = await transformS3UrlsToSigned(productsPlain, ['mainPicture', 'picture', 'icon']);
+
       // Return paginated response including the total number of products
       res.status(200).json({
-        products,
+        products: productsWithSignedUrls,
         // totalPages: Math.ceil(totalProducts / limit),
         // currentPage: page,
         totalProducts, // Include the total number of products (filtered if applicable)

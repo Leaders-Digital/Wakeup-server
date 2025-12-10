@@ -1,5 +1,6 @@
 const Blog = require("../Models/blog.model");
 const { transformS3UrlsToSigned } = require("../helpers/s3Helper");
+const { convertMongooseToPlain } = require("../helpers/mongooseHelper");
 
 module.exports = {
   createArticle: async (req, res) => {
@@ -21,9 +22,10 @@ module.exports = {
       });
       await newBlog.save();
 
+      const blogWithSignedUrls = await transformS3UrlsToSigned(newBlog.toObject(), ['blogImage']);
       res
         .status(201)
-        .json({ message: "Blog created successfully", newBlog });
+        .json({ message: "Blog created successfully", newBlog: blogWithSignedUrls });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
@@ -34,7 +36,9 @@ module.exports = {
     try {
       // Fetch all blog articles
       const response = await Blog.find();
-      const articlesWithSignedUrls = await transformS3UrlsToSigned(response, ['blogImage']);
+      // Convert Mongoose documents to plain objects
+      const articlesPlain = convertMongooseToPlain(response);
+      const articlesWithSignedUrls = await transformS3UrlsToSigned(articlesPlain, ['blogImage']);
       return res
         .status(200)
         .json({ data: articlesWithSignedUrls, message: "List of articles" });
@@ -49,7 +53,9 @@ module.exports = {
     try {
       // Fetch all blog articles
       const response = await Blog.find().limit(4).sort({ createdAt: -1 });
-      const articlesWithSignedUrls = await transformS3UrlsToSigned(response, ['blogImage']);
+      // Convert Mongoose documents to plain objects
+      const articlesPlain = convertMongooseToPlain(response);
+      const articlesWithSignedUrls = await transformS3UrlsToSigned(articlesPlain, ['blogImage']);
       return res
         .status(200)
         .json({ data: articlesWithSignedUrls, message: "List of articles" });
@@ -111,9 +117,10 @@ module.exports = {
         return res.status(404).json({ message: "Article not found" });
       }
 
+      const articleWithSignedUrls = await transformS3UrlsToSigned(response.toObject(), ['blogImage']);
       return res
         .status(200)
-        .json({ message: "Article updated successfully", data: response });
+        .json({ message: "Article updated successfully", data: articleWithSignedUrls });
     } catch (error) {
       console.error(error);
       return res

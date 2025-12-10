@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Partenaire = require("../Models/Partenaire.model");
 const { transformS3UrlsToSigned } = require("../helpers/s3Helper");
+const { convertMongooseToPlain } = require("../helpers/mongooseHelper");
 
 module.exports = {
   addPartenaire: async (req, res) => {
@@ -52,7 +53,8 @@ module.exports = {
       await partenaire.save();
 
       // Send a success response
-      res.status(201).json({ message: "Partenaire ajouté avec succès", partenaire });
+      const partenaireWithSignedUrls = await transformS3UrlsToSigned(partenaire.toObject(), ['logo']);
+      res.status(201).json({ message: "Partenaire ajouté avec succès", partenaire: partenaireWithSignedUrls });
     } catch (error) {
       console.error(error); // Log the error for debugging
       res.status(500).json({ message: "Erreur serveur", error });
@@ -62,7 +64,9 @@ module.exports = {
   getPartenaires: async (req, res) => {
     try {
       const response = await Partenaire.find();
-      const partenairesWithSignedUrls = await transformS3UrlsToSigned(response, ['logo']);
+      // Convert Mongoose documents to plain objects
+      const partenairesPlain = convertMongooseToPlain(response);
+      const partenairesWithSignedUrls = await transformS3UrlsToSigned(partenairesPlain, ['logo']);
       return res.status(200).json({ data: partenairesWithSignedUrls, message: "Liste des partenaires" });
     } catch (error) {
       console.error(error);
@@ -138,7 +142,8 @@ module.exports = {
       }
 
       // Send a success response
-      res.status(200).json({ message: "Partenaire mis à jour avec succès", partenaire });
+      const partenaireWithSignedUrls = await transformS3UrlsToSigned(partenaire.toObject(), ['logo']);
+      res.status(200).json({ message: "Partenaire mis à jour avec succès", partenaire: partenaireWithSignedUrls });
     } catch (error) {
       console.error(error); // Log the error for debugging
       res.status(500).json({ message: "Erreur serveur", error });

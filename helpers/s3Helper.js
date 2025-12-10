@@ -21,6 +21,7 @@ const BUCKET_NAME = process.env.AWS_S3_BUCKET_NAME;
  * @returns {Promise<string>} URL signée
  */
 async function getSignedUrlForS3Object(key, expiresIn = 3600) {
+  const originalKey = key; // Sauvegarder la clé originale
   try {
     if (!key) {
       return null;
@@ -30,9 +31,10 @@ async function getSignedUrlForS3Object(key, expiresIn = 3600) {
     if (key.startsWith('http')) {
       try {
         const url = new URL(key);
-        // Pour les URLs S3, la clé est dans le pathname après le nom du bucket
+        // Pour les URLs S3, la clé est dans le pathname
         // Format: https://bucket-name.s3.region.amazonaws.com/key/path
         // ou: https://access-point-alias.s3.region.amazonaws.com/key/path
+        // ou: https://access-point-alias.s3-accesspoint.region.amazonaws.com/key/path
         let pathname = url.pathname;
         
         // Enlever le premier '/' s'il existe
@@ -40,14 +42,13 @@ async function getSignedUrlForS3Object(key, expiresIn = 3600) {
           pathname = pathname.substring(1);
         }
         
-        // Si le pathname contient encore le nom du bucket ou access point, l'enlever
-        // Normalement, le pathname devrait être directement la clé
+        // Le pathname devrait être directement la clé S3
         key = pathname;
       } catch (urlError) {
         console.error('Erreur lors du parsing de l\'URL:', urlError);
         // Si l'URL ne peut pas être parsée, essayer d'extraire manuellement
-        // Chercher le pattern après .amazonaws.com/
-        const match = key.match(/\.amazonaws\.com\/(.+)$/);
+        // Chercher le pattern après .amazonaws.com/ ou .s3-accesspoint.
+        const match = key.match(/(?:\.s3(?:-accesspoint)?\.[a-z0-9-]+\.amazonaws\.com\/|\.amazonaws\.com\/)(.+)$/);
         if (match && match[1]) {
           key = match[1];
         } else {
@@ -71,7 +72,11 @@ async function getSignedUrlForS3Object(key, expiresIn = 3600) {
     return signedUrl;
   } catch (error) {
     console.error('Erreur lors de la génération de l\'URL signée pour:', key, error);
-    // En cas d'erreur, retourner null pour éviter d'utiliser une URL invalide
+    // En cas d'erreur, si la clé originale était une URL, la retourner
+    // Sinon retourner null
+    if (originalKey && originalKey.startsWith('http')) {
+      return originalKey; // Retourner l'URL originale si c'était déjà une URL
+    }
     return null;
   }
 }

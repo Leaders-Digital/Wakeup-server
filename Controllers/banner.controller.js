@@ -1,5 +1,6 @@
 const Banner = require("../Models/banner.model");
 const { transformS3UrlsToSigned } = require("../helpers/s3Helper");
+const { convertMongooseToPlain } = require("../helpers/mongooseHelper");
 
 const bannerController = {
   // Create a new banner
@@ -9,7 +10,8 @@ const bannerController = {
       const picture = req.file ? req.file.location : null; // Get the S3 URL if a file was uploaded
       const banner = new Banner({ name, picture });
       await banner.save();
-      res.status(201).json(banner);
+      const bannerWithSignedUrls = await transformS3UrlsToSigned(banner.toObject(), ['picture']);
+      res.status(201).json(bannerWithSignedUrls);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -19,7 +21,9 @@ const bannerController = {
   getAllBanners: async (req, res) => {
     try {
       const banners = await Banner.find();
-      const bannersWithSignedUrls = await transformS3UrlsToSigned(banners, ['picture']);
+      // Convert Mongoose documents to plain objects
+      const bannersPlain = convertMongooseToPlain(banners);
+      const bannersWithSignedUrls = await transformS3UrlsToSigned(bannersPlain, ['picture']);
       res.status(200).json({ data: bannersWithSignedUrls });
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -81,8 +85,10 @@ getBannerByname : async (req, res) => {
 getAllBannersObject: async (req, res) => {
   try {
     const banners = await Banner.find(); // Fetch all banners
+    // Convert Mongoose documents to plain objects
+    const bannersPlain = convertMongooseToPlain(banners);
     // Transform URLs to signed URLs first
-    const bannersWithSignedUrls = await transformS3UrlsToSigned(banners, ['picture']);
+    const bannersWithSignedUrls = await transformS3UrlsToSigned(bannersPlain, ['picture']);
     const bannerMap = {}; // Initialize an empty object
 
     bannersWithSignedUrls.forEach((banner) => {
