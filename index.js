@@ -27,7 +27,12 @@ const venteRoutes = require("./Routers/vente.router");
 
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+  {
+    origin: ["https://wakeup-cosmetics.tn","https://admin.wakeup-cosmetics.tn"],
+    credentials: true,
+  })
+);
 
 // require("./corn-tasks/updateEachHour");
 
