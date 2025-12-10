@@ -29,7 +29,7 @@ app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors(
   {
-    origin: ["https://wakeup-cosmetics.tn","https://admin.wakeup-cosmetics.tn"],
+    origin: ["https://wakeup-cosmetics.tn","https://admin.wakeup-cosmetics.tn","http://localhost:3000","http://localhost:3001"],
     credentials: true,
   })
 );
