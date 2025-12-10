@@ -2,6 +2,8 @@ const { default: mongoose } = require("mongoose");
 const Product = require("../Models/Produit.model");
 const Variant = require("../Models/variant.model");
 const { default: axios } = require("axios");
+const { transformS3UrlsToSigned } = require("../helpers/s3Helper");
+const { generateUniqueHandle } = require("../helpers/handleGenerator");
 module.exports = {
   // Controller function to create a new product
   createProduct: async (req, res) => {
@@ -18,7 +20,7 @@ module.exports = {
         prixAchat,
         prixGros,
       } = req.body;
-      const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
+      const mainPicture = req.file ? req.file.location : null; // Get the S3 URL if a file was uploaded
       // Validate input
       if (!nom || !description || !prix || !categorie || !solde) {
         return res.status(400).json({
@@ -28,6 +30,10 @@ module.exports = {
       if (categorie === "PACK") {
         subCategorie = "PACK";
       }
+      
+      // Generate unique handle for SEO-friendly URLs
+      const handle = await generateUniqueHandle(nom);
+      
       // Create the product with the main image
       const product = new Product({
         nom,
@@ -35,6 +41,7 @@ module.exports = {
         prix,
         categorie,
         mainPicture,
+        handle,
         subCategorie,
         solde,
         soldePourcentage,
@@ -118,7 +125,10 @@ module.exports = {
         return res.status(404).json({ message: "No products on sale" });
       }
 
-      res.status(200).json({ products: productsOnSale });
+      // Transform S3 URLs to signed URLs
+      const productsWithSignedUrls = await transformS3UrlsToSigned(productsOnSale);
+
+      res.status(200).json({ products: productsWithSignedUrls });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
@@ -234,8 +244,11 @@ module.exports = {
           .json({ products: [], message: "No products found" });
       }
 
+      // Transform S3 URLs to signed URLs for all products
+      const productsWithSignedUrls = await transformS3UrlsToSigned(products);
+
       res.status(200).json({
-        products,
+        products: productsWithSignedUrls,
         totalPages: Math.ceil(totalProducts / limit),
         currentPage: page,
         totalProducts,
@@ -284,8 +297,8 @@ module.exports = {
       // }
 
       // Use existing picture and icon if no new file is uploaded
-      const picture = req.files?.picture?.[0]?.path || variant.picture;
-      const icon = req.files?.icon?.[0]?.path || variant.icon;
+      const picture = req.files?.picture?.[0]?.location || variant.picture;
+      const icon = req.files?.icon?.[0]?.location || variant.icon;
 
       // Update the variant
       const updatedVariant = await Variant.findByIdAndUpdate(
@@ -332,8 +345,8 @@ module.exports = {
       }
 
       // Handle file uploads
-      const picture = req.files?.["picture"]?.[0]?.path || null;
-      const icon = req.files?.["icon"]?.[0]?.path || null;
+      const picture = req.files?.["picture"]?.[0]?.location || null;
+      const icon = req.files?.["icon"]?.[0]?.location || null;
       // Check if a product with the given ID exists
       const product = await Product.findById(productId);
       if (!product) {
@@ -427,21 +440,45 @@ module.exports = {
   },
   getProductsByid: async (req, res) => {
     try {
-      const productId = req.params.id;
+      const identifier = req.params.id;
 
-      // Validate ObjectId
-      if (!mongoose.Types.ObjectId.isValid(productId)) {
-        return res.status(400).json({ message: "Invalid product ID" });
+      // Try to find by handle first (SEO-friendly), then by ID
+      let product;
+      
+      // Check if it's a valid ObjectId
+      if (mongoose.Types.ObjectId.isValid(identifier)) {
+        // Try to find by ID first
+        product = await Product.findOne({ _id: identifier })
+          .populate({
+            path: "variants",
+          })
+          .populate({
+            path: "retings",
+            match: { accepted: true },
+          });
+        
+        // If not found by ID, try by handle
+        if (!product) {
+          product = await Product.findOne({ handle: identifier })
+            .populate({
+              path: "variants",
+            })
+            .populate({
+              path: "retings",
+              match: { accepted: true },
+            });
+        }
+      } else {
+        // Not a valid ObjectId, search by handle
+        product = await Product.findOne({ handle: identifier })
+          .populate({
+            path: "variants",
+          })
+          .populate({
+            path: "retings",
+            match: { accepted: true },
+          });
       }
-
-      const product = await Product.findOne({ _id: productId })
-        .populate({
-          path: "variants",
-        })
-        .populate({
-          path: "retings",
-          match: { accepted: true },
-        });
 
       if (!product) {
         return res.status(404).json({ message: "Product not found" });
@@ -461,10 +498,30 @@ module.exports = {
 
       // Convert Mongoose document to plain object to add new fields
       const productObject = product.toObject();
-      productObject.variants = filteredVariants; // Replace variants with filtered variants
+      // Convert each variant to a plain object
+      productObject.variants = filteredVariants.map(variant => {
+        // If variant has _doc property (Mongoose internal), use it first
+        if (variant && variant._doc) {
+          return variant._doc;
+        }
+        // If variant is a Mongoose document, convert it to plain object
+        if (variant && typeof variant.toObject === 'function') {
+          return variant.toObject();
+        }
+        // If it's already a plain object but has Mongoose metadata, extract only the data
+        if (variant && (variant.$__ || variant.$isNew !== undefined)) {
+          // Use JSON serialization to remove Mongoose metadata
+          return JSON.parse(JSON.stringify(variant));
+        }
+        // If it's already a plain object, return it
+        return variant;
+      });
       productObject.enRupture = enRupture;
 
-      res.status(200).json(productObject);
+      // Transform S3 URLs to signed URLs
+      const productWithSignedUrls = await transformS3UrlsToSigned(productObject);
+
+      res.status(200).json(productWithSignedUrls);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
@@ -494,7 +551,10 @@ module.exports = {
         return res.status(404).json({ message: "Product not found" });
       }
 
-      res.status(200).json(product);
+      // Transform S3 URLs to signed URLs
+      const productWithSignedUrls = await transformS3UrlsToSigned(product.toObject());
+
+      res.status(200).json(productWithSignedUrls);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
@@ -649,7 +709,10 @@ module.exports = {
         };
       });
 
-      return res.status(200).json({ products: modifiedProducts });
+      // Transform S3 URLs to signed URLs
+      const productsWithSignedUrls = await transformS3UrlsToSigned(modifiedProducts);
+
+      return res.status(200).json({ products: productsWithSignedUrls });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: "Server error", error });
@@ -684,7 +747,7 @@ module.exports = {
         return res.status(404).json({ message: "Product not found" });
       }
       // Handle file upload for the main picture
-      const mainPicture = req.file ? req.file.path : product.mainPicture; // Use existing picture if no new file
+      const mainPicture = req.file ? req.file.location : product.mainPicture; // Use existing picture if no new file
       // Update the product fields
       product.nom = nom || product.nom;
       product.description = description || product.description;
@@ -982,7 +1045,7 @@ module.exports = {
     try {
       const result = await Product.updateMany(
         {},
-        { solde: false, soldePourcentage: 0 }
+        { solde: true, soldePourcentage: 30 }
       );
       res.status(200).json({
         message: "All products updated successfully",

@@ -7,6 +7,7 @@ const productSchema = new Schema({
   prix: { type: Number, required: true },
   solde: { type: Boolean, default: false },
   mainPicture: { type: String },
+  handle: { type: String, unique: true, sparse: true }, // SEO-friendly URL slug, unique
   prixAchat: { type: Number, required: true },
   prixGros: { type: Number, required: true },
   soldePourcentage: { type: Number },
@@ -51,6 +52,9 @@ const productSchema = new Schema({
     // required: true,
   },
 }, { timestamps: true });
+
+// Create index on handle for faster lookups
+productSchema.index({ handle: 1 });
 
 const Product = mongoose.model("Product", productSchema);
 module.exports = Product;

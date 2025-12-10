@@ -9,8 +9,7 @@ const upload = require("../Middleware/upload");
 router.post(
   "/create",
   uploadFile({
-    folder: "./uploads/products",
-    acceptedTypes: [".png", ".jpeg", ".jpg"],
+    folder: "products",
     fieldName: "mainPicture", // This should match the form field name
     multiple: false,
   }),
@@ -56,8 +55,7 @@ router.put("/products/reset-solde", productController.resetProductSolde);
 router.put(
   "/:productId",
   uploadFile({
-    folder: "./uploads/products",
-    acceptedTypes: [".png", ".jpeg", ".jpg"],
+    folder: "products",
     fieldName: "mainPicture", // This should match the form field name
     multiple: false,
   }),

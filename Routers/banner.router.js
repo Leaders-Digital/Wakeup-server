@@ -6,8 +6,7 @@ const { uploadFile } = require("../Middleware/imageUpload"); // Adjust path
 bannerRouter.post(
   "/create",
   uploadFile({
-    folder: "./uploads/banners",
-    acceptedTypes: [".png", ".jpeg", ".jpg"],
+    folder: "banners",
     fieldName: "picture", // This should match the form field name
     multiple: false,
   }),
@@ -18,8 +17,7 @@ bannerRouter.get("/get", bannerController.getAllBanners);
 bannerRouter.put(
   "/:id",
   uploadFile({
-    folder: "./uploads/banners",
-    acceptedTypes: [".png", ".jpeg", ".jpg"],
+    folder: "banners",
     fieldName: "picture", // This should match the form field name
     multiple: false,
   }),

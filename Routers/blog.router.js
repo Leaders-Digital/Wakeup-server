@@ -13,8 +13,7 @@ const { uploadFile } = require('../Middleware/imageUpload');
 
 // Routes for blog articles
 BlogRouter.post('/create',uploadFile({
-  folder: "./uploads/products",
-  acceptedTypes: [".png", ".jpeg", ".jpg"],
+  folder: "blog",
   fieldName: "blogImage", // This should match the form field name
   multiple: false,
 }), createArticle);
@@ -22,8 +21,7 @@ BlogRouter.get('/get', getArticles);
 BlogRouter.get('/main', mainPageArticle);
 BlogRouter.get('/get/article/:id', getArticleById);
 BlogRouter.put('/update/article/:id', uploadFile({
-  folder: "./uploads/products",
-  acceptedTypes: [".png", ".jpeg", ".jpg"],
+  folder: "blog",
   fieldName: "blogImage", // This should match the form field name
   multiple: false,
 }), updateArticle);

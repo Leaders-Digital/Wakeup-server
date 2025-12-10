@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Partenaire = require("../Models/Partenaire.model");
+const { transformS3UrlsToSigned } = require("../helpers/s3Helper");
 
 module.exports = {
   addPartenaire: async (req, res) => {
@@ -18,7 +19,7 @@ module.exports = {
         location,
       } = req.body;
 
-      const logo = req.file ? req.file.path : null; // Get the logo path if a file was uploaded
+      const logo = req.file ? req.file.location : null; // Get the S3 URL if a file was uploaded
       console.log(logo);
       console.log(req.file);
       // Validate required fields
@@ -61,7 +62,8 @@ module.exports = {
   getPartenaires: async (req, res) => {
     try {
       const response = await Partenaire.find();
-      return res.status(200).json({ data: response, message: "Liste des partenaires" });
+      const partenairesWithSignedUrls = await transformS3UrlsToSigned(response, ['logo']);
+      return res.status(200).json({ data: partenairesWithSignedUrls, message: "Liste des partenaires" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Erreur serveur", error });
@@ -104,7 +106,13 @@ module.exports = {
         location,
       } = req.body;
 
-      const logo = req.file ? req.file.path : null;
+      // Find the existing partenaire to get the current logo
+      const existingPartenaire = await Partenaire.findById(id);
+      if (!existingPartenaire) {
+        return res.status(404).json({ message: "Partenaire non trouvé" });
+      }
+
+      const logo = req.file ? req.file.location : existingPartenaire.logo;
 
       // Create an update object
       const updateData = {
@@ -119,11 +127,8 @@ module.exports = {
         lien,
         status,
         location,
+        logo,
       };
-
-      if (logo) {
-        updateData.logo = logo;
-      }
 
       // Find and update the partenaire by ID
       const partenaire = await Partenaire.findByIdAndUpdate(id, updateData, { new: true });

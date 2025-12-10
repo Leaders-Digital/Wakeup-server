@@ -1,10 +1,11 @@
 const Blog = require("../Models/blog.model");
+const { transformS3UrlsToSigned } = require("../helpers/s3Helper");
 
 module.exports = {
   createArticle: async (req, res) => {
     try {
       const { title, content , description } = req.body;
-      const blogImage = req.file ? req.file.path : null;
+      const blogImage = req.file ? req.file.location : null;
 
       if (!title || !content) {
         return res.status(400).json({
@@ -32,10 +33,11 @@ module.exports = {
   getArticles: async (req, res) => {
     try {
       // Fetch all blog articles
-      const response = await Blog.find()
+      const response = await Blog.find();
+      const articlesWithSignedUrls = await transformS3UrlsToSigned(response, ['blogImage']);
       return res
         .status(200)
-        .json({ data: response, message: "List of articles" });
+        .json({ data: articlesWithSignedUrls, message: "List of articles" });
     } catch (error) {
       console.error(error);
       return res
@@ -47,9 +49,10 @@ module.exports = {
     try {
       // Fetch all blog articles
       const response = await Blog.find().limit(4).sort({ createdAt: -1 });
+      const articlesWithSignedUrls = await transformS3UrlsToSigned(response, ['blogImage']);
       return res
         .status(200)
-        .json({ data: response, message: "List of articles" });
+        .json({ data: articlesWithSignedUrls, message: "List of articles" });
     } catch (error) {
       console.error(error);
       return res
@@ -67,9 +70,10 @@ module.exports = {
       if (!response) {
         return res.status(404).json({ message: "Article not found" });
       }
+      const articleWithSignedUrls = await transformS3UrlsToSigned(response.toObject(), ['blogImage']);
       return res
         .status(200)
-        .json({ data: response, message: "Article details" });
+        .json({ data: articleWithSignedUrls, message: "Article details" });
     } catch (error) {
       console.error(error);
       return res
@@ -87,7 +91,7 @@ module.exports = {
     if (!blog){
       return res.status(404).json({ message: "Article not found" });
     }
-    const blogImage = req.file ? req.file.path : blog.blogImage;
+    const blogImage = req.file ? req.file.location : blog.blogImage;
     console.log(blogImage,"here");
     
     try {
