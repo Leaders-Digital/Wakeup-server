@@ -29,14 +29,8 @@ app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors(
   {
-    origin: [
-      "https://wakeup-cosmetics.tn",
-      "https://www.wakeup-cosmetics.tn",
-      "https://admin.wakeup-cosmetics.tn",
-      "http://localhost:3000",
-      "http://localhost:3001" 
-    ],
-    credentials: true,
+    origin: "*", // Allow all origins
+    credentials: false, // Must be false when origin is "*"
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
   })
