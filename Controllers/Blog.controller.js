@@ -5,7 +5,7 @@ const { convertMongooseToPlain } = require("../helpers/mongooseHelper");
 module.exports = {
   createArticle: async (req, res) => {
     try {
-      const { title, content , description } = req.body;
+      const { title, content, description } = req.body;
       const blogImage = req.file ? req.file.location : null;
 
       if (!title || !content) {
@@ -17,7 +17,7 @@ module.exports = {
       const newBlog = new Blog({
         title,
         content,
-        description, 
+        description,
         blogImage: blogImage,
       });
       await newBlog.save();
@@ -90,22 +90,23 @@ module.exports = {
 
   updateArticle: async (req, res) => {
     const { id } = req.params;
-  console.log(req.body);
-  
-    const { title, content, isArchived } = req.body;
+    console.log(req.body);
+
+    const { title, content, isArchived, description } = req.body;
     const blog = await Blog.findById(id);
-    if (!blog){
+    if (!blog) {
       return res.status(404).json({ message: "Article not found" });
     }
     const blogImage = req.file ? req.file.location : blog.blogImage;
-    console.log(blogImage,"here");
-    
+    console.log(blogImage, "here");
+
     try {
       // Update the blog article
       const response = await Blog.findByIdAndUpdate(
         id,
         {
           title,
+          description,
           content,
           blogImage,
           isArchived,

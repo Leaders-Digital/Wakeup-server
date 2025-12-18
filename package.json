@@ -9,7 +9,8 @@
     "migrate:s3": "node scripts/migrateToS3.js",
     "check:migration": "node scripts/checkMigration.js",
     "migrate:mainPicture": "node scripts/updateMainPictureFromVariant.js",
-    "migrate:handles": "node scripts/generateHandles.js"
+    "migrate:handles": "node scripts/generateHandles.js",
+    "reset:solde": "node scripts/resetSoldePourcentage.js"
   },
   "keywords": [],
   "author": "",
