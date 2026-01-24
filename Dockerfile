@@ -12,6 +12,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+
 # Create uploads directory if it doesn't exist
 RUN mkdir -p uploads
 ENV Mongo_URI=mongodb+srv://leadersdev1:eeYrZtYTykpEvZoB@cluster0.xpa7e.mongodb.net/test?retryWrites=true&w=majority
