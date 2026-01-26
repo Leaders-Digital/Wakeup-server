@@ -27,18 +27,31 @@ const venteRoutes = require("./Routers/vente.router");
 
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
-app.use(cors(
-  {
-    origin: ["https://www.wakeup-cosmetics.tn", "https://admin.wakeup-cosmetics.tn"], // Allow all origins
-    credentials: true, // Must be false when origin is "*"
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
-  })
-);
+
+// CORS Configuration - Allow your domains
+app.use(cors({
+  origin: [
+    "https://www.wakeup-cosmetics.tn",
+    "https://admin.wakeup-cosmetics.tn",
+    "http://localhost:3000",
+    "http://localhost:5173"
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
+  exposedHeaders: ["Content-Length", "X-Request-Id"],
+  maxAge: 86400 // 24 hours
+}));
 
 // require("./corn-tasks/updateEachHour");
 
+// API Key Middleware - Skip for OPTIONS (CORS preflight)
 const apiKeyMiddleware = (req, res, next) => {
+  // Allow OPTIONS requests to pass through for CORS preflight
+  if (req.method === "OPTIONS") {
+    return next();
+  }
+
   const apiKey = req.headers["x-api-key"]; // API key from request headers
   const serverApiKey = process.env.API_KEY; // API key from environment variables
 
