@@ -40,9 +40,15 @@ sudo docker logs -f wakeup-backend
 ## 🔧 Configuration Files
 
 ### ✅ Files Created:
-1. **`docker-compose.yml`** - Updated port mapping (3007:7000)
+1. **`docker-compose.yml`** - Port mapping (3007:7000) + Volume persistence for uploads
 2. **`index.js`** - CORS configuration updated
-3. **`setup-nginx.sh`** - Automated setup script (nginx config not included)
+
+### 💾 Volume Persistence:
+The `uploads` directory is mounted as a Docker volume, which means:
+- ✅ Uploaded files persist across deployments
+- ✅ Files are stored on the host machine at `/home/ubuntu/wakeup-backend/uploads`
+- ✅ Container restarts won't delete uploaded images
+- ⚠️ **Important**: The uploads directory must exist on the server before first deployment
 5. **`DEPLOYMENT_GUIDE.md`** - Full deployment documentation
 
 ### ✅ Backend Changes:

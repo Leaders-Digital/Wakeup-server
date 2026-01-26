@@ -1,7 +1,7 @@
 FROM node:18-alpine
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -12,8 +12,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-
-# Create uploads directory if it doesn't exist
+# Create uploads directory in the image (will be overridden by volume mount in production)
 RUN mkdir -p uploads
 ENV Mongo_URI=mongodb+srv://leadersdev1:eeYrZtYTykpEvZoB@cluster0.xpa7e.mongodb.net/test?retryWrites=true&w=majority
 ENV EMAIL_USER=noreply@leaders-makeup.com

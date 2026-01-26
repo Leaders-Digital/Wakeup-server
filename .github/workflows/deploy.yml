@@ -51,8 +51,10 @@ jobs:
 
             cd /home/ubuntu/wakeup-backend
 
-            # Create uploads directory if it doesn't exist
+            # Create uploads directory if it doesn't exist and set proper permissions
             mkdir -p uploads
+            sudo chmod 755 uploads
+            echo "✅ Uploads directory ready at: /home/ubuntu/wakeup-backend/uploads"
 
             # Create minimal .env file if it doesn't exist
             if [ ! -f .env ]; then

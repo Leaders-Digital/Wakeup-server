@@ -7,6 +7,7 @@ services:
     ports:
       - "3007:7000"
     volumes:
+      # Persist uploaded files across container restarts and deployments
       - ./uploads:/app/uploads
     env_file:
       - .env
