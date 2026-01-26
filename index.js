@@ -28,30 +28,37 @@ const venteRoutes = require("./Routers/vente.router");
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 
-// CORS Configuration - Allow your domains
-app.use(cors({
-  origin: [
+// Handle CORS manually for better control
+app.use((req, res, next) => {
+  const allowedOrigins = [
     "https://www.wakeup-cosmetics.tn",
     "https://admin.wakeup-cosmetics.tn",
     "http://localhost:3000",
     "http://localhost:5173"
-  ],
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
-  exposedHeaders: ["Content-Length", "X-Request-Id"],
-  maxAge: 86400 // 24 hours
-}));
+  ];
+  
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, x-api-key");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "86400");
+  
+  // Handle preflight OPTIONS request
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+  
+  next();
+});
 
 // require("./corn-tasks/updateEachHour");
 
-// API Key Middleware - Skip for OPTIONS (CORS preflight)
+// API Key Middleware - Already handled OPTIONS above
 const apiKeyMiddleware = (req, res, next) => {
-  // Allow OPTIONS requests to pass through for CORS preflight
-  if (req.method === "OPTIONS") {
-    return next();
-  }
-
   const apiKey = req.headers["x-api-key"]; // API key from request headers
   const serverApiKey = process.env.API_KEY; // API key from environment variables
 
