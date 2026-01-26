@@ -2,9 +2,7 @@ const { default: mongoose } = require("mongoose");
 const Product = require("../Models/Produit.model");
 const Variant = require("../Models/variant.model");
 const { default: axios } = require("axios");
-const { transformS3UrlsToSigned } = require("../helpers/s3Helper");
 const { generateUniqueHandle } = require("../helpers/handleGenerator");
-const { convertMongooseToPlain } = require("../helpers/mongooseHelper");
 module.exports = {
   // Controller function to create a new product
   createProduct: async (req, res) => {
@@ -21,7 +19,7 @@ module.exports = {
         prixAchat,
         prixGros,
       } = req.body;
-      const mainPicture = req.file ? req.file.location : null; // Get the S3 URL if a file was uploaded
+      const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
       // Validate input
       if (!nom || !description || !prix || !categorie || !solde) {
         return res.status(400).json({
@@ -126,10 +124,7 @@ module.exports = {
         return res.status(404).json({ message: "No products on sale" });
       }
 
-      // Transform S3 URLs to signed URLs
-      const productsWithSignedUrls = await transformS3UrlsToSigned(productsOnSale);
-
-      res.status(200).json({ products: productsWithSignedUrls });
+      res.status(200).json({ products: productsOnSale });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
@@ -245,11 +240,8 @@ module.exports = {
           .json({ products: [], message: "No products found" });
       }
 
-      // Transform S3 URLs to signed URLs for all products
-      const productsWithSignedUrls = await transformS3UrlsToSigned(products);
-
       res.status(200).json({
-        products: productsWithSignedUrls,
+        products,
         totalPages: Math.ceil(totalProducts / limit),
         currentPage: page,
         totalProducts,
@@ -298,8 +290,8 @@ module.exports = {
       // }
 
       // Use existing picture and icon if no new file is uploaded
-      const picture = req.files?.picture?.[0]?.location || variant.picture;
-      const icon = req.files?.icon?.[0]?.location || variant.icon;
+      const picture = req.files?.picture?.[0]?.path || variant.picture;
+      const icon = req.files?.icon?.[0]?.path || variant.icon;
 
       // Update the variant
       const updatedVariant = await Variant.findByIdAndUpdate(
@@ -346,8 +338,8 @@ module.exports = {
       }
 
       // Handle file uploads
-      const picture = req.files?.["picture"]?.[0]?.location || null;
-      const icon = req.files?.["icon"]?.[0]?.location || null;
+      const picture = req.files?.["picture"]?.[0]?.path || null;
+      const icon = req.files?.["icon"]?.[0]?.path || null;
       // Check if a product with the given ID exists
       const product = await Product.findById(productId);
       if (!product) {
@@ -519,10 +511,7 @@ module.exports = {
       });
       productObject.enRupture = enRupture;
 
-      // Transform S3 URLs to signed URLs
-      const productWithSignedUrls = await transformS3UrlsToSigned(productObject);
-
-      res.status(200).json(productWithSignedUrls);
+      res.status(200).json(productObject);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
@@ -552,10 +541,7 @@ module.exports = {
         return res.status(404).json({ message: "Product not found" });
       }
 
-      // Transform S3 URLs to signed URLs
-      const productWithSignedUrls = await transformS3UrlsToSigned(product.toObject());
-
-      res.status(200).json(productWithSignedUrls);
+      res.status(200).json(product);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error", error });
@@ -608,15 +594,9 @@ module.exports = {
           .json({ products: [], message: "No products found" });
       }
 
-      // Convert Mongoose documents to plain objects
-      const productsPlain = convertMongooseToPlain(products);
-      
-      // Transform S3 URLs to signed URLs
-      const productsWithSignedUrls = await transformS3UrlsToSigned(productsPlain, ['mainPicture', 'picture', 'icon']);
-
       // Return paginated response including the total number of products
       res.status(200).json({
-        products: productsWithSignedUrls,
+        products,
         // totalPages: Math.ceil(totalProducts / limit),
         // currentPage: page,
         totalProducts, // Include the total number of products (filtered if applicable)
@@ -716,10 +696,7 @@ module.exports = {
         };
       });
 
-      // Transform S3 URLs to signed URLs
-      const productsWithSignedUrls = await transformS3UrlsToSigned(modifiedProducts);
-
-      return res.status(200).json({ products: productsWithSignedUrls });
+      return res.status(200).json({ products: modifiedProducts });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: "Server error", error });
@@ -754,7 +731,7 @@ module.exports = {
         return res.status(404).json({ message: "Product not found" });
       }
       // Handle file upload for the main picture
-      const mainPicture = req.file ? req.file.location : product.mainPicture; // Use existing picture if no new file
+      const mainPicture = req.file ? req.file.path : product.mainPicture; // Use existing picture if no new file
       // Update the product fields
       product.nom = nom || product.nom;
       product.description = description || product.description;

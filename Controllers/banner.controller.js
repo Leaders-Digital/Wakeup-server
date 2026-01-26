@@ -1,17 +1,14 @@
 const Banner = require("../Models/banner.model");
-const { transformS3UrlsToSigned } = require("../helpers/s3Helper");
-const { convertMongooseToPlain } = require("../helpers/mongooseHelper");
 
 const bannerController = {
   // Create a new banner
   createBanner: async (req, res) => {
     try {
       const { name } = req.body;
-      const picture = req.file ? req.file.location : null; // Get the S3 URL if a file was uploaded
+      const picture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
       const banner = new Banner({ name, picture });
       await banner.save();
-      const bannerWithSignedUrls = await transformS3UrlsToSigned(banner.toObject(), ['picture']);
-      res.status(201).json(bannerWithSignedUrls);
+      res.status(201).json(banner);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -21,10 +18,7 @@ const bannerController = {
   getAllBanners: async (req, res) => {
     try {
       const banners = await Banner.find();
-      // Convert Mongoose documents to plain objects
-      const bannersPlain = convertMongooseToPlain(banners);
-      const bannersWithSignedUrls = await transformS3UrlsToSigned(bannersPlain, ['picture']);
-      res.status(200).json({ data: bannersWithSignedUrls });
+      res.status(200).json({ data: banners });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -35,8 +29,7 @@ const bannerController = {
     try {
       const banner = await Banner.findById(req.params.id);
       if (!banner) return res.status(404).json({ message: "Banner not found" });
-      const bannerWithSignedUrls = await transformS3UrlsToSigned(banner.toObject(), ['picture']);
-      res.status(200).json(bannerWithSignedUrls);
+      res.status(200).json(banner);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -45,8 +38,7 @@ getBannerByname : async (req, res) => {
  try {
   const banner = await Banner.findOne({ name: req.params.name });
   if (!banner) return res.status(404).json({ message: "Banner not found" });
-  const bannerWithSignedUrls = await transformS3UrlsToSigned(banner.toObject(), ['picture']);
-  res.status(200).json(bannerWithSignedUrls);
+  res.status(200).json(banner);
   
  } catch (error) {
   res.status(500).json({ message: error.message });
@@ -56,7 +48,7 @@ getBannerByname : async (req, res) => {
   updateBanner: async (req, res) => {
     try {
       const { name } = req.body;
-      const picture = req.file ? req.file.location : null; // Get the S3 URL if a file was uploaded
+      const picture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
 
       const banner = await Banner.findByIdAndUpdate(
         req.params.id,
@@ -64,8 +56,7 @@ getBannerByname : async (req, res) => {
         { new: true }
       );
       if (!banner) return res.status(404).json({ message: "Banner not found" });
-      const bannerWithSignedUrls = await transformS3UrlsToSigned(banner.toObject(), ['picture']);
-      res.status(200).json(bannerWithSignedUrls);
+      res.status(200).json(banner);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -85,13 +76,9 @@ getBannerByname : async (req, res) => {
 getAllBannersObject: async (req, res) => {
   try {
     const banners = await Banner.find(); // Fetch all banners
-    // Convert Mongoose documents to plain objects
-    const bannersPlain = convertMongooseToPlain(banners);
-    // Transform URLs to signed URLs first
-    const bannersWithSignedUrls = await transformS3UrlsToSigned(bannersPlain, ['picture']);
     const bannerMap = {}; // Initialize an empty object
 
-    bannersWithSignedUrls.forEach((banner) => {
+    banners.forEach((banner) => {
       bannerMap[banner.name] = banner.picture; // Add name as key and picture as value
     });
 

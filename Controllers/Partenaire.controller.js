@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const Partenaire = require("../Models/Partenaire.model");
-const { transformS3UrlsToSigned } = require("../helpers/s3Helper");
-const { convertMongooseToPlain } = require("../helpers/mongooseHelper");
 
 module.exports = {
   addPartenaire: async (req, res) => {
@@ -20,7 +18,7 @@ module.exports = {
         location,
       } = req.body;
 
-      const logo = req.file ? req.file.location : null; // Get the S3 URL if a file was uploaded
+      const logo = req.file ? req.file.path : null; // Get the file path if a file was uploaded
       console.log(logo);
       console.log(req.file);
       // Validate required fields
@@ -53,8 +51,7 @@ module.exports = {
       await partenaire.save();
 
       // Send a success response
-      const partenaireWithSignedUrls = await transformS3UrlsToSigned(partenaire.toObject(), ['logo']);
-      res.status(201).json({ message: "Partenaire ajouté avec succès", partenaire: partenaireWithSignedUrls });
+      res.status(201).json({ message: "Partenaire ajouté avec succès", partenaire });
     } catch (error) {
       console.error(error); // Log the error for debugging
       res.status(500).json({ message: "Erreur serveur", error });
@@ -64,10 +61,7 @@ module.exports = {
   getPartenaires: async (req, res) => {
     try {
       const response = await Partenaire.find();
-      // Convert Mongoose documents to plain objects
-      const partenairesPlain = convertMongooseToPlain(response);
-      const partenairesWithSignedUrls = await transformS3UrlsToSigned(partenairesPlain, ['logo']);
-      return res.status(200).json({ data: partenairesWithSignedUrls, message: "Liste des partenaires" });
+      return res.status(200).json({ data: response, message: "Liste des partenaires" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Erreur serveur", error });
@@ -116,7 +110,7 @@ module.exports = {
         return res.status(404).json({ message: "Partenaire non trouvé" });
       }
 
-      const logo = req.file ? req.file.location : existingPartenaire.logo;
+      const logo = req.file ? req.file.path : existingPartenaire.logo;
 
       // Create an update object
       const updateData = {
@@ -142,8 +136,7 @@ module.exports = {
       }
 
       // Send a success response
-      const partenaireWithSignedUrls = await transformS3UrlsToSigned(partenaire.toObject(), ['logo']);
-      res.status(200).json({ message: "Partenaire mis à jour avec succès", partenaire: partenaireWithSignedUrls });
+      res.status(200).json({ message: "Partenaire mis à jour avec succès", partenaire });
     } catch (error) {
       console.error(error); // Log the error for debugging
       res.status(500).json({ message: "Erreur serveur", error });

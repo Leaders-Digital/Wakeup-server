@@ -1,31 +1,16 @@
 const multer = require('multer');
-const multerS3 = require('multer-s3');
-const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 const sharp = require('sharp');
 const path = require('path');
 const crypto = require('crypto');
+const fs = require('fs');
 const dotenv = require('dotenv');
 dotenv.config();
 
-// Configure AWS S3 Client
-const s3Client = new S3Client({
-  region: process.env.AWS_REGION || 'us-east-1',
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
-});
-
-// S3 Bucket name or Access Point alias
-const BUCKET_NAME = process.env.AWS_S3_BUCKET_NAME;
-
-// Validate that bucket name or access point alias is provided
-if (!BUCKET_NAME) {
-  throw new Error('AWS_S3_BUCKET_NAME environment variable is required. Please check your .env file.');
+// Ensure uploads directory exists
+const uploadDir = path.join(__dirname, '../uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
 }
-
-// Check if it's an Access Point alias (contains 's3alias' or starts with 'arn:aws:s3')
-const isAccessPoint = BUCKET_NAME.includes('s3alias') || BUCKET_NAME.startsWith('arn:aws:s3');
 
 const uploadFile = ({
   folder = "uploads",
@@ -52,10 +37,7 @@ const uploadFile = ({
     return ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff'].includes(ext);
   };
 
-  // Use memory storage to process images before upload
-  const memoryStorage = multer.memoryStorage();
-  
-  // Custom storage that converts images to WebP
+  // Custom storage that converts images to WebP and saves locally
   const storage = {
     _handleFile: async function (req, file, cb) {
       try {
@@ -88,24 +70,20 @@ const uploadFile = ({
             
             // Generate unique filename
             const uniqueSuffix = crypto.randomBytes(8).toString('hex');
-            const key = `${folder}/${fileName}-${uniqueSuffix}${ext}`;
+            const filename = `${fileName}-${uniqueSuffix}${ext}`;
             
-            // Upload to S3
-            const command = new PutObjectCommand({
-              Bucket: BUCKET_NAME,
-              Key: key,
-              Body: finalBuffer,
-              ContentType: contentType,
-              ...(isAccessPoint ? {} : { ACL: 'public-read' }),
-            });
+            // Create folder path
+            const folderPath = path.join(uploadDir, folder);
+            if (!fs.existsSync(folderPath)) {
+              fs.mkdirSync(folderPath, { recursive: true });
+            }
             
-            await s3Client.send(command);
+            // Full file path
+            const filePath = path.join(folderPath, filename);
+            const relativePath = `/${folder}/${filename}`;
             
-            // Get S3 URL
-            const region = process.env.AWS_REGION || 'us-east-1';
-            const location = isAccessPoint
-              ? `https://${BUCKET_NAME}.s3.${region}.amazonaws.com/${key}`
-              : `https://${BUCKET_NAME}.s3.${region}.amazonaws.com/${key}`;
+            // Write file to disk
+            fs.writeFileSync(filePath, finalBuffer);
             
             cb(null, {
               fieldname: file.fieldname,
@@ -113,13 +91,10 @@ const uploadFile = ({
               encoding: file.encoding,
               mimetype: contentType,
               size: finalBuffer.length,
-              bucket: BUCKET_NAME,
-              key: key,
-              acl: isAccessPoint ? undefined : 'public-read',
-              contentType: contentType,
-              metadata: { fieldName: file.fieldname },
-              location: location,
-              etag: `"${crypto.createHash('md5').update(finalBuffer).digest('hex')}"`
+              destination: folderPath,
+              filename: filename,
+              path: relativePath, // Relative path for database storage
+              location: relativePath // For backward compatibility
             });
           } catch (error) {
             cb(error);
@@ -132,7 +107,10 @@ const uploadFile = ({
       }
     },
     _removeFile: function (req, file, cb) {
-      // Nothing to remove since we're using memory storage
+      // Remove file if needed
+      if (file.path && fs.existsSync(file.path)) {
+        fs.unlinkSync(file.path);
+      }
       cb(null);
     }
   };
@@ -156,4 +134,3 @@ const uploadFile = ({
 };
 
 module.exports = { uploadFile };
-
