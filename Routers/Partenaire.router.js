@@ -4,7 +4,7 @@ const { addPartenaire, getPartenaires, deletePartenaire, updatePartenaire } = re
 const { uploadFile } = require("../Middleware/imageUpload"); // Now uses S3
 
 PartenaireRouter.post('/addPartenaire',   uploadFile({
-    folder: "uploads",
+    folder: "partenaires",
     fieldName: "logo",
     fileName: "logo",
     multiple: false,

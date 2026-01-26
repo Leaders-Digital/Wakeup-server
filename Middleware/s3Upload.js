@@ -13,7 +13,7 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 const uploadFile = ({
-  folder = "uploads",
+  folder = "",  // Subfolder within uploads (e.g., "products", "banners")
   acceptedTypes = null, // null = accept all types
   fieldName = "file",
   fileName = "file",
@@ -72,18 +72,27 @@ const uploadFile = ({
             const uniqueSuffix = crypto.randomBytes(8).toString('hex');
             const filename = `${fileName}-${uniqueSuffix}${ext}`;
             
-            // Create folder path
-            const folderPath = path.join(uploadDir, folder);
+            // Create folder path (handle both root uploads and subfolders)
+            const folderPath = folder 
+              ? path.join(uploadDir, folder)
+              : uploadDir;
+            
             if (!fs.existsSync(folderPath)) {
               fs.mkdirSync(folderPath, { recursive: true });
             }
             
-            // Full file path
+            // Full file path on disk
             const filePath = path.join(folderPath, filename);
-            const relativePath = `/${folder}/${filename}`;
+            
+            // Database path - ALWAYS starts with /uploads/
+            const relativePath = folder 
+              ? `/uploads/${folder}/${filename}`
+              : `/uploads/${filename}`;
             
             // Write file to disk
             fs.writeFileSync(filePath, finalBuffer);
+            
+            console.log(`✅ File saved: ${relativePath}`);
             
             cb(null, {
               fieldname: file.fieldname,

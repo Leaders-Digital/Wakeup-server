@@ -51,10 +51,14 @@ const storage = {
           // Generate unique filename with timestamp
           const uniqueName = Date.now() + '-' + path.basename(file.originalname, path.extname(file.originalname)) + ext;
           const filePath = path.join(uploadDir, uniqueName);
+          
+          // Database path - ALWAYS starts with /uploads/
           const relativePath = `/uploads/${uniqueName}`;
           
           // Write file to disk
           fs.writeFileSync(filePath, finalBuffer);
+          
+          console.log(`✅ File saved: ${relativePath}`);
           
           cb(null, {
             fieldname: file.fieldname,
