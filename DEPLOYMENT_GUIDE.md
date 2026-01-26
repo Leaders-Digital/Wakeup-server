@@ -46,25 +46,7 @@ The certificates will be saved at:
 
 ## Step 3: Configure Nginx
 
-Copy the Nginx configuration:
-```bash
-sudo cp nginx-api.conf /etc/nginx/sites-available/api.wakeup-cosmetics.tn
-```
-
-Create a symbolic link:
-```bash
-sudo ln -s /etc/nginx/sites-available/api.wakeup-cosmetics.tn /etc/nginx/sites-enabled/
-```
-
-Test Nginx configuration:
-```bash
-sudo nginx -t
-```
-
-If successful, reload Nginx:
-```bash
-sudo systemctl reload nginx
-```
+> **Note:** Nginx configuration is managed separately on the VPS. Make sure your existing Nginx configuration proxies to `localhost:3007` for the backend.
 
 ## Step 4: Prepare Environment Variables
 

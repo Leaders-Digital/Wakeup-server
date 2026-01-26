@@ -1,0 +1,3990 @@
+[{
+  "_id": {
+    "$oid": "66f16ee4eb25cb5cbfc832bc"
+  },
+  "quantity": 6,
+  "picture": "uploads\\1727098596315.jpg",
+  "color": "#ae676c",
+  "icon": "uploads\\1727098596316.png",
+  "reference": "Charleston Matte",
+  "codeAbarre": "8057017692676",
+  "product": {
+    "$oid": "66f16b40eb25cb5cbfc83241"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T13:36:36.417Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:02.415Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f16f1deb25cb5cbfc832d6"
+  },
+  "quantity": 5,
+  "picture": "uploads\\1727098653826.jpg",
+  "color": "#df7b85",
+  "icon": "uploads\\1727098653828.png",
+  "reference": "Pink Bubbles",
+  "codeAbarre": "8057017692621",
+  "product": {
+    "$oid": "66f16b40eb25cb5cbfc83241"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T13:37:33.929Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:02.732Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f16f50eb25cb5cbfc832de"
+  },
+  "quantity": 3,
+  "picture": "uploads\\1727098704667.jpg",
+  "color": "#bb6f69",
+  "icon": "uploads\\1727098704668.png",
+  "reference": "Peach Star",
+  "codeAbarre": "8057017692584",
+  "product": {
+    "$oid": "66f16b40eb25cb5cbfc83241"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T13:38:24.769Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:03.052Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17295eb25cb5cbfc8338d"
+  },
+  "quantity": 40,
+  "picture": "uploads\\1727099540975.png",
+  "color": "#724e4b",
+  "icon": "uploads\\1727099540977.png",
+  "reference": "Highlighting beads stars",
+  "codeAbarre": "8057017692959",
+  "product": {
+    "$oid": "66f1725aeb25cb5cbfc83384"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T13:52:21.073Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:03.370Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f173c4eb25cb5cbfc833ea"
+  },
+  "quantity": 38,
+  "picture": "uploads\\1727099843996.png",
+  "color": "#e9dac1",
+  "icon": "uploads\\1727099844012.png",
+  "reference": "Diamond highlighter",
+  "codeAbarre": "8057017692935",
+  "product": {
+    "$oid": "66f17385eb25cb5cbfc833e1"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T13:57:24.198Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:00.732Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17493eb25cb5cbfc83439"
+  },
+  "quantity": 16,
+  "picture": "uploads\\1727100051004.png",
+  "color": "#d5b098",
+  "icon": "uploads\\1727100051004.png",
+  "reference": "Gold Champagne",
+  "codeAbarre": "8057017694564",
+  "product": {
+    "$oid": "66f17453eb25cb5cbfc83430"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:00:51.102Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:00.883Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f174c0eb25cb5cbfc83441"
+  },
+  "quantity": 12,
+  "picture": "uploads\\1727100096635.png",
+  "color": "#eacbbc",
+  "icon": "uploads\\1727100096635.png",
+  "reference": "Rose Quartz",
+  "codeAbarre": "8057017694540",
+  "product": {
+    "$oid": "66f17453eb25cb5cbfc83430"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:01:36.732Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:00.997Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17584eb25cb5cbfc8357c"
+  },
+  "quantity": 12,
+  "picture": "uploads\\1727100292253.png",
+  "color": "#dfc4a3",
+  "icon": "uploads\\1727100292254.png",
+  "reference": "Melted Honey",
+  "codeAbarre": "8057017694724",
+  "product": {
+    "$oid": "66f17535eb25cb5cbfc83573"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:04:52.353Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-20T07:50:04.956Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f175bdeb25cb5cbfc83584"
+  },
+  "quantity": 12,
+  "picture": "uploads\\1727100349526.png",
+  "color": "#bda69a",
+  "icon": "uploads\\1727100349541.png",
+  "reference": "Candy Butter",
+  "codeAbarre": "8057017694700",
+  "product": {
+    "$oid": "66f17535eb25cb5cbfc83573"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:05:49.701Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:04.782Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f1770deb25cb5cbfc835f3"
+  },
+  "quantity": 3,
+  "picture": "uploads\\1727100685843.jpg",
+  "color": "#DDB998",
+  "icon": "uploads\\1727100685843.jpg",
+  "reference": "01",
+  "codeAbarre": "8057017691242",
+  "product": {
+    "$oid": "66f176d8eb25cb5cbfc835ea"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:11:25.957Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:05.102Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17767eb25cb5cbfc835fb"
+  },
+  "quantity": 7,
+  "picture": "uploads/1731331898461.png",
+  "color": "#bf8665",
+  "icon": "uploads/1731331898461.png",
+  "reference": "02",
+  "codeAbarre": "8057017691259",
+  "product": {
+    "$oid": "66f176d8eb25cb5cbfc835ea"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:12:55.949Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T16:00:01.671Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f1779aeb25cb5cbfc8360f"
+  },
+  "quantity": 33,
+  "picture": "uploads/1731331809488.jpg",
+  "color": "#b78466",
+  "icon": "uploads/1731331809489.jpg",
+  "reference": "03",
+  "codeAbarre": "8057017691266",
+  "product": {
+    "$oid": "66f176d8eb25cb5cbfc835ea"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:13:46.196Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:05.725Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f177f4eb25cb5cbfc8362c"
+  },
+  "quantity": 22,
+  "picture": "uploads\\1727100916211.jpg",
+  "color": "#d8cdc7",
+  "icon": "uploads\\1727100916211.jpg",
+  "reference": "Make up fixer",
+  "codeAbarre": "8057017690214",
+  "product": {
+    "$oid": "66f177c2eb25cb5cbfc83623"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:15:16.311Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:06.027Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f178b5eb25cb5cbfc8367b"
+  },
+  "quantity": 7,
+  "picture": "uploads\\1727101109826.jpg",
+  "color": "#ba967c",
+  "icon": "uploads\\1727101109826.jpg",
+  "reference": "Neutral Beige",
+  "codeAbarre": "8057017693109",
+  "product": {
+    "$oid": "66f17889eb25cb5cbfc83672"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:18:29.926Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:06.159Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f178ddeb25cb5cbfc83683"
+  },
+  "quantity": 7,
+  "picture": "uploads\\1727101148962.jpg",
+  "color": "#b98c65",
+  "icon": "uploads\\1727101148962.jpg",
+  "reference": "Vibrant Beige",
+  "codeAbarre": "8057017693116",
+  "product": {
+    "$oid": "66f17889eb25cb5cbfc83672"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:19:09.062Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:06.318Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17906eb25cb5cbfc8368b"
+  },
+  "quantity": 31,
+  "picture": "uploads\\1727101190616.jpg",
+  "color": "#986c52",
+  "icon": "uploads\\1727101190616.jpg",
+  "reference": "Light Bronze",
+  "codeAbarre": "8057017693123",
+  "product": {
+    "$oid": "66f17889eb25cb5cbfc83672"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:19:50.717Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:06.566Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17928eb25cb5cbfc83693"
+  },
+  "quantity": 36,
+  "picture": "uploads\\1727101224148.jpg",
+  "color": "#895a40",
+  "icon": "uploads\\1727101224148.jpg",
+  "reference": "Dark Bronze",
+  "codeAbarre": "8057017693130",
+  "product": {
+    "$oid": "66f17889eb25cb5cbfc83672"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:20:24.248Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:06.826Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f179c1eb25cb5cbfc836b0"
+  },
+  "quantity": 6,
+  "picture": "uploads\\1727101377840.jpg",
+  "color": "#e19186",
+  "icon": "uploads\\1727101377842.jpg",
+  "reference": "01",
+  "codeAbarre": "8057017691976",
+  "product": {
+    "$oid": "66f1797beb25cb5cbfc836a7"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:22:57.943Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:07.058Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f179e4eb25cb5cbfc836b8"
+  },
+  "quantity": 16,
+  "picture": "uploads\\1727101412132.jpg",
+  "color": "#b48274",
+  "icon": "uploads\\1727101412134.jpg",
+  "reference": "02",
+  "codeAbarre": "8057017691983",
+  "product": {
+    "$oid": "66f1797beb25cb5cbfc836a7"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:23:32.232Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:07.317Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17a0beb25cb5cbfc836c0"
+  },
+  "quantity": 13,
+  "picture": "uploads\\1727101451258.jpg",
+  "color": "#b9846e",
+  "icon": "uploads\\1727101451260.jpg",
+  "reference": "03",
+  "codeAbarre": "8057017691990",
+  "product": {
+    "$oid": "66f1797beb25cb5cbfc836a7"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:24:11.359Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T16:00:02.486Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17a9deb25cb5cbfc8371d"
+  },
+  "quantity": 37,
+  "picture": "uploads\\1727101597899.jpg",
+  "color": "#a27a6e",
+  "icon": "uploads\\1727101597899.jpg",
+  "reference": "Bronzed",
+  "codeAbarre": "8057017693468",
+  "product": {
+    "$oid": "66f17a5eeb25cb5cbfc83714"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:26:37.999Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T19:53:57.907Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17b77eb25cb5cbfc8373a"
+  },
+  "quantity": 22,
+  "picture": "uploads\\1727101948695.jpg",
+  "color": "#e1d0b5",
+  "icon": "uploads\\1727101815235.jpg",
+  "reference": "Peach",
+  "codeAbarre": "8057017690177",
+  "product": {
+    "$oid": "66f17b20eb25cb5cbfc83731"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:30:15.403Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:08.066Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17c18eb25cb5cbfc8375b"
+  },
+  "quantity": 44,
+  "picture": "uploads\\1727101983453.jpg",
+  "color": "#b4bed8",
+  "icon": "uploads\\1727101976739.jpg",
+  "reference": "Violet",
+  "codeAbarre": "8057017690207",
+  "product": {
+    "$oid": "66f17b20eb25cb5cbfc83731"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:32:56.840Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:03.698Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17eabeb25cb5cbfc837a1"
+  },
+  "quantity": 23,
+  "picture": "uploads\\1727102635129.jpg",
+  "color": "#d79379",
+  "icon": "uploads\\1727102635131.jpg",
+  "reference": "Tan",
+  "codeAbarre": "8057017693628",
+  "product": {
+    "$oid": "66f17db0eb25cb5cbfc83798"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:43:55.237Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:08.985Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17ed2eb25cb5cbfc837a9"
+  },
+  "quantity": 7,
+  "picture": "uploads\\1727102674135.jpg",
+  "color": "#e4b79a",
+  "icon": "uploads\\1727102674137.jpg",
+  "reference": "Honey",
+  "codeAbarre": "8057017693697",
+  "product": {
+    "$oid": "66f17db0eb25cb5cbfc83798"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:44:34.326Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:09.304Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17efaeb25cb5cbfc837b1"
+  },
+  "quantity": 6,
+  "picture": "uploads\\1727102713928.jpg",
+  "color": "#d8ac9d",
+  "icon": "uploads\\1727102713930.jpg",
+  "reference": "Beige Doré",
+  "codeAbarre": "8057017693611",
+  "product": {
+    "$oid": "66f17db0eb25cb5cbfc83798"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:45:14.029Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T19:53:57.861Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17f3aeb25cb5cbfc837b9"
+  },
+  "quantity": 29,
+  "picture": "uploads\\1727102777969.jpg",
+  "color": "#cc9c8e",
+  "icon": "uploads\\1727102777971.jpg",
+  "reference": "Peach Rose",
+  "codeAbarre": "8057017693635",
+  "product": {
+    "$oid": "66f17db0eb25cb5cbfc83798"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:46:18.079Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:09.947Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17f64eb25cb5cbfc837c1"
+  },
+  "quantity": 9,
+  "picture": "uploads\\1727102820598.jpg",
+  "color": "#deb09f",
+  "icon": "uploads\\1727102820600.jpg",
+  "reference": "Natural rose",
+  "codeAbarre": "8057017693666",
+  "product": {
+    "$oid": "66f17db0eb25cb5cbfc83798"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:47:00.699Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:10.265Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f180d8eb25cb5cbfc837ff"
+  },
+  "quantity": 37,
+  "picture": "uploads\\1727103466850.jpg",
+  "color": "#67574b",
+  "icon": "uploads\\1727103243626.jpg",
+  "reference": "Taupe",
+  "codeAbarre": "8057017694359",
+  "product": {
+    "$oid": "66f18086eb25cb5cbfc837f6"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:53:12.327Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:10.585Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f180fdeb25cb5cbfc83807"
+  },
+  "quantity": 10,
+  "picture": "uploads\\1727103472025.jpg",
+  "color": "#533127",
+  "icon": "uploads\\1727103239280.jpg",
+  "reference": "Auburn",
+  "codeAbarre": "8057017694397",
+  "product": {
+    "$oid": "66f18086eb25cb5cbfc837f6"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:53:49.296Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:10.904Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f18141eb25cb5cbfc8381d"
+  },
+  "quantity": 26,
+  "picture": "uploads\\1727103476577.jpg",
+  "color": "#4c3b33",
+  "icon": "uploads\\1727103422213.jpg",
+  "reference": "Neutral Brown",
+  "codeAbarre": "8057017694410",
+  "product": {
+    "$oid": "66f18086eb25cb5cbfc837f6"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:54:57.648Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:04.080Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f1817ceb25cb5cbfc83831"
+  },
+  "quantity": 29,
+  "picture": "uploads\\1727103481725.jpg",
+  "color": "#151012",
+  "icon": "uploads\\1727103356058.jpg",
+  "reference": "Graphite",
+  "codeAbarre": "8057017694458",
+  "product": {
+    "$oid": "66f18086eb25cb5cbfc837f6"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T14:55:56.156Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:04.136Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f1886feb25cb5cbfc83a6f"
+  },
+  "quantity": 56,
+  "picture": "uploads\\1727105141927.jpg",
+  "color": "#e0c1a1",
+  "icon": "uploads\\1727105135457.jpg",
+  "reference": "Beige Brown",
+  "codeAbarre": "8057017693178",
+  "product": {
+    "$oid": "66f1882aeb25cb5cbfc83a66"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T15:25:35.674Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:11.587Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f188aeeb25cb5cbfc83a7e"
+  },
+  "quantity": 16,
+  "picture": "uploads\\1727105198082.jpg",
+  "color": "#aa8666",
+  "icon": "uploads\\1727105198084.jpg",
+  "reference": "Chocolate Brown",
+  "codeAbarre": "8057017693161",
+  "product": {
+    "$oid": "66f1882aeb25cb5cbfc83a66"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T15:26:38.279Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:11.906Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f188edeb25cb5cbfc83a86"
+  },
+  "quantity": 30,
+  "picture": "uploads\\1727105261010.jpg",
+  "color": "#805f56",
+  "icon": "uploads\\1727105261011.jpg",
+  "reference": "Pure Brown",
+  "codeAbarre": "8057017693154",
+  "product": {
+    "$oid": "66f1882aeb25cb5cbfc83a66"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T15:27:41.220Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:12.229Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f1891aeb25cb5cbfc83a8e"
+  },
+  "quantity": 15,
+  "picture": "uploads\\1727105310133.jpg",
+  "color": "#634e45",
+  "icon": "uploads\\1727105306351.jpg",
+  "reference": "Dark brown",
+  "codeAbarre": "8057017693147",
+  "product": {
+    "$oid": "66f1882aeb25cb5cbfc83a66"
+  },
+  "createdAt": {
+    "$date": "2024-09-23T15:28:26.455Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:03.256Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6c506b14227cedde24fbc"
+  },
+  "quantity": 9,
+  "picture": "uploads\\1727689142270.jpg",
+  "color": "#c7aa98",
+  "icon": "uploads\\1727689142270.png",
+  "reference": "W1",
+  "codeAbarre": "8057017691143",
+  "product": {
+    "$oid": "66f6c054b14227cedde24f73"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T14:45:26.857Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:12.869Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6c53eb14227cedde24fc4"
+  },
+  "quantity": 7,
+  "picture": "uploads\\1727689133448.jpg",
+  "color": "#c9ac9a",
+  "icon": "uploads\\1727689133448.png",
+  "reference": "C3",
+  "codeAbarre": "8057017691129",
+  "product": {
+    "$oid": "66f6c054b14227cedde24f73"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T14:46:22.019Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:13.188Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6c57ab14227cedde24fcc"
+  },
+  "quantity": 7,
+  "picture": "uploads\\1727689123980.jpg",
+  "color": "#ccb7a6",
+  "icon": "uploads\\1727689123980.png",
+  "reference": "C2",
+  "codeAbarre": "8057017691112",
+  "product": {
+    "$oid": "66f6c054b14227cedde24f73"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T14:47:22.518Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:13.510Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6c5b7b14227cedde24fd4"
+  },
+  "quantity": 19,
+  "picture": "uploads\\1727689108992.jpg",
+  "color": "#e8d7c7",
+  "icon": "uploads\\1727689108992.png",
+  "reference": "C1",
+  "codeAbarre": "8057017691105",
+  "product": {
+    "$oid": "66f6c054b14227cedde24f73"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T14:48:23.218Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:13.827Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6c784b14227cedde25076"
+  },
+  "quantity": 46,
+  "picture": "uploads\\1727689537729.jpg",
+  "color": "#ebebeb",
+  "icon": "uploads\\1727689537730.png",
+  "reference": "Clear",
+  "codeAbarre": "8057017694526",
+  "product": {
+    "$oid": "66f6c6dab14227cedde2506a"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T14:56:04.055Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:14.147Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6c888b14227cedde25103"
+  },
+  "quantity": 36,
+  "picture": "uploads\\1727689346655.jpg",
+  "color": "#292011",
+  "icon": "uploads\\1727689346655.jpg",
+  "reference": "Ash Brown",
+  "codeAbarre": "8057017694250",
+  "product": {
+    "$oid": "66f6c83eb14227cedde250fa"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T15:00:24.155Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:14.464Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6ccbdd6558a2081e18455"
+  },
+  "quantity": 30,
+  "picture": "uploads\\1727689333421.jpg",
+  "color": "#291107",
+  "icon": "uploads\\1727689333421.jpg",
+  "reference": "Auburn",
+  "codeAbarre": "8057017694274",
+  "product": {
+    "$oid": "66f6c83eb14227cedde250fa"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T15:18:21.347Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:14.784Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6d36fd6558a2081e1871f"
+  },
+  "quantity": 36,
+  "picture": "uploads\\1727689326355.jpg",
+  "color": "#1e1a16",
+  "icon": "uploads\\1727689326355.jpg",
+  "reference": "Chocolate",
+  "codeAbarre": "8057017694311",
+  "product": {
+    "$oid": "66f6c83eb14227cedde250fa"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T15:46:55.582Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:15.105Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6d3b4d6558a2081e187af"
+  },
+  "quantity": 42,
+  "picture": "uploads\\1727689318007.jpg",
+  "color": "#0d0b0c",
+  "icon": "uploads\\1727689318008.jpg",
+  "reference": "Graphite",
+  "codeAbarre": "8057017694335",
+  "product": {
+    "$oid": "66f6c83eb14227cedde250fa"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T15:48:04.619Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:15.427Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6d3f5d6558a2081e187c9"
+  },
+  "quantity": 26,
+  "picture": "uploads\\1727689275335.jpg",
+  "color": "#29201e",
+  "icon": "uploads\\1727689275335.jpg",
+  "reference": "Neutral Brown",
+  "codeAbarre": "8057017694298",
+  "product": {
+    "$oid": "66f6c83eb14227cedde250fa"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T15:49:09.016Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:15.746Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6d435d6558a2081e18803"
+  },
+  "quantity": 34,
+  "picture": "uploads\\1727689288579.jpg",
+  "color": "#341f0d",
+  "icon": "uploads\\1727689288579.jpg",
+  "reference": "Taupe",
+  "codeAbarre": "8057017694236",
+  "product": {
+    "$oid": "66f6c83eb14227cedde250fa"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T15:50:13.221Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:16.068Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6d604d6558a2081e189e2"
+  },
+  "quantity": 28,
+  "picture": "uploads\\1727689502151.webp",
+  "color": "#3e4938",
+  "icon": "uploads\\1727689502151.webp",
+  "reference": "Onyx",
+  "codeAbarre": "8057017699453",
+  "product": {
+    "$oid": "66f6d511d6558a2081e189c9"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T15:57:56.915Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:04.187Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6d632d6558a2081e189ea"
+  },
+  "quantity": 60,
+  "picture": "uploads\\1727689496035.webp",
+  "color": "#48372f",
+  "icon": "uploads\\1727689496035.webp",
+  "reference": "Peridot",
+  "codeAbarre": "8057017699477",
+  "product": {
+    "$oid": "66f6d511d6558a2081e189c9"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T15:58:42.520Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:16.705Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6d65dd6558a2081e189f2"
+  },
+  "quantity": 59,
+  "picture": "uploads\\1727689489225.webp",
+  "color": "#2d2d2b",
+  "icon": "uploads\\1727689489225.webp",
+  "reference": "Amy",
+  "codeAbarre": "8057017699484",
+  "product": {
+    "$oid": "66f6d511d6558a2081e189c9"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T15:59:25.317Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:17.021Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6d686d6558a2081e18a16"
+  },
+  "quantity": 57,
+  "picture": "uploads\\1727689482603.webp",
+  "color": "#755b88",
+  "icon": "uploads\\1727689482603.webp",
+  "reference": "coffee",
+  "codeAbarre": "8057017699446",
+  "product": {
+    "$oid": "66f6d511d6558a2081e189c9"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T16:00:06.916Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:17.339Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6d839d6558a2081e18ad8"
+  },
+  "quantity": 20,
+  "picture": "uploads\\1727689716593.jpeg",
+  "color": "#0a0a0a",
+  "icon": "uploads\\1727689716597.jpg",
+  "reference": "Black",
+  "codeAbarre": "8057017694212",
+  "product": {
+    "$oid": "66f6d7e3d6558a2081e18ac1"
+  },
+  "createdAt": {
+    "$date": "2024-09-27T16:07:21.080Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:17.657Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa6bb653a46175ec8add67"
+  },
+  "quantity": 72,
+  "picture": "uploads\\1727687606496.jpg",
+  "color": "#73635c",
+  "icon": "uploads\\1727687606498.jpg",
+  "reference": "Tiger Eye",
+  "codeAbarre": "8057017699514",
+  "product": {
+    "$oid": "66fa6b1c53a46175ec8add55"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T09:13:26.603Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:11.200Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa6be453a46175ec8add6f"
+  },
+  "quantity": 28,
+  "picture": "uploads\\1727687652461.jpg",
+  "color": "#5b5c66",
+  "icon": "uploads\\1727687652464.webp",
+  "reference": "White topaz",
+  "codeAbarre": "8057017699507",
+  "product": {
+    "$oid": "66fa6b1c53a46175ec8add55"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T09:14:12.565Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:18.161Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa6c1c53a46175ec8add77"
+  },
+  "quantity": 39,
+  "picture": "uploads\\1727687708415.jpg",
+  "color": "#afb4aa",
+  "icon": "uploads\\1727687708418.jpg",
+  "reference": "Blue topaz",
+  "codeAbarre": "8057017699491",
+  "product": {
+    "$oid": "66fa6b1c53a46175ec8add55"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T09:15:08.521Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:04.705Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa760953a46175ec8ae1df"
+  },
+  "quantity": 70,
+  "picture": "uploads\\1727690249562.jpg",
+  "color": "#787352",
+  "icon": "uploads\\1727690249563.jpg",
+  "reference": "Titan ",
+  "codeAbarre": "8057017699569",
+  "product": {
+    "$oid": "66fa75d053a46175ec8ae1d6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T09:57:29.802Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:05.428Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa763453a46175ec8ae1e7"
+  },
+  "quantity": 71,
+  "picture": "uploads\\1727690292691.jpg",
+  "color": "#363434",
+  "icon": "uploads\\1727690292693.jpg",
+  "reference": "Thunder ",
+  "codeAbarre": "8057017699521",
+  "product": {
+    "$oid": "66fa75d053a46175ec8ae1d6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T09:58:12.841Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:18.973Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa765f53a46175ec8ae1ef"
+  },
+  "quantity": 60,
+  "picture": "uploads\\1727690335475.jpg",
+  "color": "#ececec",
+  "icon": "uploads\\1727690335476.jpg",
+  "reference": "Snow",
+  "codeAbarre": "8057017699613",
+  "product": {
+    "$oid": "66fa75d053a46175ec8ae1d6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T09:58:55.574Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:04.974Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa768453a46175ec8ae1f7"
+  },
+  "quantity": 69,
+  "picture": "uploads\\1727690372849.jpg",
+  "color": "#5a5887",
+  "icon": "uploads\\1727690372852.jpg",
+  "reference": "Poseidon ",
+  "codeAbarre": "8057017699545",
+  "product": {
+    "$oid": "66fa75d053a46175ec8ae1d6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T09:59:32.955Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:05.091Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa770c53a46175ec8ae28a"
+  },
+  "quantity": 65,
+  "picture": "uploads\\1727690507890.jpg",
+  "color": "#8ac3dd",
+  "icon": "uploads\\1727690507893.jpg",
+  "reference": "Turquoise",
+  "codeAbarre": "8057017699422",
+  "product": {
+    "$oid": "66fa76c353a46175ec8ae281"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:01:48.071Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:19.796Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa773253a46175ec8ae292"
+  },
+  "quantity": 56,
+  "picture": "uploads\\1727690546605.jpg",
+  "color": "#605751",
+  "icon": "uploads\\1727690546607.jpg",
+  "reference": "Topaz",
+  "codeAbarre": "8057017699385",
+  "product": {
+    "$oid": "66fa76c353a46175ec8ae281"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:02:26.709Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:11.776Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa775753a46175ec8ae29a"
+  },
+  "quantity": 60,
+  "picture": "uploads\\1727690583752.jpg",
+  "color": "#384886",
+  "icon": "uploads\\1727690583755.jpg",
+  "reference": "Sapphire ",
+  "codeAbarre": "8057017699415",
+  "product": {
+    "$oid": "66fa76c353a46175ec8ae281"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:03:03.978Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:05.381Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa7dab53a46175ec8ae2ba"
+  },
+  "quantity": 66,
+  "picture": "uploads\\1727692203508.jpg",
+  "color": "#4a6360",
+  "icon": "uploads\\1727692203510.jpg",
+  "reference": "Emerald ",
+  "codeAbarre": "8057017699408",
+  "product": {
+    "$oid": "66fa76c353a46175ec8ae281"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:30:03.609Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:20.624Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa7dcf53a46175ec8ae2c2"
+  },
+  "quantity": 55,
+  "picture": "uploads\\1727692239489.jpg",
+  "color": "#7a666b",
+  "icon": "uploads\\1727692239491.jpg",
+  "reference": "Black diamond",
+  "codeAbarre": "8057017699439",
+  "product": {
+    "$oid": "66fa76c353a46175ec8ae281"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:30:39.589Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:20.944Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa7e6053a46175ec8ae355"
+  },
+  "quantity": 40,
+  "picture": "uploads\\1727692390028.jpg",
+  "color": "#143b80",
+  "icon": "uploads\\1727692384564.jpg",
+  "reference": "Blue sapphire",
+  "codeAbarre": "8057017690030",
+  "product": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:33:04.672Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:05.645Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa7fe053a46175ec8ae3a4"
+  },
+  "quantity": 22,
+  "picture": "uploads\\1727692775815.jpg",
+  "color": "#285250",
+  "icon": "uploads\\1727692767927.jpg",
+  "reference": "Deep Emeraude",
+  "codeAbarre": "8057017690047",
+  "product": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:39:28.032Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:05.766Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa801353a46175ec8ae3b3"
+  },
+  "quantity": 11,
+  "picture": "uploads\\1727692818927.jpg",
+  "color": "#807975",
+  "icon": "uploads\\1727692818929.jpg",
+  "reference": "Gray touch",
+  "codeAbarre": "8057017690054",
+  "product": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:40:19.031Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-13T14:00:07.373Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa803b53a46175ec8ae3bb"
+  },
+  "quantity": 23,
+  "picture": "uploads\\1727692865255.jpg",
+  "color": "#6f6761",
+  "icon": "uploads\\1727692859037.jpg",
+  "reference": "Taupe",
+  "codeAbarre": "8057017690061",
+  "product": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:40:59.141Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:06.102Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa807053a46175ec8ae3ca"
+  },
+  "quantity": 35,
+  "picture": "uploads\\1727692917295.jpg",
+  "color": "#a16580",
+  "icon": "uploads\\1727692912395.jpg",
+  "reference": "Glory Mauve",
+  "codeAbarre": "8057017690078",
+  "product": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:41:52.499Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:06.027Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa80ad53a46175ec8ae3d9"
+  },
+  "quantity": 26,
+  "picture": "uploads\\1727692979239.jpg",
+  "color": "#795764",
+  "icon": "uploads\\1727692973360.jpg",
+  "reference": "Satin burgundy",
+  "codeAbarre": "8057017690085",
+  "product": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:42:53.464Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:06.164Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa811853a46175ec8ae3fb"
+  },
+  "quantity": 30,
+  "picture": "uploads\\1727693080654.jpg",
+  "color": "#e9af8b",
+  "icon": "uploads\\1727693080657.jpg",
+  "reference": "Golden Honey",
+  "codeAbarre": "8057017690092",
+  "product": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:44:40.760Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:22.620Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa814353a46175ec8ae403"
+  },
+  "quantity": 30,
+  "picture": "uploads\\1727693152209.jpg",
+  "color": "#bf8669",
+  "icon": "uploads\\1727693143040.jpg",
+  "reference": "Caramel",
+  "codeAbarre": "8057017690108",
+  "product": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:45:23.947Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:22.954Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa81c153a46175ec8ae442"
+  },
+  "quantity": -1,
+  "picture": "uploads\\1727693363797.jpg",
+  "color": "#d0a171",
+  "icon": "uploads\\1727693249644.jpg",
+  "reference": "Golden Sun",
+  "codeAbarre": "8057017690115",
+  "product": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:47:29.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:23.273Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa81fe53a46175ec8ae451"
+  },
+  "quantity": 24,
+  "picture": "uploads\\1727693310600.jpg",
+  "color": "#e58c6f",
+  "icon": "uploads\\1727693310603.jpg",
+  "reference": "Vibrant Peach",
+  "codeAbarre": "8057017690122",
+  "product": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:48:30.705Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:23.590Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa82ee53a46175ec8ae4ed"
+  },
+  "quantity": 78,
+  "picture": "uploads\\1727693549954.jpg",
+  "color": "#351b11",
+  "icon": "uploads\\1727693549957.jpg",
+  "reference": "Umber",
+  "codeAbarre": "8057017693499",
+  "product": {
+    "$oid": "66fa82c253a46175ec8ae4e4"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:52:30.055Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:23.914Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa830f53a46175ec8ae4f5"
+  },
+  "quantity": 54,
+  "picture": "uploads\\1727693583373.jpg",
+  "color": "#641027",
+  "icon": "uploads\\1727693583376.jpg",
+  "reference": "Boysenberry",
+  "codeAbarre": "8057017693482",
+  "product": {
+    "$oid": "66fa82c253a46175ec8ae4e4"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:53:03.653Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:24.310Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa833553a46175ec8ae4fd"
+  },
+  "quantity": 77,
+  "picture": "uploads\\1727693621066.jpg",
+  "color": "#a26b6b",
+  "icon": "uploads\\1727693621069.jpg",
+  "reference": "Mar",
+  "codeAbarre": "8057017693475",
+  "product": {
+    "$oid": "66fa82c253a46175ec8ae4e4"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:53:41.168Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:24.631Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa847453a46175ec8ae51d"
+  },
+  "quantity": 16,
+  "picture": "uploads\\1727693945448.jpg",
+  "color": "#fcd6a1",
+  "icon": "uploads\\1727693940286.jpg",
+  "reference": "Spicy",
+  "codeAbarre": "8057017694588",
+  "product": {
+    "$oid": "66fa842553a46175ec8ae511"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:59:00.389Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:06.784Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa84a653a46175ec8ae52c"
+  },
+  "quantity": 6,
+  "picture": "uploads\\1727693990543.webp",
+  "color": "#e2b983",
+  "icon": "uploads\\1727693990543.jpg",
+  "reference": "Nude ",
+  "codeAbarre": "8057017694489",
+  "product": {
+    "$oid": "66fa842553a46175ec8ae511"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T10:59:50.650Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:06.923Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa854753a46175ec8ae5bf"
+  },
+  "quantity": 31,
+  "picture": "uploads\\1727694151056.jpg",
+  "color": "#d1bfa9",
+  "icon": "uploads\\1727694151059.jpg",
+  "reference": "Vela",
+  "codeAbarre": "8057017692072",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:02:31.161Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:13.121Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa856953a46175ec8ae5c7"
+  },
+  "quantity": 36,
+  "picture": "uploads\\1727694184969.jpg",
+  "color": "#73ada8",
+  "icon": "uploads\\1727694184971.jpg",
+  "reference": "Pisces",
+  "codeAbarre": "8057017692232",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:03:05.073Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:13.215Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa859653a46175ec8ae5cf"
+  },
+  "quantity": 25,
+  "picture": "uploads\\1727694235519.jpg",
+  "color": "#73574a",
+  "icon": "uploads\\1727694230359.jpg",
+  "reference": "Phoenix",
+  "codeAbarre": "8057017692065",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:03:50.557Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:13.298Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa85c853a46175ec8ae5de"
+  },
+  "quantity": 11,
+  "picture": "uploads\\1727694280137.jpg",
+  "color": "#a9876f",
+  "icon": "uploads\\1727694280140.jpg",
+  "reference": "Maya",
+  "codeAbarre": "8057017692003",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:04:40.242Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:26.132Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa85ea53a46175ec8ae5e6"
+  },
+  "quantity": 1,
+  "picture": "uploads\\1727694320529.jpg",
+  "color": "#385557",
+  "icon": "uploads\\1727694314676.jpg",
+  "reference": "Mair",
+  "codeAbarre": "8057017692287",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:05:14.779Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:13.430Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa860d53a46175ec8ae5f5"
+  },
+  "quantity": 16,
+  "picture": "uploads\\1727694349309.jpg",
+  "color": "#b8765c",
+  "icon": "uploads\\1727694349310.jpg",
+  "reference": "Lynx ",
+  "codeAbarre": "8057017692010",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:05:49.412Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:13.523Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa864453a46175ec8ae5fd"
+  },
+  "quantity": 21,
+  "picture": "uploads\\1727694431671.jpg",
+  "color": "#eacebb",
+  "icon": "uploads\\1727694404650.jpg",
+  "reference": "Lira",
+  "codeAbarre": "8057017692157",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:06:44.751Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:26.801Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa86e953a46175ec8ae611"
+  },
+  "quantity": 9,
+  "picture": "uploads\\1727694569547.jpg",
+  "color": "#e0967e",
+  "icon": "uploads\\1727694569550.jpg",
+  "reference": "Leo",
+  "codeAbarre": "8057017692201",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:09:29.652Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:27.142Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa874353a46175ec8ae619"
+  },
+  "quantity": 24,
+  "picture": "uploads\\1727694659507.jpg",
+  "color": "#854a5d",
+  "icon": "uploads\\1727694659510.jpg",
+  "reference": "Lahu",
+  "codeAbarre": "8057017692102",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:10:59.611Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:13.750Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa876e53a46175ec8ae621"
+  },
+  "quantity": 25,
+  "picture": "uploads\\1727694702849.jpg",
+  "color": "#ebebeb",
+  "icon": "uploads\\1727694702852.jpg",
+  "reference": "Druze",
+  "codeAbarre": "8057017692348",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:11:42.954Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:27.646Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa879653a46175ec8ae629"
+  },
+  "quantity": 33,
+  "picture": "uploads\\1727694742199.jpg",
+  "color": "#828e72",
+  "icon": "uploads\\1727694742202.jpg",
+  "reference": "Birch",
+  "codeAbarre": "8057017692270",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:12:22.303Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:13.899Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa87bb53a46175ec8ae631"
+  },
+  "quantity": 28,
+  "picture": "uploads\\1727694779670.jpg",
+  "color": "#395473",
+  "icon": "uploads\\1727694779673.jpg",
+  "reference": "Addigi",
+  "codeAbarre": "8057017692218",
+  "product": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:12:59.774Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:13.966Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa8986e7caba71e978f5de"
+  },
+  "quantity": 38,
+  "picture": "uploads\\1727695238681.jpg",
+  "color": "#694e47",
+  "icon": "uploads\\1727695238684.jpg",
+  "reference": "Frozen Lilac",
+  "codeAbarre": "8057017694083",
+  "product": {
+    "$oid": "66fa894fe7caba71e978f5d5"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:20:38.782Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:07.889Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa89b3e7caba71e978f5e6"
+  },
+  "quantity": 38,
+  "picture": "uploads\\1727695283099.jpg",
+  "color": "#a57c6e",
+  "icon": "uploads\\1727695283103.jpg",
+  "reference": "Catwalk Copper",
+  "codeAbarre": "8057017694076",
+  "product": {
+    "$oid": "66fa894fe7caba71e978f5d5"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:21:23.200Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:14.148Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa89d3e7caba71e978f5ee"
+  },
+  "quantity": 39,
+  "picture": "uploads\\1727695315280.jpg",
+  "color": "#8c3b43",
+  "icon": "uploads\\1727695315283.jpg",
+  "reference": "Extravagant Rose",
+  "codeAbarre": "8057017694069",
+  "product": {
+    "$oid": "66fa894fe7caba71e978f5d5"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:21:55.379Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:08.125Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa8a05e7caba71e978f5f8"
+  },
+  "quantity": 38,
+  "picture": "uploads\\1727695365246.jpg",
+  "color": "#9f7556",
+  "icon": "uploads\\1727695365249.jpg",
+  "reference": "Platinum bronze",
+  "codeAbarre": "8057017694052",
+  "product": {
+    "$oid": "66fa894fe7caba71e978f5d5"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:22:45.346Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:08.238Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa8a25e7caba71e978f600"
+  },
+  "quantity": 35,
+  "picture": "uploads\\1727695397632.jpg",
+  "color": "#e9c0a8",
+  "icon": "uploads\\1727695397635.jpg",
+  "reference": "Party gold",
+  "codeAbarre": "8057017694045",
+  "product": {
+    "$oid": "66fa894fe7caba71e978f5d5"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:23:17.732Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:08.374Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa8d16e7caba71e978f731"
+  },
+  "quantity": 0,
+  "picture": "uploads\\1727696149926.jpg",
+  "color": "#eae5e5",
+  "icon": "uploads\\1727696149927.jpg",
+  "reference": "Primer Transparent",
+  "codeAbarre": "8057017690160",
+  "product": {
+    "$oid": "66fa8cd7e7caba71e978f728"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:35:50.024Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-08T08:12:57.910Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa8ee4e7caba71e978f900"
+  },
+  "quantity": 28,
+  "picture": "uploads\\1727696616670.webp",
+  "color": "#323236",
+  "icon": "uploads\\1727696612351.webp",
+  "reference": "Black",
+  "codeAbarre": "8057017694502",
+  "product": {
+    "$oid": "66fa8eaae7caba71e978f8f7"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:43:32.448Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:30.099Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66fa911ce7caba71e978f96f"
+  },
+  "quantity": 11,
+  "picture": "uploads\\1727697180275.jpg",
+  "color": "#47202f",
+  "icon": "uploads\\1727697180278.webp",
+  "reference": "Balck",
+  "codeAbarre": "8057017693703",
+  "product": {
+    "$oid": "66fa90e6e7caba71e978f966"
+  },
+  "createdAt": {
+    "$date": "2024-09-30T11:53:00.374Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:08.631Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703abd33c0d68a081cfbef3"
+  },
+  "quantity": 19,
+  "picture": "uploads\\1728293843764.jpg",
+  "color": "#d69370",
+  "icon": "uploads\\1728293843767.jpg",
+  "reference": "Moira",
+  "codeAbarre": "8057017690900",
+  "product": {
+    "$oid": "6703ab5f3c0d68a081cfbee6"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:37:23.866Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-20T07:50:04.916Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703ac033c0d68a081cfbefb"
+  },
+  "quantity": 0,
+  "picture": "uploads\\1728293891340.jpg",
+  "color": "#ee7084",
+  "icon": "uploads\\1728293891343.jpg",
+  "reference": "Melite",
+  "codeAbarre": "8057017690894",
+  "product": {
+    "$oid": "6703ab5f3c0d68a081cfbee6"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:38:11.456Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:07.783Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703ac333c0d68a081cfbf03"
+  },
+  "quantity": 5,
+  "picture": "uploads\\1728293939245.jpg",
+  "color": "#edaac8",
+  "icon": "uploads\\1728293939247.jpg",
+  "reference": "Maera",
+  "codeAbarre": "8057017690887",
+  "product": {
+    "$oid": "6703ab5f3c0d68a081cfbee6"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:38:59.345Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:31.282Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703acaa3c0d68a081cfbf0b"
+  },
+  "quantity": 3,
+  "picture": "uploads\\1728294058513.jpg",
+  "color": "#db8e7d",
+  "icon": "uploads\\1728294058515.jpg",
+  "reference": "Aura",
+  "codeAbarre": "8057017690924",
+  "product": {
+    "$oid": "6703ab5f3c0d68a081cfbee6"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:40:58.613Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:31.634Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703acd23c0d68a081cfbf13"
+  },
+  "quantity": 26,
+  "picture": "uploads\\1728294098754.jpg",
+  "color": "#e8b5b4",
+  "icon": "uploads\\1728294098757.jpg",
+  "reference": "Alia ",
+  "codeAbarre": "8057017690917",
+  "product": {
+    "$oid": "6703ab5f3c0d68a081cfbee6"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:41:38.880Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:31.974Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703ad433c0d68a081cfbf1b"
+  },
+  "quantity": 36,
+  "picture": "uploads\\1728294211366.jpg",
+  "color": "#d39574",
+  "icon": "uploads\\1728294211369.jpg",
+  "reference": "Aiva",
+  "codeAbarre": "8057017690931",
+  "product": {
+    "$oid": "6703ab5f3c0d68a081cfbee6"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:43:31.495Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:32.307Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703af1f3c0d68a081cfbf2c"
+  },
+  "quantity": 18,
+  "picture": "uploads\\1728294687629.jpg",
+  "color": "#ab4e85",
+  "icon": "uploads\\1728294687632.jpg",
+  "reference": "waikiki",
+  "codeAbarre": "8057017690962",
+  "product": {
+    "$oid": "6703ae363c0d68a081cfbf21"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:51:27.732Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:08.078Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703af583c0d68a081cfbf34"
+  },
+  "quantity": 0,
+  "picture": "uploads\\1728294744247.jpg",
+  "color": "#caa1bf",
+  "icon": "uploads\\1728294813985.jpg",
+  "reference": "Natadola",
+  "codeAbarre": "8057017690979",
+  "product": {
+    "$oid": "6703ae363c0d68a081cfbf21"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:52:24.599Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:08.126Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703af883c0d68a081cfbf3c"
+  },
+  "quantity": 35,
+  "picture": "uploads\\1728294792490.jpg",
+  "color": "#b56980",
+  "icon": "uploads\\1728294792493.jpg",
+  "reference": "Maya",
+  "codeAbarre": "8057017690955",
+  "product": {
+    "$oid": "6703ae363c0d68a081cfbf21"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:53:12.592Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:08.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703afc33c0d68a081cfbf49"
+  },
+  "quantity": 27,
+  "picture": "uploads\\1728294850911.jpg",
+  "color": "#af5855",
+  "icon": "uploads\\1728294850914.jpg",
+  "reference": "Cherai",
+  "codeAbarre": "8057017690986",
+  "product": {
+    "$oid": "6703ae363c0d68a081cfbf21"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:54:11.014Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:08.239Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b0353c0d68a081cfbf51"
+  },
+  "quantity": 31,
+  "picture": "uploads\\1728294965047.jpg",
+  "color": "#bb6d50",
+  "icon": "uploads\\1728294965050.jpg",
+  "reference": "Bonaire",
+  "codeAbarre": "8057017690993",
+  "product": {
+    "$oid": "6703ae363c0d68a081cfbf21"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:56:05.151Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:08.297Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b05a3c0d68a081cfbf59"
+  },
+  "quantity": 0,
+  "picture": "uploads\\1728295015808.jpg",
+  "color": "#b3796e",
+  "icon": "uploads\\1728295002819.jpg",
+  "reference": "Aroa",
+  "codeAbarre": "8057017690948",
+  "product": {
+    "$oid": "6703ae363c0d68a081cfbf21"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T09:56:42.921Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:08.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b6373c0d68a081cfbf7c"
+  },
+  "quantity": 33,
+  "picture": "uploads\\1728296620144.jpg",
+  "color": "#594041",
+  "icon": "uploads\\1728296503121.jpg",
+  "reference": "Chic Red",
+  "codeAbarre": "8057017693383",
+  "product": {
+    "$oid": "6703b5d33c0d68a081cfbf71"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:21:43.223Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:33.816Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b6763c0d68a081cfbf84"
+  },
+  "quantity": 3,
+  "picture": "uploads\\1728296565990.jpg",
+  "color": "#c8968b",
+  "icon": "uploads\\1728296565994.jpg",
+  "reference": "Cool Beige",
+  "codeAbarre": "8057017693413",
+  "product": {
+    "$oid": "6703b5d33c0d68a081cfbf71"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:22:46.110Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:34.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b6a23c0d68a081cfbf8c"
+  },
+  "quantity": 31,
+  "picture": "uploads\\1728296610082.jpg",
+  "color": "#b98b7e",
+  "icon": "uploads\\1728296610087.jpg",
+  "reference": "Pop Orange",
+  "codeAbarre": "8057017693406",
+  "product": {
+    "$oid": "6703b5d33c0d68a081cfbf71"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:23:30.187Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:34.452Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b6f53c0d68a081cfbf99"
+  },
+  "quantity": 23,
+  "picture": "uploads\\1728296693198.jpg",
+  "color": "#6a393d",
+  "icon": "uploads\\1728296693202.jpg",
+  "reference": "Red Maroon",
+  "codeAbarre": "8057017693390",
+  "product": {
+    "$oid": "6703b5d33c0d68a081cfbf71"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:24:53.302Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:09.891Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b7233c0d68a081cfbfa1"
+  },
+  "quantity": 23,
+  "picture": "uploads\\1728296739418.jpg",
+  "color": "#674448",
+  "icon": "uploads\\1728296739421.jpg",
+  "reference": "Brownish",
+  "codeAbarre": "8057017693376",
+  "product": {
+    "$oid": "6703b5d33c0d68a081cfbf71"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:25:39.521Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:35.114Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b7513c0d68a081cfbfa9"
+  },
+  "quantity": 27,
+  "picture": "uploads\\1728296785881.jpg",
+  "color": "#925d67",
+  "icon": "uploads\\1728296785884.jpg",
+  "reference": "Deep Rose",
+  "codeAbarre": "8057017693369",
+  "product": {
+    "$oid": "6703b5d33c0d68a081cfbf71"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:26:25.985Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:10.092Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b78e3c0d68a081cfbfb1"
+  },
+  "quantity": 18,
+  "picture": "uploads\\1728296846502.jpg",
+  "color": "#473141",
+  "icon": "uploads\\1728296970307.jpg",
+  "reference": "Bordeaux",
+  "codeAbarre": "8057017693352",
+  "product": {
+    "$oid": "6703b5d33c0d68a081cfbf71"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:27:26.604Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:35.771Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b7f13c0d68a081cfbfb9"
+  },
+  "quantity": 2,
+  "picture": "uploads\\1728296955623.jpg",
+  "color": "#835e58",
+  "icon": "uploads\\1728296945133.jpg",
+  "reference": "Beige Brown",
+  "codeAbarre": "8057017693345",
+  "product": {
+    "$oid": "6703b5d33c0d68a081cfbf71"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:29:05.272Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-11T08:07:49.443Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b8383c0d68a081cfbfcb"
+  },
+  "quantity": 9,
+  "picture": "uploads\\1728297016204.jpg",
+  "color": "#94615d",
+  "icon": "uploads\\1728297016206.jpg",
+  "reference": "Yam",
+  "codeAbarre": "8057017693338",
+  "product": {
+    "$oid": "6703b5d33c0d68a081cfbf71"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:30:16.306Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:10.364Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703bc403c0d68a081cfbfe7"
+  },
+  "quantity": 38,
+  "picture": "uploads\\1728298106206.jpg",
+  "color": "#ab4956",
+  "icon": "uploads\\1728298048292.jpg",
+  "reference": "Ruby",
+  "codeAbarre": "8057017699217",
+  "product": {
+    "$oid": "6703bc173c0d68a081cfbfdc"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:47:28.391Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:36.605Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703bc6f3c0d68a081cfbfef"
+  },
+  "quantity": 36,
+  "picture": "uploads\\1728298115883.jpg",
+  "color": "#a75661",
+  "icon": "uploads\\1728298095029.jpg",
+  "reference": "Mandarin Granat",
+  "codeAbarre": "8057017699224",
+  "product": {
+    "$oid": "6703bc173c0d68a081cfbfdc"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:48:15.134Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:36.940Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703bcb53c0d68a081cfc001"
+  },
+  "quantity": 31,
+  "picture": "uploads\\1728298172088.jpg",
+  "color": "#796067",
+  "icon": "uploads\\1728298165216.jpg",
+  "reference": "Amber ",
+  "codeAbarre": "8057017699262",
+  "product": {
+    "$oid": "6703bc173c0d68a081cfbfdc"
+  },
+  "createdAt": {
+    "$date": "2024-10-07T10:49:25.315Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:37.284Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6706886b1345c7399aa9581a"
+  },
+  "quantity": 13,
+  "picture": "uploads\\1728481387221.jpg",
+  "color": "#b17171",
+  "icon": "uploads\\1728481387265.jpg",
+  "reference": "Hurry up",
+  "codeAbarre": "8057017693543",
+  "product": {
+    "$oid": "670685af1345c7399aa95804"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:43:07.506Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:37.624Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670688941345c7399aa95822"
+  },
+  "quantity": 29,
+  "picture": "uploads\\1728481428385.jpg",
+  "color": "#c3a9a9",
+  "icon": "uploads\\1728481428389.jpg",
+  "reference": "Only me",
+  "codeAbarre": "8057017693550",
+  "product": {
+    "$oid": "670685af1345c7399aa95804"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:43:48.491Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:37.944Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670688c31345c7399aa9582a"
+  },
+  "quantity": 22,
+  "picture": "uploads\\1728481475019.jpg",
+  "color": "#ba2727",
+  "icon": "uploads\\1728481475022.jpg",
+  "reference": "Selfie Red",
+  "codeAbarre": "8057017693567",
+  "product": {
+    "$oid": "670685af1345c7399aa95804"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:44:35.137Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:10.884Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670688ea1345c7399aa95832"
+  },
+  "quantity": 28,
+  "picture": "uploads\\1728481514631.jpg",
+  "color": "#633055",
+  "icon": "uploads\\1728481514634.jpg",
+  "reference": "On Time",
+  "codeAbarre": "8057017693574",
+  "product": {
+    "$oid": "670685af1345c7399aa95804"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:45:14.745Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:38.609Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670689981345c7399aa95848"
+  },
+  "quantity": 23,
+  "picture": "uploads\\1728481693864.jpg",
+  "color": "#b59289",
+  "icon": "uploads\\1728481688065.jpg",
+  "reference": "Iconic Cashemere",
+  "codeAbarre": "8057017694748",
+  "product": {
+    "$oid": "6706893f1345c7399aa95838"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:48:08.167Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:38.955Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670689c91345c7399aa95855"
+  },
+  "quantity": 22,
+  "picture": "uploads\\1728481745460.jpg",
+  "color": "#ac685f",
+  "icon": "uploads\\1728481737283.jpg",
+  "reference": "Eseential Rose",
+  "codeAbarre": "8057017694755",
+  "product": {
+    "$oid": "6706893f1345c7399aa95838"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:48:57.383Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:39.276Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67068a061345c7399aa95862"
+  },
+  "quantity": 9,
+  "picture": "uploads\\1728481808576.jpg",
+  "color": "#b56b6c",
+  "icon": "uploads\\1728481798805.jpg",
+  "reference": "Timeless Nude",
+  "codeAbarre": "8057017694762",
+  "product": {
+    "$oid": "6706893f1345c7399aa95838"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:49:58.905Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:39.627Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67068a451345c7399aa9586f"
+  },
+  "quantity": 13,
+  "picture": "uploads\\1728481869257.jpg",
+  "color": "#b06f76",
+  "icon": "uploads\\1728481861141.jpg",
+  "reference": "Classic Mauve",
+  "codeAbarre": "8057017694779",
+  "product": {
+    "$oid": "6706893f1345c7399aa95838"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:51:01.241Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.301Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67068a7e1345c7399aa9587c"
+  },
+  "quantity": 16,
+  "picture": "uploads\\1728481926015.jpg",
+  "color": "#a25262",
+  "icon": "uploads\\1728481918481.jpg",
+  "reference": "Glam Rosewood",
+  "codeAbarre": "8057017694786",
+  "product": {
+    "$oid": "6706893f1345c7399aa95838"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:51:58.581Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.465Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67068ab01345c7399aa95889"
+  },
+  "quantity": 27,
+  "picture": "uploads\\1728481974585.jpg",
+  "color": "#ba0016",
+  "icon": "uploads\\1728481968422.jpg",
+  "reference": "Perfect Ruby",
+  "codeAbarre": "8057017694793",
+  "product": {
+    "$oid": "6706893f1345c7399aa95838"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:52:48.538Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:40.626Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67068ae01345c7399aa95896"
+  },
+  "quantity": 28,
+  "picture": "uploads\\1728482023457.jpg",
+  "color": "#910049",
+  "icon": "uploads\\1728482016851.jpg",
+  "reference": "Chic Magenta",
+  "codeAbarre": "8057017694809",
+  "product": {
+    "$oid": "6706893f1345c7399aa95838"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:53:36.950Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:09.452Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67068b201345c7399aa958a3"
+  },
+  "quantity": 33,
+  "picture": "uploads\\1728482089925.jpg",
+  "color": "#6f263d",
+  "icon": "uploads\\1728482080340.jpg",
+  "reference": "Burgundy Star",
+  "codeAbarre": "8057017694816",
+  "product": {
+    "$oid": "6706893f1345c7399aa95838"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T13:54:40.439Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-05T14:16:08.521Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67068f461345c7399aa95900"
+  },
+  "quantity": 14,
+  "picture": "uploads\\1728483149942.jpg",
+  "color": "#733041",
+  "icon": "uploads\\1728483142689.jpg",
+  "reference": "Wild Cherry",
+  "codeAbarre": "8057017690689",
+  "product": {
+    "$oid": "67068e361345c7399aa958f3"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T14:12:22.791Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.781Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67068fc11345c7399aa9590d"
+  },
+  "quantity": 33,
+  "picture": "uploads\\1728483265880.jpg",
+  "color": "#99b2db",
+  "icon": "uploads\\1728483265883.jpg",
+  "reference": "Sky High",
+  "codeAbarre": "8057017690627",
+  "product": {
+    "$oid": "67068e361345c7399aa958f3"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T14:14:25.981Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:09.541Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6706900a1345c7399aa9591a"
+  },
+  "quantity": 28,
+  "picture": "uploads\\1728483338640.jpg",
+  "color": "#8e685b",
+  "icon": "uploads\\1728483338643.jpg",
+  "reference": "Rustic Wood",
+  "codeAbarre": "8057017690672",
+  "product": {
+    "$oid": "67068e361345c7399aa958f3"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T14:15:38.741Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:41.879Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6706904a1345c7399aa95922"
+  },
+  "quantity": 19,
+  "picture": "uploads\\1728483402867.jpg",
+  "color": "#ebaea7",
+  "icon": "uploads\\1728483402870.jpg",
+  "reference": "Lolli Pop",
+  "codeAbarre": "8057017690665",
+  "product": {
+    "$oid": "67068e361345c7399aa958f3"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T14:16:42.968Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:09.610Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670797a76326511bb37a8fbd"
+  },
+  "quantity": 1,
+  "picture": "uploads\\1728550823814.jpg",
+  "color": "#9c5f5c",
+  "icon": "uploads\\1728550823825.jpg",
+  "reference": "Elegant touch",
+  "codeAbarre": "8057017693505",
+  "product": {
+    "$oid": "670796e56326511bb37a8fb2"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:00:23.941Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:17.593Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670798076326511bb37a8fc5"
+  },
+  "quantity": 3,
+  "picture": "uploads\\1728550919776.jpg",
+  "color": "#8a313a",
+  "icon": "uploads\\1728550919779.jpg",
+  "reference": "Ready Red",
+  "codeAbarre": "8057017693512",
+  "product": {
+    "$oid": "670796e56326511bb37a8fb2"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:01:59.943Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:17.678Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707983f6326511bb37a8fcd"
+  },
+  "quantity": 0,
+  "picture": "uploads\\1728550975785.jpg",
+  "color": "#8c4849",
+  "icon": "uploads\\1728550975788.jpg",
+  "reference": "Lip Lip",
+  "codeAbarre": "8057017693529",
+  "product": {
+    "$oid": "670796e56326511bb37a8fb2"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:02:55.892Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-11T08:07:50.555Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670798b06326511bb37a8fd5"
+  },
+  "quantity": 0,
+  "picture": "uploads\\1728551088513.jpg",
+  "color": "#6f3738",
+  "icon": "uploads\\1728551088517.jpg",
+  "reference": "Season",
+  "codeAbarre": "8057017693536",
+  "product": {
+    "$oid": "670796e56326511bb37a8fb2"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:04:48.621Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-08T08:13:59.974Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67079caf6326511bb37a900c"
+  },
+  "quantity": 17,
+  "picture": "uploads\\1728552111788.jpg",
+  "color": "#c79d98",
+  "icon": "uploads\\1728552111788.webp",
+  "reference": "Camelia",
+  "codeAbarre": "8057017690276",
+  "product": {
+    "$oid": "67079b866326511bb37a8fdb"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:21:51.894Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:17.863Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67079cd46326511bb37a9014"
+  },
+  "quantity": 20,
+  "picture": "uploads\\1728552274191.jpg",
+  "color": "#e34441",
+  "icon": "uploads\\1728552148417.jpg",
+  "reference": "Da Lat",
+  "codeAbarre": "8057017690283",
+  "product": {
+    "$oid": "67079b866326511bb37a8fdb"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:22:28.522Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:43.437Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67079d496326511bb37a901c"
+  },
+  "quantity": 19,
+  "picture": "uploads\\1728552265557.jpg",
+  "color": "#f38c8a",
+  "icon": "uploads\\1728552265564.jpg",
+  "reference": "Dahlia",
+  "codeAbarre": "8057017690221",
+  "product": {
+    "$oid": "67079b866326511bb37a8fdb"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:24:25.669Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:09.930Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67079d7f6326511bb37a9029"
+  },
+  "quantity": 12,
+  "picture": "uploads\\1728552325897.jpg",
+  "color": "#dda09d",
+  "icon": "uploads\\1728552319653.jpg",
+  "reference": "Mela Marcia",
+  "codeAbarre": "8057017690245",
+  "product": {
+    "$oid": "67079b866326511bb37a8fdb"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:25:19.758Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:43.963Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67079db46326511bb37a9036"
+  },
+  "quantity": 21,
+  "picture": "uploads\\1728552372597.jpg",
+  "color": "#b48482",
+  "icon": "uploads\\1728552372600.jpg",
+  "reference": "Paw Paw",
+  "codeAbarre": "8057017690290",
+  "product": {
+    "$oid": "67079b866326511bb37a8fdb"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:26:12.703Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:44.306Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67079e286326511bb37a903e"
+  },
+  "quantity": 20,
+  "picture": "uploads\\1728552488842.jpg",
+  "color": "#d78571",
+  "icon": "uploads\\1728552488846.jpg",
+  "reference": "Peach",
+  "codeAbarre": "8057017690269",
+  "product": {
+    "$oid": "67079b866326511bb37a8fdb"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:28:08.949Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:44.629Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67079f746326511bb37a904f"
+  },
+  "quantity": 42,
+  "picture": "uploads\\1728552825686.jpg",
+  "color": "#96443f",
+  "icon": "uploads\\1728552819916.jpg",
+  "reference": "Warm Chocolate",
+  "codeAbarre": "8057017693901",
+  "product": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:33:40.021Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:44.971Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67079fcb6326511bb37a905c"
+  },
+  "quantity": 46,
+  "picture": "uploads\\1728552907752.jpg",
+  "color": "#9b4642",
+  "icon": "uploads\\1728552914182.jpg",
+  "reference": "Misty beige",
+  "codeAbarre": "8057017693888",
+  "product": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:35:07.855Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:45.299Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67079fff6326511bb37a9069"
+  },
+  "quantity": 47,
+  "picture": "uploads\\1728552959478.jpg",
+  "color": "#8a3e49",
+  "icon": "uploads\\1728552959479.jpg",
+  "reference": "Berry Red",
+  "codeAbarre": "8057017693864",
+  "product": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:35:59.581Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:18.449Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a0366326511bb37a9071"
+  },
+  "quantity": 44,
+  "picture": "uploads\\1728553014551.jpg",
+  "color": "#b55a5e",
+  "icon": "uploads\\1728553025540.jpg",
+  "reference": "Elegant Mauve",
+  "codeAbarre": "8057017693840",
+  "product": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:36:54.653Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:45.821Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a0ca6326511bb37a907e"
+  },
+  "quantity": 27,
+  "picture": "uploads\\1728553168482.jpg",
+  "color": "#9e1c21",
+  "icon": "uploads\\1728553161897.jpg",
+  "reference": "Cherry Red",
+  "codeAbarre": "8057017693826",
+  "product": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:39:22.000Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-19T15:40:18.642Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a1216326511bb37a908b"
+  },
+  "quantity": 10,
+  "picture": "uploads\\1728553257895.jpg",
+  "color": "#be2024",
+  "icon": "uploads\\1728553249130.jpg",
+  "reference": "Royal Red",
+  "codeAbarre": "8057017693802",
+  "product": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:40:49.235Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:46.323Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a1676326511bb37a9098"
+  },
+  "quantity": 24,
+  "picture": "uploads\\1728553327040.jpg",
+  "color": "#d87f86",
+  "icon": "uploads\\1728553319875.jpg",
+  "reference": "Sunny Coral",
+  "codeAbarre": "8057017693789",
+  "product": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:41:59.977Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:46.647Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a1ac6326511bb37a90a5"
+  },
+  "quantity": 3,
+  "picture": "uploads\\1728553395649.jpg",
+  "color": "#b9646c",
+  "icon": "uploads\\1728553388013.jpg",
+  "reference": "Soft Rosewood",
+  "codeAbarre": "8057017693765",
+  "product": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:43:08.185Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:46.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a1e06326511bb37a90b2"
+  },
+  "quantity": 6,
+  "picture": "uploads\\1728553448743.jpg",
+  "color": "#b6696b",
+  "icon": "uploads\\1728553440586.jpg",
+  "reference": "Blushing Rose",
+  "codeAbarre": "8057017693741",
+  "product": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:44:00.691Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:47.293Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a2076326511bb37a90bf"
+  },
+  "quantity": 6,
+  "picture": "uploads\\1728553485952.jpg",
+  "color": "#db877b",
+  "icon": "uploads\\1728553479016.jpg",
+  "reference": "Nude Peach",
+  "codeAbarre": "8057017693727",
+  "product": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:44:39.118Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:47.611Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a2c46326511bb37a90d5"
+  },
+  "quantity": 24,
+  "picture": "uploads\\1728553668528.jpg",
+  "color": "#a87270",
+  "icon": "uploads\\1728553668532.jpg",
+  "reference": "Topaz",
+  "codeAbarre": "8057017690368",
+  "product": {
+    "$oid": "6707a2806326511bb37a90ca"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:47:48.658Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:13.614Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a2f16326511bb37a90dd"
+  },
+  "quantity": 16,
+  "picture": "uploads\\1728553713124.jpg",
+  "color": "#d5554c",
+  "icon": "uploads\\1728553713127.jpg",
+  "reference": "Ruby",
+  "codeAbarre": "8057017690306",
+  "product": {
+    "$oid": "6707a2806326511bb37a90ca"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:48:33.230Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:48.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a3776326511bb37a90e5"
+  },
+  "quantity": 17,
+  "picture": "uploads\\1728553847842.jpg",
+  "color": "#d85f7d",
+  "icon": "uploads\\1728553847846.jpg",
+  "reference": "Rhodonite",
+  "codeAbarre": "8057017690351",
+  "product": {
+    "$oid": "6707a2806326511bb37a90ca"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:50:47.947Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:13.830Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a3a46326511bb37a90ed"
+  },
+  "quantity": 27,
+  "picture": "uploads\\1728553891945.jpg",
+  "color": "#974558",
+  "icon": "uploads\\1728553891948.jpg",
+  "reference": "Opaline",
+  "codeAbarre": "8057017690313",
+  "product": {
+    "$oid": "6707a2806326511bb37a90ca"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:51:32.050Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:10.846Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a3d36326511bb37a90f5"
+  },
+  "quantity": 22,
+  "picture": "uploads\\1728553947040.jpg",
+  "color": "#b97756",
+  "icon": "uploads\\1728553939076.jpg",
+  "reference": "Citrine",
+  "codeAbarre": "8057017690375",
+  "product": {
+    "$oid": "6707a2806326511bb37a90ca"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:52:19.181Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:10.904Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a3fe6326511bb37a9102"
+  },
+  "quantity": 25,
+  "picture": "uploads\\1728553982339.jpg",
+  "color": "#a97071",
+  "icon": "uploads\\1728553982342.jpg",
+  "reference": "Amber",
+  "codeAbarre": "8057017690344",
+  "product": {
+    "$oid": "6707a2806326511bb37a90ca"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T09:53:02.445Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.087Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707accd6326511bb37a912a"
+  },
+  "quantity": 42,
+  "picture": "uploads\\1728556237570.webp",
+  "color": "#e0c7b7",
+  "icon": "uploads\\1728556237570.webp",
+  "reference": "Concealer brush",
+  "codeAbarre": "8057017699750",
+  "product": {
+    "$oid": "6707ac6b6326511bb37a911f"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T10:30:37.675Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:49.404Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707d50a0b47e3954ffa1e86"
+  },
+  "quantity": 37,
+  "picture": "uploads\\1728566538191.webp",
+  "color": "#f7f7f7",
+  "icon": "uploads\\1728566538191.webp",
+  "reference": "Flat Powder Brush",
+  "codeAbarre": "8057017699880",
+  "product": {
+    "$oid": "6707d4470b47e3954ffa1e7b"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T13:22:18.297Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.262Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707d6340b47e3954ffa1ea1"
+  },
+  "quantity": 44,
+  "picture": "uploads\\1728566836575.webp",
+  "color": "#d0dde0",
+  "icon": "uploads\\1728566836575.webp",
+  "reference": "Liquid Foundation Brush",
+  "codeAbarre": "8057017699903",
+  "product": {
+    "$oid": "6707d5ec0b47e3954ffa1e96"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T13:27:16.682Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.400Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707d6d20b47e3954ffa1eb6"
+  },
+  "quantity": 52,
+  "picture": "uploads\\1728566994269.webp",
+  "color": "#d0dde0",
+  "icon": "uploads\\1728566994270.webp",
+  "reference": "Round Tapered Blending Brush",
+  "codeAbarre": "8057017699736",
+  "product": {
+    "$oid": "6707d69e0b47e3954ffa1eab"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T13:29:54.376Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:50.372Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707da0c0b47e3954ffa1ecb"
+  },
+  "quantity": 45,
+  "picture": "uploads\\1728567820178.jpg",
+  "color": "#d0dde0",
+  "icon": "uploads\\1728567820183.jpg",
+  "reference": "Tip and blend make up brushes foundation",
+  "codeAbarre": "8057017699996",
+  "product": {
+    "$oid": "6707d8ca0b47e3954ffa1ec0"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T13:43:40.288Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:50.705Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707dbdb0b47e3954ffa1edc"
+  },
+  "quantity": 42,
+  "picture": "uploads\\1728568283532.webp",
+  "color": "#d0dde0",
+  "icon": "uploads\\1728568283532.webp",
+  "reference": "Angeled eyeshadow",
+  "codeAbarre": "8057017699811",
+  "product": {
+    "$oid": "6707dba20b47e3954ffa1ed1"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T13:51:23.637Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.672Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707de580b47e3954ffa1f02"
+  },
+  "quantity": 45,
+  "picture": "uploads\\1728568920178.webp",
+  "color": "#d0dde0",
+  "icon": "uploads\\1728568920178.webp",
+  "reference": "Pencil blending brush",
+  "codeAbarre": "8057017699804",
+  "product": {
+    "$oid": "6707de190b47e3954ffa1ef2"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T14:02:00.285Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:51.368Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707dee20b47e3954ffa1f18"
+  },
+  "quantity": 36,
+  "picture": "uploads\\1728569058299.jpg",
+  "color": "#d0dde0",
+  "icon": "uploads\\1728569058305.jpg",
+  "reference": "Eyeshadow Double Brush",
+  "codeAbarre": "8057017699781",
+  "product": {
+    "$oid": "6707deb80b47e3954ffa1f08"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T14:04:18.410Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.894Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707df5b0b47e3954ffa1f29"
+  },
+  "quantity": 47,
+  "picture": "uploads\\1728569179531.jpg",
+  "color": "#d0dde0",
+  "icon": "uploads\\1728569179534.jpg",
+  "reference": "Flat Eyeliner And Retouch Brush",
+  "codeAbarre": "8057017699767",
+  "product": {
+    "$oid": "6707df380b47e3954ffa1f1e"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T14:06:19.640Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:52.009Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707e2720b47e3954ffa1f3a"
+  },
+  "quantity": 44,
+  "picture": "uploads\\1728569970303.jpg",
+  "color": "#d0dde0",
+  "icon": "uploads\\1728569970304.jpg",
+  "reference": "Classic Flat Eyeshadow",
+  "codeAbarre": "8057017699743",
+  "product": {
+    "$oid": "6707e2460b47e3954ffa1f2f"
+  },
+  "createdAt": {
+    "$date": "2024-10-10T14:19:30.620Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:52.332Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6718c4063db49da5789a4b88"
+  },
+  "quantity": 6,
+  "picture": "uploads/1729676294478.png",
+  "color": "#e8e5e5",
+  "icon": "uploads/1729676294480.png",
+  "reference": "Micellar Water",
+  "codeAbarre": "8057017692911",
+  "product": {
+    "$oid": "6718c3b93db49da5789a4b7d"
+  },
+  "createdAt": {
+    "$date": "2024-10-23T09:38:14.514Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:52.672Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6718c5963db49da5789a4bce"
+  },
+  "quantity": 39,
+  "picture": "uploads/1729676694495.png",
+  "color": "#e8e5e5",
+  "icon": "uploads/1729676694496.png",
+  "reference": "Instant facial smoother facial scrub",
+  "codeAbarre": "8057017692812",
+  "product": {
+    "$oid": "6718c4e23db49da5789a4ba9"
+  },
+  "createdAt": {
+    "$date": "2024-10-23T09:44:54.527Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:52.997Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6718c6f03db49da5789a4c57"
+  },
+  "quantity": 42,
+  "picture": "uploads/1729677305731.webp",
+  "color": "#e8e5e5",
+  "icon": "uploads/1729677305732.webp",
+  "reference": "Body skincare",
+  "codeAbarre": "8057017692973",
+  "product": {
+    "$oid": "6718c6ce3db49da5789a4c4c"
+  },
+  "createdAt": {
+    "$date": "2024-10-23T09:50:40.294Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:53.337Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6718dbf03db49da5789a4d7f"
+  },
+  "quantity": 5,
+  "picture": "uploads/1729682416247.webp",
+  "color": "#E8E5E5",
+  "icon": "uploads/1729682416247.webp",
+  "reference": "Hair Hydrator",
+  "codeAbarre": "8057017692966",
+  "product": {
+    "$oid": "6718dba43db49da5789a4d63"
+  },
+  "createdAt": {
+    "$date": "2024-10-23T11:20:16.278Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:53.656Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6718de253db49da5789a4dbd"
+  },
+  "quantity": 7,
+  "picture": "uploads/1731137309042.jpg",
+  "color": "#e8e5e5",
+  "icon": "uploads/1731137309043.jpg",
+  "reference": "Face and body",
+  "codeAbarre": "8057017692980",
+  "product": {
+    "$oid": "6718ddda3db49da5789a4db2"
+  },
+  "createdAt": {
+    "$date": "2024-10-23T11:29:41.689Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:53.976Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a4e613db49da5789a692e"
+  },
+  "quantity": 46,
+  "picture": "uploads/1729777249611.avif",
+  "color": "#e0e0e0",
+  "icon": "uploads/1729777249612.avif",
+  "reference": "Triangular Foundation 122",
+  "codeAbarre": "8057017699941",
+  "product": {
+    "$oid": "671a4e2d3db49da5789a691e"
+  },
+  "createdAt": {
+    "$date": "2024-10-24T13:40:49.644Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:54.297Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a4ef93db49da5789a693f"
+  },
+  "quantity": 47,
+  "picture": "uploads/1729777401201.webp",
+  "color": "#e0e0e0",
+  "icon": "uploads/1729777401202.webp",
+  "reference": "BRUSH CLEANSER",
+  "codeAbarre": "8057017692898",
+  "product": {
+    "$oid": "671a4ec63db49da5789a6934"
+  },
+  "createdAt": {
+    "$date": "2024-10-24T13:43:21.230Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:11.694Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a4ffd3db49da5789a6973"
+  },
+  "quantity": 6,
+  "picture": "uploads/1729777661626.webp",
+  "color": "#e0e0e0",
+  "icon": "uploads/1729777661626.webp",
+  "reference": "Nourishing and restoring",
+  "codeAbarre": "8057017692843",
+  "product": {
+    "$oid": "671a4faf3db49da5789a694f"
+  },
+  "createdAt": {
+    "$date": "2024-10-24T13:47:41.655Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:54.819Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a50933db49da5789a6988"
+  },
+  "quantity": 18,
+  "picture": "uploads/1729777811952.webp",
+  "color": "#e0e0e0",
+  "icon": "uploads/1729777811953.webp",
+  "reference": "Soothing calm skin",
+  "codeAbarre": "8057017692850",
+  "product": {
+    "$oid": "671a505b3db49da5789a697d"
+  },
+  "createdAt": {
+    "$date": "2024-10-24T13:50:11.982Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-09T08:34:11.791Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a51613db49da5789a699d"
+  },
+  "quantity": 6,
+  "picture": "uploads/1731137235150.jpg",
+  "color": "#e0e0e0",
+  "icon": "uploads/1731137235150.jpg",
+  "reference": "Vitamin Infusion Day Cream",
+  "codeAbarre": "8057017692836",
+  "product": {
+    "$oid": "671a50f43db49da5789a6992"
+  },
+  "createdAt": {
+    "$date": "2024-10-24T13:53:37.140Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:55.349Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a521f3db49da5789a69b8"
+  },
+  "quantity": 6,
+  "picture": "uploads/1731137580109.jpg",
+  "color": "#d8d7d6",
+  "icon": "uploads/1731137580109.jpg",
+  "reference": "INSTANT EFFECTSKIN SERUM",
+  "codeAbarre": "8057017692874",
+  "product": {
+    "$oid": "671a51d53db49da5789a69a3"
+  },
+  "createdAt": {
+    "$date": "2024-10-24T13:56:47.876Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:55.693Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a52db3db49da5789a69cf"
+  },
+  "quantity": 8,
+  "picture": "uploads/1729778395722.webp",
+  "color": "#d8d7d6",
+  "icon": "uploads/1729778395722.webp",
+  "reference": "Fill In Microspheres Eye Cream",
+  "codeAbarre": "8057017692867",
+  "product": {
+    "$oid": "671a52a53db49da5789a69c4"
+  },
+  "createdAt": {
+    "$date": "2024-10-24T13:59:55.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:56.014Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a561b3db49da5789a6a2c"
+  },
+  "quantity": 25,
+  "picture": "uploads/1729779227736.jpg",
+  "color": "d3d3d3",
+  "icon": "uploads/1729779227736.jpg",
+  "reference": "Revitalizing Cleansing Mousse",
+  "codeAbarre": "8057017692881",
+  "product": {
+    "$oid": "671a55aa3db49da5789a6a17"
+  },
+  "createdAt": {
+    "$date": "2024-10-24T14:13:47.768Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:56.335Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a58183db49da5789a6a43"
+  },
+  "quantity": 41,
+  "picture": "uploads/1729779736458.jpg",
+  "color": "#d1d1d1",
+  "icon": "uploads/1729779736458.jpg",
+  "reference": "Hydrating Milk Mist",
+  "codeAbarre": "8057017692904",
+  "product": {
+    "$oid": "671a57e33db49da5789a6a36"
+  },
+  "createdAt": {
+    "$date": "2024-10-24T14:22:16.492Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:56.657Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a5acc3db49da5789a6ada"
+  },
+  "quantity": 50,
+  "picture": "uploads/1731077989665.jpeg",
+  "color": "#d1d1d1",
+  "icon": "uploads/1731077989666.jpeg",
+  "reference": "Cats tongue synthetic Lip Brush",
+  "codeAbarre": "8057017699774",
+  "product": {
+    "$oid": "671a5aa23db49da5789a6acf"
+  },
+  "createdAt": {
+    "$date": "2024-10-24T14:33:48.973Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-18T14:00:56.987Z"
+  },
+  "__v": 0
+}]

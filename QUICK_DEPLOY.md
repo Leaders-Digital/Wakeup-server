@@ -16,28 +16,12 @@ Deploy your Wakeup backend to: **https://api.wakeup-cosmetics.tn/**
 ### On Your Server (Ubuntu)
 
 ```bash
-# 1. Upload the nginx-api.conf file to your server
-scp nginx-api.conf ubuntu@YOUR_SERVER_IP:~/
-
-# 2. SSH into your server
+# 1. SSH into your server
 ssh ubuntu@YOUR_SERVER_IP
 
-# 3. Run the setup script (if you uploaded it)
-cd ~
-chmod +x setup-nginx.sh
-sudo ./setup-nginx.sh
-
-# Or manually:
-# Install SSL certificate
-sudo certbot certonly --nginx -d api.wakeup-cosmetics.tn
-
-# Copy Nginx config
-sudo cp nginx-api.conf /etc/nginx/sites-available/api.wakeup-cosmetics.tn
-sudo ln -s /etc/nginx/sites-available/api.wakeup-cosmetics.tn /etc/nginx/sites-enabled/
-
-# Test and reload Nginx
-sudo nginx -t
-sudo systemctl reload nginx
+# 3. Verify Nginx Configuration
+# Make sure your existing Nginx is configured to proxy to localhost:3007
+# (Nginx configuration is managed separately on your VPS)
 
 # 4. Your GitHub Actions will automatically deploy when you push to main
 # Or manually deploy:
@@ -56,10 +40,9 @@ sudo docker logs -f wakeup-backend
 ## 🔧 Configuration Files
 
 ### ✅ Files Created:
-1. **`nginx-api.conf`** - Nginx configuration for api subdomain
-2. **`docker-compose.yml`** - Updated port mapping (3007:7000)
-3. **`index.js`** - CORS configuration updated
-4. **`setup-nginx.sh`** - Automated setup script
+1. **`docker-compose.yml`** - Updated port mapping (3007:7000)
+2. **`index.js`** - CORS configuration updated
+3. **`setup-nginx.sh`** - Automated setup script (nginx config not included)
 5. **`DEPLOYMENT_GUIDE.md`** - Full deployment documentation
 
 ### ✅ Backend Changes:

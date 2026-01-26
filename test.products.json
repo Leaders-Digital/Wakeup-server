@@ -1,0 +1,2288 @@
+[{
+  "_id": {
+    "$oid": "66f16b40eb25cb5cbfc83241"
+  },
+  "nom": "Blush",
+  "description": "Notre Blush, grâce à sa texture légère et fondante, adhère parfaitement à la peau sans l'alourdir et donne au teint un aspect sophistiqué \"bonne mine\". La formule s'estompe avec une grande facilité et peut être utilisée pour sublimer et définir les traits du visage de manière homogène et uniforme.",
+  "prix": 47,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-0b30bd3f7b95ab4d.jpg",
+  "soldePourcentage": 0,
+  "retings": [
+    {
+      "$oid": "66f2a80c45890aeb304d515f"
+    },
+    {
+      "$oid": "66f548e2042d18a669d9381d"
+    },
+    {
+      "$oid": "66f6b280268b42affcc7e69b"
+    },
+    {
+      "$oid": "670d00600d7771d28f01cd4f"
+    },
+    {
+      "$oid": "670d05490d7771d28f01cdd3"
+    },
+    {
+      "$oid": "670d056d0d7771d28f01cde3"
+    }
+  ],
+  "categorie": "FACE",
+  "subCategorie": "BLUSH",
+  "createdAt": {
+    "$date": "2024-09-23T13:21:04.114Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:10.060Z"
+  },
+  "__v": 3,
+  "variants": [
+    {
+      "$oid": "66f16ee4eb25cb5cbfc832bc"
+    },
+    {
+      "$oid": "66f16f1deb25cb5cbfc832d6"
+    },
+    {
+      "$oid": "66f16f50eb25cb5cbfc832de"
+    }
+  ],
+  "metaFields": [
+    "Fard à joue\r\n"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f1725aeb25cb5cbfc83384"
+  },
+  "nom": "Beads Stars",
+  "description": "Les perles illuminatrices sont des perles fantastiques et soyeuses, imperceptibles, conçues pour illuminer le visage et le corps.\r\nL'illuminateur fait briller la peau du visage et du corps, offrant un teint naturel et éclatant.\r\nLa poudre éclaire le visage et le corps grâce à des perles très fines qui reflètent la lumière, donnant ainsi un effet lumineux.",
+  "prix": 51,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-c9c1eee414f97eea.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f17295eb25cb5cbfc8338d"
+    }
+  ],
+  "retings": [
+    {
+      "$oid": "670cfd210d7771d28f01cc5c"
+    },
+    {
+      "$oid": "670d03630d7771d28f01cd9e"
+    }
+  ],
+  "categorie": "FACE",
+  "subCategorie": "HIGHLIGHTER",
+  "createdAt": {
+    "$date": "2024-09-23T13:51:22.906Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:10.202Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17385eb25cb5cbfc833e1"
+  },
+  "nom": "Diamonds And Pearls",
+  "description": " Gel brillant pour le visage et le corps. Éclairage en gel à la captivité légère et impalpable.\r\nDiamond&Pearls ! Grâce à sa texture crémeuse et fondante, il adhère parfaitement à la peau sans l'alourdir et donne à l'incarné un effet lumineux sophistiqué\r\nLa formule se défume très facilement et peut être utilisée pour exalter le visage et le corps avec une touche élégante\r\n",
+  "prix": 60,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-55a9849fabfc4d53.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f173c4eb25cb5cbfc833ea"
+    }
+  ],
+  "retings": [],
+  "categorie": "FACE",
+  "subCategorie": "HIGHLIGHTER",
+  "createdAt": {
+    "$date": "2024-09-23T13:56:21.932Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:10.315Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17453eb25cb5cbfc83430"
+  },
+  "nom": "Light Up Drops",
+  "description": "Apporte un aspect radieux, soyeux et lisse au teint.\r\nSes pigments perlés rehaussent le visage, le cou et le décolleté avec un effet scintillant. Sa texture fluide, enrichie en vitamine E, en huile extraite de graines de café vert et en centella asiatica, assure une action hydratante et antioxydante.",
+  "prix": 60,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-f00db279a3ab71b3.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f17493eb25cb5cbfc83439"
+    },
+    {
+      "$oid": "66f174c0eb25cb5cbfc83441"
+    }
+  ],
+  "retings": [],
+  "categorie": "FACE",
+  "subCategorie": "HIGHLIGHTER",
+  "createdAt": {
+    "$date": "2024-09-23T13:59:47.196Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:10.469Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17535eb25cb5cbfc83573"
+  },
+  "nom": "Mirror Glaze ",
+  "description": "\r\nTexture fine et ultra-sensorielle, enrichie en acide hyaluronique, qui donne à la peau un aspect sain et naturellement lumineux.\r\nElle s'applique facilement et peut être utilisée à sec pour un effet plus naturel, ou humide pour un effet plus prononcé et glamour.",
+  "prix": 73,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-9385c2cb22f28077.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f17584eb25cb5cbfc8357c"
+    },
+    {
+      "$oid": "66f175bdeb25cb5cbfc83584"
+    }
+  ],
+  "retings": [
+    {
+      "$oid": "670cfd650d7771d28f01cc8a"
+    },
+    {
+      "$oid": "670cfdcb0d7771d28f01cc9f"
+    },
+    {
+      "$oid": "670cfe540d7771d28f01ccaf"
+    },
+    {
+      "$oid": "670cfe8c0d7771d28f01ccc1"
+    },
+    {
+      "$oid": "670cfe8f0d7771d28f01ccc9"
+    },
+    {
+      "$oid": "670cfece0d7771d28f01ccea"
+    },
+    {
+      "$oid": "670cff760d7771d28f01cd01"
+    },
+    {
+      "$oid": "670cff790d7771d28f01cd09"
+    },
+    {
+      "$oid": "670cff7d0d7771d28f01cd11"
+    }
+  ],
+  "categorie": "FACE",
+  "subCategorie": "HIGHLIGHTER",
+  "createdAt": {
+    "$date": "2024-09-23T14:03:33.582Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:10.616Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "Highlighter Mirror Glaze"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f176d8eb25cb5cbfc835ea"
+  },
+  "nom": "BB Cream Magic SPF15",
+  "description": "BB Magic Cream, grâce à sa texture confortable et légère, est idéale pour hydrater, unifier le teint et minimiser les imperfections en un seul geste.\r\nLa formule est enrichie en acide hyaluronique aux propriétés hydratantes, en poudre de diamant pour un effet délicatement illuminant, ainsi qu'en extrait de ginseng et de réglisse, offrant un teint d'apparence homogène et convenant à tous les types de peau.\r\nLa présence de pigments innovants micro-encapsulés qui révèlent la couleur au contact de la peau permet au produit de s'adapter à n'importe quel teint.",
+  "prix": 47,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-18d165e678f80b64.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f1770deb25cb5cbfc835f3"
+    },
+    {
+      "$oid": "66f17767eb25cb5cbfc835fb"
+    },
+    {
+      "$oid": "66f1779aeb25cb5cbfc8360f"
+    }
+  ],
+  "retings": [],
+  "categorie": "FACE",
+  "subCategorie": "BB CREAM",
+  "createdAt": {
+    "$date": "2024-09-23T14:10:32.676Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:10.761Z"
+  },
+  "__v": 1,
+  "metaFields": [
+    "BB Cream Magic SPF15"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f177c2eb25cb5cbfc83623"
+  },
+  "nom": "Make Up Fixer",
+  "description": "Le Fixateur de Maquillage, grâce à sa texture fine et imperceptible, est idéal comme dernière étape pour fixer le maquillage et prolonger sa tenue.\r\nSa formule à base d'eau est rapidement absorbée et offre une agréable sensation de fraîcheur.",
+  "prix": 47,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-707ce8acdf391669.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f177f4eb25cb5cbfc8362c"
+    }
+  ],
+  "retings": [],
+  "categorie": "FACE",
+  "subCategorie": "FIXER",
+  "createdAt": {
+    "$date": "2024-09-23T14:14:26.517Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:10.888Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17889eb25cb5cbfc83672"
+  },
+  "nom": "Flashlight ",
+  "description": "Capture en poudre compacte au capteur innovant, crémeuse et confortable Flashlight Serum Pressed Powder grâce à sa texture émolliente et impalpable, elle est idéale pour fixer le maquillage tout en gardant un aspect lisse et mattifié\r\nL'extrême polyvalence du produit permet d'obtenir une couverture modulable légère à moyenne et est indiquée pour tous les types de peau\r\nLa formule, infuse avec un mélange d'ingrédients hydratants comme le beurre de karité et l'huile d'olive, peut également être utilisée comme fond de teint pour obtenir un résultat uniforme et perfectionné\r\n",
+  "prix": 64,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-937473c665d15072.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f178b5eb25cb5cbfc8367b"
+    },
+    {
+      "$oid": "66f178ddeb25cb5cbfc83683"
+    },
+    {
+      "$oid": "66f17906eb25cb5cbfc8368b"
+    },
+    {
+      "$oid": "66f17928eb25cb5cbfc83693"
+    }
+  ],
+  "retings": [],
+  "categorie": "FACE",
+  "subCategorie": "BRONZER & POWDER",
+  "createdAt": {
+    "$date": "2024-09-23T14:17:45.759Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.006Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f1797beb25cb5cbfc836a7"
+  },
+  "nom": "Mosaic Bronzing Powder",
+  "description": "Terre bronzante légère, parfaite pour ceux qui recherchent l'incroyable effet « ensoleillé »\r\nLa terre bronzante Wakeup Cosmetics est un mélange spécial de fragments opaques et nacrés qui améliorent le teint pour un look bronzé naturel\r\nLa poudre fine texturisante bénéficie d'une parfaite fluidité en application, pour un résultat de rêve\r\n",
+  "prix": 64,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-b5a63481da9f81d9.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f179c1eb25cb5cbfc836b0"
+    },
+    {
+      "$oid": "66f179e4eb25cb5cbfc836b8"
+    },
+    {
+      "$oid": "66f17a0beb25cb5cbfc836c0"
+    }
+  ],
+  "retings": [
+    {
+      "$oid": "66f3cce7b1a68bf2272deb2a"
+    }
+  ],
+  "categorie": "FACE",
+  "subCategorie": "BRONZER & POWDER",
+  "createdAt": {
+    "$date": "2024-09-23T14:21:47.198Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.147Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17a5eeb25cb5cbfc83714"
+  },
+  "nom": "Volcano",
+  "description": "Terra Compact à la texture ultra soyeuse. Volcano Bronzing Powder donne au visage un effet naturellement bronzé et de longue tenue.\r\nVolcano Bronzing Powder grâce à sa texture légère et ultra fine, il se fond agréablement avec l'incarné et offre un élégant effet de cuir baiser du soleil\r\nLa formule se défume très facilement et est parfaite pour exalter les lignes du visage. Le produit permet d'obtenir une écriture modulable de légère à moyenne et un résultat homogène et uniforme\r\n",
+  "prix": 68,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-5d415ed57fae917b.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f17a9deb25cb5cbfc8371d"
+    }
+  ],
+  "retings": [],
+  "categorie": "FACE",
+  "subCategorie": "BRONZER & POWDER",
+  "createdAt": {
+    "$date": "2024-09-23T14:25:34.454Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.285Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "omar"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f17b20eb25cb5cbfc83731"
+  },
+  "nom": "Skin Corrector Primer",
+  "description": "Primer BB coloré avec pigments encapsulés qui libèrent la couleur lors de l'application\r\nHydrate la peau, corrige les dischromies, uniformise le teint du visage\r\nEn diminuant la visibilité des pores, il donne à la peau un aspect impeccable et tonique.",
+  "prix": 54,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-a723e4d1c874db70.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f17b77eb25cb5cbfc8373a"
+    },
+    {
+      "$oid": "66f17c18eb25cb5cbfc8375b"
+    }
+  ],
+  "retings": [],
+  "categorie": "FACE",
+  "subCategorie": "PRIMER",
+  "createdAt": {
+    "$date": "2024-09-23T14:28:48.204Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.420Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f17db0eb25cb5cbfc83798"
+  },
+  "nom": "Sweet Radiance ",
+  "description": "Fond de teint liquide avec SPF 20 à la sensorialité impalpable et légère.\r\nSweet Radiance, grâce à sa texture confortable et nourrissante, offre au teint un aspect naturellement lumineux et unifié tout au long de la journée.\r\nLa formule fine et facilement modulable est idéale pour obtenir une couvrance légère à moyenne.\r\n\r\n",
+  "prix": 64,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-d8ab9801bf2c0498.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f17eabeb25cb5cbfc837a1"
+    },
+    {
+      "$oid": "66f17ed2eb25cb5cbfc837a9"
+    },
+    {
+      "$oid": "66f17efaeb25cb5cbfc837b1"
+    },
+    {
+      "$oid": "66f17f3aeb25cb5cbfc837b9"
+    },
+    {
+      "$oid": "66f17f64eb25cb5cbfc837c1"
+    }
+  ],
+  "retings": [],
+  "categorie": "FACE",
+  "subCategorie": "FONDATIONS",
+  "createdAt": {
+    "$date": "2024-09-23T14:39:44.280Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.576Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    " Fond de teint "
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f18086eb25cb5cbfc837f6"
+  },
+  "nom": "Brow Definer",
+  "description": "Le Brow Definer de Wakeup Cosmetics est une pommade à sourcils résistante à l'eau qui définit et intensifie les sourcils pour un look impeccable toute la journée. Sa formule crémeuse et ultra-pigmentée glisse facilement sur les sourcils, les remplissant et les façonnant sans bavures ni écaillements.",
+  "prix": 43,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-ccc2a44be7d0a00c.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f180d8eb25cb5cbfc837ff"
+    },
+    {
+      "$oid": "66f180fdeb25cb5cbfc83807"
+    },
+    {
+      "$oid": "66f18141eb25cb5cbfc8381d"
+    },
+    {
+      "$oid": "66f1817ceb25cb5cbfc83831"
+    }
+  ],
+  "retings": [
+    {
+      "$oid": "66f515ddc5ae65edcc425227"
+    }
+  ],
+  "categorie": "EYES",
+  "subCategorie": "EYE BROW",
+  "createdAt": {
+    "$date": "2024-09-23T14:51:50.348Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.705Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f1882aeb25cb5cbfc83a66"
+  },
+  "nom": "Mascara à sourcils ",
+  "description": "Le Mascara à Sourcils, grâce à sa formule légère et à séchage rapide, est idéal pour remplir, épaissir et fixer les sourcils de manière naturelle. Sa texture, enrichie en fibres, donne aux sourcils une finition satinée et un effet de remplissage naturel.\r\nPour obtenir un effet naturel, peignez délicatement vos sourcils vers le haut.",
+  "prix": 30,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-cfcee7cc33ea6588.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f1886feb25cb5cbfc83a6f"
+    },
+    {
+      "$oid": "66f188aeeb25cb5cbfc83a7e"
+    },
+    {
+      "$oid": "66f188edeb25cb5cbfc83a86"
+    },
+    {
+      "$oid": "66f1891aeb25cb5cbfc83a8e"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYE BROW",
+  "createdAt": {
+    "$date": "2024-09-23T15:24:26.065Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.842Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    " Eyebrow Mascara"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f6c054b14227cedde24f73"
+  },
+  "nom": "Concealer ",
+  "description": "Fluid Concealer, grâce à sa texture crémeuse et adhérente, est idéal pour corriger les imperfections et les cernes, tout en conservant un effet radieux et frais .",
+  "prix": 28,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-fbc7dfa10d863649.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f6c506b14227cedde24fbc"
+    },
+    {
+      "$oid": "66f6c53eb14227cedde24fc4"
+    },
+    {
+      "$oid": "66f6c57ab14227cedde24fcc"
+    },
+    {
+      "$oid": "66f6c5b7b14227cedde24fd4"
+    }
+  ],
+  "retings": [
+    {
+      "$oid": "6704f722bee64cab347bc124"
+    },
+    {
+      "$oid": "6704f8b1bee64cab347bc1e3"
+    },
+    {
+      "$oid": "6704fc77bee64cab347bc371"
+    },
+    {
+      "$oid": "670ce74229190b7711fbb8d2"
+    },
+    {
+      "$oid": "670ceac34c1ac1da74e8196d"
+    },
+    {
+      "$oid": "670ceb2d4c1ac1da74e81981"
+    },
+    {
+      "$oid": "670d14a44c1ac1da74e81abf"
+    }
+  ],
+  "categorie": "EYES",
+  "subCategorie": "CONCEALER",
+  "createdAt": {
+    "$date": "2024-09-27T14:25:24.929Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:11.973Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    "Anti cernes"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f6c6dab14227cedde2506a"
+  },
+  "nom": "Fix and Care",
+  "description": "Fix&Care, grâce à sa formule légère et à séchage rapide, est idéal pour peigner et fixer les sourcils sans laisser de résidus. La texture confortable, fine et complètement invisible offre aux sourcils une finition naturelle et satinée.\r\n\r\nLa formule est enrichie en panthénol (pro-vitamine B5) aux propriétés restructurantes et fortifiantes. Pour obtenir un effet naturel, peignez délicatement les sourcils vers le haut et vers l'extérieur, en suivant leur direction de croissance.",
+  "prix": 38,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-eec1f509dcc495fb.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f6c784b14227cedde25076"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYE BROW",
+  "createdAt": {
+    "$date": "2024-09-27T14:53:14.120Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:12.114Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f6c83eb14227cedde250fa"
+  },
+  "nom": " Shape and Fill ",
+  "description": "Shape&Fill, grâce à sa texture pigmentée et fluide, permet d'obtenir un résultat naturel et sans bavures. La libération de couleur modulable est idéale pour définir et remplir les sourcils, avec un effet microblading doux.\r\nL'applicateur brosse intégré au bas du crayon permet de peigner les sourcils et d'estomper le produit.",
+  "prix": 34,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-d4db89dbf2a01981.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f6c888b14227cedde25103"
+    },
+    {
+      "$oid": "66f6ccbdd6558a2081e18455"
+    },
+    {
+      "$oid": "66f6d36fd6558a2081e1871f"
+    },
+    {
+      "$oid": "66f6d3b4d6558a2081e187af"
+    },
+    {
+      "$oid": "66f6d3f5d6558a2081e187c9"
+    },
+    {
+      "$oid": "66f6d435d6558a2081e18803"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYE BROW",
+  "createdAt": {
+    "$date": "2024-09-27T14:59:10.619Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:12.250Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    "Crayons à sourcils "
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f6d511d6558a2081e189c9"
+  },
+  "nom": " Creamy Eyeliner",
+  "description": "Grâce à sa texture fondante et fluide, c’est le produit idéal pour définir le regard par des traits nets et précis toute la journée, pour un maquillage impeccable jusqu'à 12 heures.\r\nSa formule crémeuse garantit une couleur intense et immédiate et s’estompe facilement, pour un résultat envoûtant et irrésistible.\r\nLe produit peut être appliqué à l’intérieur comme à l’extérieur de l’œil. Il convient aux yeux sensibles et aux porteurs de lentilles de contact.\r\n",
+  "prix": 34,
+  "solde": false,
+  "mainPicture": "uploads/products/file-65b12204ea0d79cb.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f6d604d6558a2081e189e2"
+    },
+    {
+      "$oid": "66f6d632d6558a2081e189ea"
+    },
+    {
+      "$oid": "66f6d65dd6558a2081e189f2"
+    },
+    {
+      "$oid": "66f6d686d6558a2081e18a16"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYELINER",
+  "createdAt": {
+    "$date": "2024-09-27T15:53:53.883Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:12.387Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    "Eyeliner"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f6d7e3d6558a2081e18ac1"
+  },
+  "nom": "Eyeliner",
+  "description": "Eyeconic Liner, grâce à sa texture fluide, uniforme et hautement pigmentée, est idéal pour encadrer le regard avec un trait noir intense, défini et impeccable du matin au soir. L'applicateur en feutre doux et à la pointe fine est parfait pour dessiner facilement et précisément des lignes allant de fines à graphiques.",
+  "prix": 51,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-eace72a56f6f1570.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66f6d839d6558a2081e18ad8"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYELINER",
+  "createdAt": {
+    "$date": "2024-09-27T16:05:55.714Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:12.525Z"
+  },
+  "__v": 1,
+  "metaFields": [
+    "Eyeconic Liner"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa6b1c53a46175ec8add55"
+  },
+  "nom": " Eyeliner",
+  "description": "Iridescent Two-Tone Eyeliner : grâce à sa texture douce et crémeuse, c’est le produit idéal pour sublimer le regard avec élégance et sophistication. La mine est composée de deux couleurs complémentaires avec des effets différents, mats et perlés, parfaits pour réaliser des looks aux finis multiples en quelques gestes simples.",
+  "prix": 36,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-d58ff9fdfa40b1b1.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa6bb653a46175ec8add67"
+    },
+    {
+      "$oid": "66fa6be453a46175ec8add6f"
+    },
+    {
+      "$oid": "66fa6c1c53a46175ec8add77"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYELINER",
+  "createdAt": {
+    "$date": "2024-09-30T09:10:52.993Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:12.644Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "Iridescent two-tone"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa75d053a46175ec8ae1d6"
+  },
+  "nom": " Long Lasting",
+  "description": "Long Lasting Eyeliner : grâce à sa texture douce et crémeuse, c’est le produit idéal pour encadrer le regard d’un trait intense et vibrant toute la journée, pour un maquillage impeccable jusqu'à 12 heures.\r\nSa formule garantit une couleur immédiate, pleine et homogène et s’estompe facilement juste après application.\r\nLe produit peut être appliqué à l’intérieur comme à l’extérieur de l’œil. Il convient aux yeux sensibles et aux porteurs de lentilles de contact.",
+  "prix": 34,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-6fce599e2e2dcf89.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa760953a46175ec8ae1df"
+    },
+    {
+      "$oid": "66fa763453a46175ec8ae1e7"
+    },
+    {
+      "$oid": "66fa765f53a46175ec8ae1ef"
+    },
+    {
+      "$oid": "66fa768453a46175ec8ae1f7"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYELINER",
+  "createdAt": {
+    "$date": "2024-09-30T09:56:32.470Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:12.753Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    "Eyeliner"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa76c353a46175ec8ae281"
+  },
+  "nom": " Eyeliner",
+  "description": "True Color Eyeliner : grâce à sa texture fondante et fluide, c’est le produit idéal pour définir le regard par des traits nets et précis toute la journée, pour un maquillage impeccable jusqu'à 12 heures.\r\nSa formule garantit une couleur intense et immédiate et s’estompe facilement, pour un résultat envoûtant et irrésistible.\r\nLe produit peut être appliqué à l’intérieur comme à l’extérieur de l’œil. Il convient aux yeux sensibles et aux porteurs de lentilles de contact.",
+  "prix": 34,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-5b581027dd4dc331.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa770c53a46175ec8ae28a"
+    },
+    {
+      "$oid": "66fa773253a46175ec8ae292"
+    },
+    {
+      "$oid": "66fa775753a46175ec8ae29a"
+    },
+    {
+      "$oid": "66fa7dab53a46175ec8ae2ba"
+    },
+    {
+      "$oid": "66fa7dcf53a46175ec8ae2c2"
+    }
+  ],
+  "retings": [
+    {
+      "$oid": "6704fa5dbee64cab347bc26f"
+    }
+  ],
+  "categorie": "EYES",
+  "subCategorie": "EYELINER",
+  "createdAt": {
+    "$date": "2024-09-30T10:00:35.048Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-20T16:11:23.111Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "True Colour"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa7e3553a46175ec8ae34c"
+  },
+  "nom": "Color Era",
+  "description": "Ombre à paupières ultra sensorielle au fini métallique ou satiné, avec double utilisation wet & dry.\r\nColor Era Eyeshadow : grâce à la technologie Prisma® qui combine le parfait mélange de poudres sphériques, de perles et de pigments, ce produit orne le regard d’un voile de couleur riche et vibrant.\r\nSa formule crémeuse s’estompe facilement et offre une couleur modulable et multidimensionnelle.",
+  "prix": 43,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-5194aadabf79727d.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa7e6053a46175ec8ae355"
+    },
+    {
+      "$oid": "66fa7fe053a46175ec8ae3a4"
+    },
+    {
+      "$oid": "66fa801353a46175ec8ae3b3"
+    },
+    {
+      "$oid": "66fa803b53a46175ec8ae3bb"
+    },
+    {
+      "$oid": "66fa807053a46175ec8ae3ca"
+    },
+    {
+      "$oid": "66fa80ad53a46175ec8ae3d9"
+    },
+    {
+      "$oid": "66fa811853a46175ec8ae3fb"
+    },
+    {
+      "$oid": "66fa814353a46175ec8ae403"
+    },
+    {
+      "$oid": "66fa81c153a46175ec8ae442"
+    },
+    {
+      "$oid": "66fa81fe53a46175ec8ae451"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYESHADOW",
+  "createdAt": {
+    "$date": "2024-09-30T10:32:21.835Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:12.872Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    "Fard à paupières"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa82c253a46175ec8ae4e4"
+  },
+  "nom": "Color Vibe",
+  "description": "Color Vibe Eyeshadow : grâce à sa texture fondante et sensorielle, ce produit adhère parfaitement aux paupières, pour des yeux intenses et vibrants.\r\nSa formule hautement pigmentée à libération immédiate, combinée à une texture innovante et veloutée, est parfaite pour une application fluide et un travail des nuances impeccable.",
+  "prix": 34,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-7b09043617ea9e43.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa82ee53a46175ec8ae4ed"
+    },
+    {
+      "$oid": "66fa830f53a46175ec8ae4f5"
+    },
+    {
+      "$oid": "66fa833553a46175ec8ae4fd"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYESHADOW",
+  "createdAt": {
+    "$date": "2024-09-30T10:51:46.239Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:13.020Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    "Fard à paupières"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa842553a46175ec8ae511"
+  },
+  "nom": "Eye Feel Palette",
+  "description": "Eye Feel Good : grâce à la combinaison de formules ultra pigmentées et brillantes qui s’estompent facilement, c’est le produit idéal pour exalter le regard et réaliser une infinité de looks.\r\nPour un résultat optimal, la formule au fini mat est enrichie en beurre de karité et les couleurs métalliques contiennent de l’huile de jojoba, pour une libération de couleur immédiate et intense.\r\n",
+  "prix": 94,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-836e98a3a92af9b1.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa847453a46175ec8ae51d"
+    },
+    {
+      "$oid": "66fa84a653a46175ec8ae52c"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYESHADOW",
+  "createdAt": {
+    "$date": "2024-09-30T10:57:41.466Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:13.152Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    "Palette"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa852553a46175ec8ae5b6"
+  },
+  "nom": "Mono Eyeshadow",
+  "description": "grâce à sa texture fondante et crémeuse, ce produit adhère parfaitement aux paupières. Il est idéal pour embellir le regard et créer des looks magnétiques en toute occasion.\r\nSa formule hautement pigmentée offre une couleur intense et immédiate. Elle est parfaite pour une application fluide et un travail des nuances impeccable.",
+  "prix": 32,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-597b7c76b6756705.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa854753a46175ec8ae5bf"
+    },
+    {
+      "$oid": "66fa856953a46175ec8ae5c7"
+    },
+    {
+      "$oid": "66fa859653a46175ec8ae5cf"
+    },
+    {
+      "$oid": "66fa85c853a46175ec8ae5de"
+    },
+    {
+      "$oid": "66fa85ea53a46175ec8ae5e6"
+    },
+    {
+      "$oid": "66fa860d53a46175ec8ae5f5"
+    },
+    {
+      "$oid": "66fa864453a46175ec8ae5fd"
+    },
+    {
+      "$oid": "66fa86e953a46175ec8ae611"
+    },
+    {
+      "$oid": "66fa874353a46175ec8ae619"
+    },
+    {
+      "$oid": "66fa876e53a46175ec8ae621"
+    },
+    {
+      "$oid": "66fa879653a46175ec8ae629"
+    },
+    {
+      "$oid": "66fa87bb53a46175ec8ae631"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "EYESHADOW",
+  "createdAt": {
+    "$date": "2024-09-30T11:01:57.055Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:13.267Z"
+  },
+  "__v": 1,
+  "metaFields": [
+    "MONO FARD A PAUPIERES "
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa894fe7caba71e978f5d5"
+  },
+  "nom": " Sparkle Dust",
+  "description": "grâce au mélange parfait de perles multidimensionnelles et de paillettes, c’est l’ombre idéale pour un look extra lumineux et magnétique.\r\nSa texture précieuse et scintillante glisse agréablement sur la paupière et offre une brillance intense jamais vue auparavant.\r\nIl peut être utilisé seul sur toute la paupière ou comme top coat pour créer des looks glamours et sophistiqués.",
+  "prix": 38,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-871057f05773e45c.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa8986e7caba71e978f5de"
+    },
+    {
+      "$oid": "66fa89b3e7caba71e978f5e6"
+    },
+    {
+      "$oid": "66fa89d3e7caba71e978f5ee"
+    },
+    {
+      "$oid": "66fa8a05e7caba71e978f5f8"
+    },
+    {
+      "$oid": "66fa8a25e7caba71e978f600"
+    }
+  ],
+  "retings": [
+    {
+      "$oid": "66fd42f1f578f270198e05fa"
+    }
+  ],
+  "categorie": "EYES",
+  "subCategorie": "EYESHADOW",
+  "createdAt": {
+    "$date": "2024-09-30T11:19:43.806Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:13.392Z"
+  },
+  "__v": 4,
+  "metaFields": [
+    "Fard à paupières"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa8cd7e7caba71e978f728"
+  },
+  "nom": "  Mascara",
+  "description": "La Base Primer Mascara est conçue pour préparer les cils avant l'application du mascara. Ce produit améliore considérablement l'effet du mascara en offrant plus de volume et en prolongeant la tenue du maquillage. Enrichi en panthénol, il nourrit les cils tout en les protégeant. Sa couleur transparente permet une application discrète, idéale pour tous les types de mascaras. Fabriqué en Italie, ce primer garantit une qualité supérieure pour sublimer votre regard.",
+  "prix": 30,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-33fb738d14f100ed.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa8d16e7caba71e978f731"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "MASCARA",
+  "createdAt": {
+    "$date": "2024-09-30T11:34:47.950Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:13.523Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "Primer Transparent"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa8eaae7caba71e978f8f7"
+  },
+  "nom": " Mascara",
+  "description": "Grâce à sa texture légère et crémeuse, ce produit garantit des cils séparés, allongés et définis.\r\nL’applicateur de précision en élastomère atteint et enveloppe tous les cils pour un effet éventail magnétique et spectaculaire.\r\nSa formule est enrichie en panthénol (pro-vitamine B5), en biotine et en acides aminés aux propriétés fortifiantes reconnues.",
+  "prix": 55,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-3b0f35f1c67c561e.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa8ee4e7caba71e978f900"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "MASCARA",
+  "createdAt": {
+    "$date": "2024-09-30T11:42:34.101Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:13.661Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "Shout Out"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa90e6e7caba71e978f966"
+  },
+  "nom": "  Mascara",
+  "description": "Extra volumising mascara enriched with panthenol, ideal to achieve an extreme volume for a false lash effect.\r\nThanks to its flexible and lightweight formula, Volumeup Mascara coats the lashes without weighing them down, giving you a magnetic look.",
+  "prix": 49,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-9b75c9a33789c864.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "66fa911ce7caba71e978f96f"
+    }
+  ],
+  "retings": [],
+  "categorie": "EYES",
+  "subCategorie": "MASCARA",
+  "createdAt": {
+    "$date": "2024-09-30T11:52:06.239Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-20T16:06:44.757Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "Volume Up"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6703ab5f3c0d68a081cfbee6"
+  },
+  "nom": "Immediate Plumping",
+  "description": "Lip Immediate Plumping Gloss : grâce à sa formule repulpante et émolliente, ce produit enveloppe agréablement les lèvres et leur offre instantanément plus de volume et de brillance.\r\nSa texture douce et sensorielle garantit une application facile et fluide et offre un résultat tridimensionnel.\r\nSa formule innovante contient de l'acide hyaluronique aux propriétés hydratantes et un actif de dernière génération pour un effet de volume immédiat.\r\n",
+  "prix": 34,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-345c402f0dbcb3eb.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6703abd33c0d68a081cfbef3"
+    },
+    {
+      "$oid": "6703ac033c0d68a081cfbefb"
+    },
+    {
+      "$oid": "6703ac333c0d68a081cfbf03"
+    },
+    {
+      "$oid": "6703acaa3c0d68a081cfbf0b"
+    },
+    {
+      "$oid": "6703acd23c0d68a081cfbf13"
+    },
+    {
+      "$oid": "6703ad433c0d68a081cfbf1b"
+    }
+  ],
+  "retings": [
+    {
+      "$oid": "670d15974c1ac1da74e81b31"
+    }
+  ],
+  "categorie": "LIPS",
+  "subCategorie": "LIPGLOSS",
+  "createdAt": {
+    "$date": "2024-10-07T09:35:27.427Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:13.815Z"
+  },
+  "__v": 1,
+  "metaFields": [
+    "Gloss repulpant\r\n"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6703ae363c0d68a081cfbf21"
+  },
+  "nom": "Gloss longue tenue",
+  "description": "Lip Kiss Long Stay : grâce à sa texture confortable et souple, ce produit habille les lèvres d'une couleur intense et brillante qui dure longtemps, pour un maquillage impeccable jusqu'à 6 heures.\r\nSa formule, qui glisse agréablement sur les lèvres, est idéale pour obtenir une couleur extra riche au fini lumineux, dès la première application.",
+  "prix": 32,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-058d23bc05abff9c.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6703af1f3c0d68a081cfbf2c"
+    },
+    {
+      "$oid": "6703af583c0d68a081cfbf34"
+    },
+    {
+      "$oid": "6703af883c0d68a081cfbf3c"
+    },
+    {
+      "$oid": "6703afc33c0d68a081cfbf49"
+    },
+    {
+      "$oid": "6703b0353c0d68a081cfbf51"
+    },
+    {
+      "$oid": "6703b05a3c0d68a081cfbf59"
+    }
+  ],
+  "retings": [],
+  "categorie": "LIPS",
+  "subCategorie": "LIPGLOSS",
+  "createdAt": {
+    "$date": "2024-10-07T09:47:34.925Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:13.952Z"
+  },
+  "__v": 1,
+  "metaFields": [
+    "Gloss longue tenue"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6703b5d33c0d68a081cfbf71"
+  },
+  "nom": " Flowing Line",
+  "description": "Flowing Line, grâce à sa texture lisse et fondante, enveloppe les lèvres d'un voile de couleur homogène et velouté.\r\nSa formule crémeuse et adhérente résulte d'une parfaite combinaison d'huiles végétales et de cires naturelles, garantissant une libération de couleur intense et un résultat précis et défini.",
+  "prix": 34,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-14a5df8fbc23e014.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6703b6373c0d68a081cfbf7c"
+    },
+    {
+      "$oid": "6703b6763c0d68a081cfbf84"
+    },
+    {
+      "$oid": "6703b6a23c0d68a081cfbf8c"
+    },
+    {
+      "$oid": "6703b6f53c0d68a081cfbf99"
+    },
+    {
+      "$oid": "6703b7233c0d68a081cfbfa1"
+    },
+    {
+      "$oid": "6703b7513c0d68a081cfbfa9"
+    },
+    {
+      "$oid": "6703b78e3c0d68a081cfbfb1"
+    },
+    {
+      "$oid": "6703b7f13c0d68a081cfbfb9"
+    },
+    {
+      "$oid": "6703b8383c0d68a081cfbfcb"
+    }
+  ],
+  "retings": [],
+  "categorie": "LIPS",
+  "subCategorie": "LIPLINER",
+  "createdAt": {
+    "$date": "2024-10-07T10:20:03.870Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.065Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    "Crayons à lèvres"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6703bc173c0d68a081cfbfdc"
+  },
+  "nom": " Creamy Lipliner",
+  "description": "Crayon à lèvres avec une texture douce et crémeuse.\r\nLe Crayon à lèvres crémeux, grâce à sa texture fondante et glissante, est idéal pour définir et remplir les lèvres avec un trait précis et pigmenté.\r\nLa formule garantit une libération immédiate et modulable de la couleur et s'estompe facilement pour une application simple et impeccable.",
+  "prix": 34,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-4cb9b1f9468e7e0e.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6703bc403c0d68a081cfbfe7"
+    },
+    {
+      "$oid": "6703bc6f3c0d68a081cfbfef"
+    },
+    {
+      "$oid": "6703bcb53c0d68a081cfc001"
+    }
+  ],
+  "retings": [],
+  "categorie": "LIPS",
+  "subCategorie": "LIPLINER",
+  "createdAt": {
+    "$date": "2024-10-07T10:46:47.263Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.205Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    "Crayons à lèvres"
+  ]
+},
+{
+  "_id": {
+    "$oid": "670685af1345c7399aa95804"
+  },
+  "nom": "Color Veil",
+  "description": "Grâce à sa texture aérienne et soyeuse, ce produit enveloppe les lèvres d'un séduisant voile de couleur au fini délicatement mat, effet velours.\r\nSa formule innovante, qui contient le parfait mélange d'huiles émollientes et de poudres sphériques à effet blur, offre aux lèvres une agréable sensation de confort et un aspect lissé et poudré.",
+  "prix": 43,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-9d9ee5e8c1d29045.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6706886b1345c7399aa9581a"
+    },
+    {
+      "$oid": "670688941345c7399aa95822"
+    },
+    {
+      "$oid": "670688c31345c7399aa9582a"
+    },
+    {
+      "$oid": "670688ea1345c7399aa95832"
+    }
+  ],
+  "retings": [],
+  "categorie": "LIPS",
+  "subCategorie": "LIPSTICK",
+  "createdAt": {
+    "$date": "2024-10-09T13:31:27.383Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.344Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "Rouge à lèvres"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6706893f1345c7399aa95838"
+  },
+  "nom": "Everyday Hero",
+  "description": "Une couleur intense et enveloppante dès la première application. Sa formule sensorielle\r\nspéciale dépose un film uniforme sur les lèvres et offre un fini brillant en 3D qui perdure\r\nlongtemps.",
+  "prix": 47,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-177c6153de779855.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "670689981345c7399aa95848"
+    },
+    {
+      "$oid": "670689c91345c7399aa95855"
+    },
+    {
+      "$oid": "67068a061345c7399aa95862"
+    },
+    {
+      "$oid": "67068a451345c7399aa9586f"
+    },
+    {
+      "$oid": "67068a7e1345c7399aa9587c"
+    },
+    {
+      "$oid": "67068ab01345c7399aa95889"
+    },
+    {
+      "$oid": "67068ae01345c7399aa95896"
+    },
+    {
+      "$oid": "67068b201345c7399aa958a3"
+    }
+  ],
+  "retings": [],
+  "categorie": "LIPS",
+  "subCategorie": "LIPSTICK",
+  "createdAt": {
+    "$date": "2024-10-09T13:46:39.378Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.482Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "Rouge à lèvres "
+  ]
+},
+{
+  "_id": {
+    "$oid": "67068e361345c7399aa958f3"
+  },
+  "nom": " Rouge à lèvres",
+  "description": "Grâce à sa texture légère et émolliente, ce produit enveloppe les lèvres d'un voile de couleur lumineuse, à l'effet mouillé.\r\nSa formule, enrichie en extrait de grenade, est idéale pour offrir aux lèvres une agréable sensation de confort qui dure longtemps.\r\n",
+  "prix": 36,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-c68f118bc5fb4732.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "67068f461345c7399aa95900"
+    },
+    {
+      "$oid": "67068fc11345c7399aa9590d"
+    },
+    {
+      "$oid": "6706900a1345c7399aa9591a"
+    },
+    {
+      "$oid": "6706904a1345c7399aa95922"
+    }
+  ],
+  "retings": [],
+  "categorie": "LIPS",
+  "subCategorie": "LIPSTICK",
+  "createdAt": {
+    "$date": "2024-10-09T14:07:50.389Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.603Z"
+  },
+  "__v": 3,
+  "metaFields": [
+    "HIGH GLOSSY"
+  ]
+},
+{
+  "_id": {
+    "$oid": "670796e56326511bb37a8fb2"
+  },
+  "nom": "Lavish lipstick",
+  "description": "Grâce à sa texture crémeuse et fondante, ce produit adhère parfaitement aux lèvres, en les habillant d'une couleur mate, pleine et vibrante.\r\nSa formule fluide et hautement pigmentée est idéale pour obtenir une couleur immédiate et intense dès la première application.\r\nL’association du format pratique rétractable et du bâton à la pointe fuselée et précise rend le produit extrêmement facile à utiliser et parfait pour les retouches en toute occasion.\r\n",
+  "prix": 34,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-fb106a19a4a506f4.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "670797a76326511bb37a8fbd"
+    },
+    {
+      "$oid": "670798076326511bb37a8fc5"
+    },
+    {
+      "$oid": "6707983f6326511bb37a8fcd"
+    },
+    {
+      "$oid": "670798b06326511bb37a8fd5"
+    }
+  ],
+  "retings": [],
+  "categorie": "LIPS",
+  "subCategorie": "LIPSTICK",
+  "createdAt": {
+    "$date": "2024-10-10T08:57:09.675Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.741Z"
+  },
+  "__v": 1,
+  "metaFields": []
+},
+{
+  "_id": {
+    "$oid": "67079b866326511bb37a8fdb"
+  },
+  "nom": "Matte lipstick",
+  "description": "Grâce à sa texture enveloppante et fondante, ce produit donne aux lèvres une couleur mate, pleine et intense dès la première application.\r\nSa formule, enrichie en huile de pépin de raisin, est idéale pour offrir aux lèvres une sensation de confort qui dure longtemps. La pigmentation est intense et immédiate, pour une application fluide, uniforme et homogène.",
+  "prix": 43,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-7da772af187a6dd1.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "67079caf6326511bb37a900c"
+    },
+    {
+      "$oid": "67079cd46326511bb37a9014"
+    },
+    {
+      "$oid": "67079d496326511bb37a901c"
+    },
+    {
+      "$oid": "67079d7f6326511bb37a9029"
+    },
+    {
+      "$oid": "67079db46326511bb37a9036"
+    },
+    {
+      "$oid": "67079e286326511bb37a903e"
+    }
+  ],
+  "retings": [],
+  "categorie": "LIPS",
+  "subCategorie": "LIPSTICK",
+  "createdAt": {
+    "$date": "2024-10-10T09:16:54.532Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:14.880Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "Rouge à lèvres"
+  ]
+},
+{
+  "_id": {
+    "$oid": "67079eb26326511bb37a9044"
+  },
+  "nom": "Petal Veil Liquid Matte",
+  "description": "Grâce à sa texture extrêmement confortable et souple, ce produit habille les lèvres d'une couleur intense et vibrante au fini velouté.\r\nSa formule ultra légère glisse agréablement sur les lèvres et, une fois sèche, donne un fini irrésistiblement mat toute la journée, à l'épreuve des baisers !\r\nLa couleur est intense et immédiate dès la première application, pour un résultat uniforme et sans bavures.\r\n",
+  "prix": 51,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-a0877d3d12053876.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "67079f746326511bb37a904f"
+    },
+    {
+      "$oid": "67079fcb6326511bb37a905c"
+    },
+    {
+      "$oid": "67079fff6326511bb37a9069"
+    },
+    {
+      "$oid": "6707a0366326511bb37a9071"
+    },
+    {
+      "$oid": "6707a0ca6326511bb37a907e"
+    },
+    {
+      "$oid": "6707a1216326511bb37a908b"
+    },
+    {
+      "$oid": "6707a1676326511bb37a9098"
+    },
+    {
+      "$oid": "6707a1ac6326511bb37a90a5"
+    },
+    {
+      "$oid": "6707a1e06326511bb37a90b2"
+    },
+    {
+      "$oid": "6707a2076326511bb37a90bf"
+    }
+  ],
+  "retings": [],
+  "categorie": "LIPS",
+  "subCategorie": "LIPSTICK",
+  "createdAt": {
+    "$date": "2024-10-10T09:30:26.206Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:15.042Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707a2806326511bb37a90ca"
+  },
+  "nom": "Satin Finish",
+  "description": "Grâce à sa texture crémeuse et fondante, ce produit adhère parfaitement aux lèvres et les enveloppe d’une couleur pleine et vibrante dès la première application.\r\nSa formule enrichie en poudre de soie est parfaite pour un résultat lisse et homogène. La pigmentation est riche et immédiate, pour une application uniforme et impeccable.",
+  "prix": 39,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-316fd51c1599018c.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707a2c46326511bb37a90d5"
+    },
+    {
+      "$oid": "6707a2f16326511bb37a90dd"
+    },
+    {
+      "$oid": "6707a3776326511bb37a90e5"
+    },
+    {
+      "$oid": "6707a3a46326511bb37a90ed"
+    },
+    {
+      "$oid": "6707a3d36326511bb37a90f5"
+    },
+    {
+      "$oid": "6707a3fe6326511bb37a9102"
+    }
+  ],
+  "retings": [],
+  "categorie": "LIPS",
+  "subCategorie": "LIPSTICK",
+  "createdAt": {
+    "$date": "2024-10-10T09:46:40.572Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:15.176Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "Rouge à lèvres"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6707ac6b6326511bb37a911f"
+  },
+  "nom": "Concealer Brush",
+  "description": "Pinceau pour correcteur\r\n\r\nPinceau plat et arrondi aux finitions raffinées, parfait pour l'application de correcteur.\r\nComposé d’un mélange doux de fibres naturelles et synthétiques\r\n",
+  "prix": 47,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-b35d6bd8da157f08.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707accd6326511bb37a912a"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DE VISAGE",
+  "createdAt": {
+    "$date": "2024-10-10T10:28:59.626Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:15.297Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707d4470b47e3954ffa1e7b"
+  },
+  "nom": "Flat Powder Brush",
+  "description": "Pinceau pour application des poudres libres\r\nPinceau ample aux finitions raffinées et à la brosse compacte, parfait pour l'application des poudres libres.\r\nComposé d'un mélange doux de fibres synthétiques testées sous contrôle dermatologique.",
+  "prix": 56,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-0b4d738a6de8a9bc.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707d50a0b47e3954ffa1e86"
+    }
+  ],
+  "retings": [
+    {
+      "$oid": "6717b7f7075f23d6638f0c6c"
+    }
+  ],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DE VISAGE",
+  "createdAt": {
+    "$date": "2024-10-10T13:19:03.717Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:15.440Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707d5ec0b47e3954ffa1e96"
+  },
+  "nom": "Liquid Foundation Brush",
+  "description": "Pinceau plat aux finitions raffinées, parfait pour l'application de fond de teint liquide.\r\nComposé d’un mélange doux de fibres naturelles et synthétiques.\r\n",
+  "prix": 53,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-13467612c093367a.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707d6340b47e3954ffa1ea1"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DE VISAGE",
+  "createdAt": {
+    "$date": "2024-10-10T13:26:04.791Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:15.578Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707d69e0b47e3954ffa1eab"
+  },
+  "nom": "Round Tapered Blending Brush",
+  "description": "Pinceau arrondi aux finitions raffinées, parfait pour appliquer et estomper les produits pour les yeux.\r\nComposé d’un mélange doux de fibres naturelles et synthétiques.\r\n",
+  "prix": 50,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-c5914e2d199fe110.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707d6d20b47e3954ffa1eb6"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DE VISAGE",
+  "createdAt": {
+    "$date": "2024-10-10T13:29:02.753Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:15.714Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707d8ca0b47e3954ffa1ec0"
+  },
+  "nom": "Tip and blend make up brushes foundation",
+  "description": " Pinceau aux finitions raffinées et à la pointe fuselée, parfait pour l'application précise et homogène de fond de teint et de produits pour le visage.\r\nComposé d'un mélange doux de fibres synthétiques testées sous contrôle dermatologique.\r\n",
+  "prix": 63,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-a018dc305789463e.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707da0c0b47e3954ffa1ecb"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DE VISAGE",
+  "createdAt": {
+    "$date": "2024-10-10T13:38:18.064Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:15.852Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707dba20b47e3954ffa1ed1"
+  },
+  "nom": "Angeled eyeshadow",
+  "description": "Pinceau de précision en biseau aux finitions raffinées, parfait pour l'application de produits pour les yeux et les sourcils.\r\nComposé d'un mélange doux de fibres synthétiques testées sous contrôle dermatologique.\r\n",
+  "prix": 41,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-5bb5530a89b95be6.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707dbdb0b47e3954ffa1edc"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DES YEUX",
+  "createdAt": {
+    "$date": "2024-10-10T13:50:26.738Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:15.987Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707de190b47e3954ffa1ef2"
+  },
+  "nom": " Pencil blending brush",
+  "description": "Pinceau feutre aux finitions raffinées, parfait pour l'application précise des ombres à paupières.\r\nComposé d'un mélange doux de fibres synthétiques testées sous contrôle dermatologique.\r\n",
+  "prix": 45,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-883e540bb14985b1.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707de580b47e3954ffa1f02"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DES YEUX",
+  "createdAt": {
+    "$date": "2024-10-10T14:00:57.649Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:16.125Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707deb80b47e3954ffa1f08"
+  },
+  "nom": "Eyeshadow Double Brush",
+  "description": "Pinceau double pour ombres à paupières\r\n\r\nPinceau double aux finitions raffinées et à la pointe arrondie, parfait pour appliquer et estomper les ombres à paupières.\r\nComposé d'un mélange doux de fibres synthétiques testées sous contrôle dermatologique.",
+  "prix": 52,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-0727ecdc1e0e74bb.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707dee20b47e3954ffa1f18"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DES YEUX",
+  "createdAt": {
+    "$date": "2024-10-10T14:03:36.015Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:16.250Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707df380b47e3954ffa1f1e"
+  },
+  "nom": "Flat Eyeliner And Retouch Brush",
+  "description": "Pinceau aux finitions raffinées et à la pointe plate, parfait pour l'application de produits crémeux pour les yeux et les sourcils.\r\nComposé d'un mélange doux de fibres synthétiques testées sous contrôle dermatologique.\r\n",
+  "prix": 38,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-acbf949329472575.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707df5b0b47e3954ffa1f29"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DES YEUX",
+  "createdAt": {
+    "$date": "2024-10-10T14:05:44.230Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:16.477Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707e2460b47e3954ffa1f2f"
+  },
+  "nom": "Classic Flat Eyeshadow",
+  "description": "Pinceau plat aux finitions raffinées et à la pointe arrondie, parfait pour l’application des ombres à paupières.\r\nComposé d'un mélange doux de fibres synthétiques testées sous contrôle dermatologique.\r\n",
+  "prix": 41,
+  "solde": false,
+  "mainPicture": "uploads\\products\\file-d1ffa45a51bffd96.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6707e2720b47e3954ffa1f3a"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DES YEUX",
+  "createdAt": {
+    "$date": "2024-10-10T14:18:46.478Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:16.617Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6718c3b93db49da5789a4b7d"
+  },
+  "nom": "Micellar Water",
+  "description": "L'Eau Micellaire, grâce à sa texture ultra-douce et apaisante, est idéale pour éliminer efficacement toute trace de maquillage pour un teint sain et éclatant. La formule, enrichie en hydrolat de camomille et de bleuet, en eau de rose et en extrait d'aloès, est parfaite pour démaquiller les yeux, le visage et les lèvres sans agresser la peau. ",
+  "prix": 43,
+  "solde": false,
+  "mainPicture": "uploads/products/file-0923fb02c935d0f0.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6718c4063db49da5789a4b88"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE CORPS",
+  "createdAt": {
+    "$date": "2024-10-23T09:36:57.409Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:16.735Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6718c4e23db49da5789a4ba9"
+  },
+  "nom": "INSTANT SMOOTHER FACIAL SCRUB",
+  "description": "Le Gommage Visage Lissant Instantané, grâce à sa texture onctueuse et riche, glisse agréablement sur la peau et donne un teint sain et éclatant. La formule, enrichie en poudre de riz et noix de coco, est idéale pour exfolier la peau en profondeur pour un résultat immédiatement lisse, poli et éclatant. ",
+  "prix": 34,
+  "solde": false,
+  "mainPicture": "uploads/products/file-ea71c7d307c5e2f2.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6718c5963db49da5789a4bce"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE CORPS",
+  "createdAt": {
+    "$date": "2024-10-23T09:41:54.977Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:16.871Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6718c6ce3db49da5789a4c4c"
+  },
+  "nom": "Magical Toning bady potion",
+  "description": "Une potion de beauté pour le corps à base d'essentiels des huiles qui hydratent, tonifient la peau et\r\nredéfinit les fessiers et les hanches. Une potion qui se met vraiment au travail en stimulant la circulation système grâce à son effet chaud/froid et fesses visiblement raffermies et redéfinies\r\net les hanches.\r\n\r\n",
+  "prix": 99,
+  "solde": false,
+  "mainPicture": "uploads/products/file-05e91c70d48de433.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6718c6f03db49da5789a4c57"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE CORPS",
+  "createdAt": {
+    "$date": "2024-10-23T09:50:06.485Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:17.045Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "MAGICAL TONING BODY POTION"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6718dba43db49da5789a4d63"
+  },
+  "nom": "Hair Hydrator",
+  "description": "Traitement capillaire non gras qui empêche les dommages, les pointes fourchues et dompte les cheveux frisés\r\nÉclaircit, protège, nourrit, hydrate et donne du volume aux cheveux\r\nFormulé pour tous les types de cheveux\r\nEnrichi en huile de germe de blé, huile de lin et huile d'oméga inca\r\nAppliquer sur cheveux secs ou humides avant le coiffage\r\n",
+  "prix": 55,
+  "solde": false,
+  "mainPicture": "uploads/products/file-00c7aa8ade11457b.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6718dbf03db49da5789a4d7f"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE CHEVEUX",
+  "createdAt": {
+    "$date": "2024-10-23T11:19:00.991Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:17.186Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6718ddda3db49da5789a4db2"
+  },
+  "nom": "Face and Body Hydrator",
+  "description": "Face and Body Hydrator : grâce à sa texture soyeuse et émolliente, ce produit donne à la peau du visage et du corps un aspect lumineux et hydraté.\r\nSa formule aux fonctions multiples, enrichie en vitamine E et en acide hyaluronique, aide à nourrir et à protéger la peau et la rend immédiatement plus lisse et plus douce.\r\n",
+  "prix": 73,
+  "solde": false,
+  "mainPicture": "uploads/products/file-d8477318a36a5fe0.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "6718de253db49da5789a4dbd"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE CORPS",
+  "createdAt": {
+    "$date": "2024-10-23T11:28:26.169Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:17.305Z"
+  },
+  "__v": 1,
+  "metaFields": []
+},
+{
+  "_id": {
+    "$oid": "671a4e2d3db49da5789a691e"
+  },
+  "nom": "Triangular Foundation Brush",
+  "description": "Pinceau plat aux finitions raffinées, parfait pour l'application de fond de teint liquide.\r\nComposé d’un mélange doux de fibres naturelles et synthétiques.",
+  "prix": 55,
+  "solde": false,
+  "mainPicture": "uploads/products/file-a165540fea8370bf.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "671a4e613db49da5789a692e"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DE VISAGE",
+  "createdAt": {
+    "$date": "2024-10-24T13:39:57.987Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:17.446Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a4ec63db49da5789a6934"
+  },
+  "nom": "BRUSH CLEANSER",
+  "description": "Gardez vos pinceaux de maquillage impeccables avec le nettoyant pour pinceaux Milano Wakeup Cosmetics. Ce nettoyant innovant est la solution ultime pour maintenir vos pinceaux en parfait état, garantissant une application impeccable et hygiénique à chaque fois. La formule est conçue pour éliminer efficacement les résidus de maquillage,",
+  "prix": 39,
+  "solde": false,
+  "mainPicture": "uploads/products/file-4b87a1c92a6125da.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "671a4ef93db49da5789a693f"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DE VISAGE",
+  "createdAt": {
+    "$date": "2024-10-24T13:42:30.247Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:17.560Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a4faf3db49da5789a694f"
+  },
+  "nom": "Nourishing and restoring",
+  "description": "Un soin anti-âge performant pour le soin du visage! Pendant la nuit, il agit pour nourrir, restructura et hydrater en profondeur. Sa formule très riche enveloppe la peau pour la rendre lisse, souple et vitale. Il est parfait pour les peaux sèches : il retient l'eau de l'épiderme et réduit les fines rides du visage.",
+  "prix": 94,
+  "solde": false,
+  "mainPicture": "uploads/products/file-b7874da8963d0b97.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "671a4ffd3db49da5789a6973"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DE VISAGE",
+  "createdAt": {
+    "$date": "2024-10-24T13:46:23.633Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:17.674Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a505b3db49da5789a697d"
+  },
+  "nom": "Soothing calm skin",
+  "description": "Avec sa texture plus légère que l'air et veloutée, la Crème Apaisante Peaux Sensibles donne au teint un aspect hydraté et éclatant. La formule est enrichie en acide hyaluronique, beurre de karité, huile d'abricot et d'amande douce, qui ont une action émolliente immédiate qui aide à apaiser le stress cutané. Le produit est rapidement absorbé et convient à tous les types de peau. ",
+  "prix": 81,
+  "solde": false,
+  "mainPicture": "uploads/products/file-fa96342d7c5f0af1.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "671a50933db49da5789a6988"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE CORPS",
+  "createdAt": {
+    "$date": "2024-10-24T13:49:15.992Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:17.802Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a50f43db49da5789a6992"
+  },
+  "nom": "Vitamin infusion",
+  "description": "Crème visage au mucus d’escargot, action hydratante et nourrissante.Vitamin Infusion Day Cream : grâce à sa texture soyeuse et fondante, c’est le produit idéal pour nourrir la peau et lui donner un aspect sain et lisse.\r\nSa formule, qui contient du mucus d’escargot, offre une sensation immédiate de confort et aide à prévenir l'apparition des signes dus au vieillissement cutané.",
+  "prix": 86,
+  "solde": false,
+  "mainPicture": "uploads/products/file-a5769f03468e453c.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "671a51613db49da5789a699d"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE CHEVEUX",
+  "createdAt": {
+    "$date": "2024-10-24T13:51:48.605Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:17.925Z"
+  },
+  "__v": 1,
+  "metaFields": []
+},
+{
+  "_id": {
+    "$oid": "671a51d53db49da5789a69a3"
+  },
+  "nom": " sérum anti-âge pour le visage",
+  "description": "Un sérum tonifiant et anti-âge très efficace pour le visage. La peau paraît agréablement jeune,éclatant, doux et velouté",
+  "prix": 103,
+  "solde": false,
+  "mainPicture": "uploads/products/file-ef50285c78909015.jpg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "671a521f3db49da5789a69b8"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE CORPS",
+  "createdAt": {
+    "$date": "2024-10-24T13:55:33.353Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:18.068Z"
+  },
+  "__v": 2,
+  "metaFields": [
+    "INSTANT EFFECTSKIN SERUM"
+  ]
+},
+{
+  "_id": {
+    "$oid": "671a52a53db49da5789a69c4"
+  },
+  "nom": "Fill In Microspheres Eye Cream",
+  "description": "Crème contour des yeux à l’effet frais et velouté.Fill in Microspheres Eye Cream : grâce à sa texture confortable et légère, c’est le produit idéal pour réveiller et illuminer le regard.\r\nSa formule, enrichie en acide hyaluronique, est parfaite pour donner au contour des yeux un aspect lisse et compact.",
+  "prix": 77,
+  "solde": false,
+  "mainPicture": "uploads/products/file-53bde9034e1f269b.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "671a52db3db49da5789a69cf"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE CHEVEUX",
+  "createdAt": {
+    "$date": "2024-10-24T13:59:01.730Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:18.206Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a55aa3db49da5789a6a17"
+  },
+  "nom": "Face cleanser",
+  "description": "Mousse nettoyante riche en actifs antioxydants et hydratants\r\nLa mousse nettoyante quotidienne nettoie en douceur la peau de tous les maquillages et impuretés\r\nLaisse votre peau fraîche et hydratée\r\nAppliquez le produit sur la peau humide du visage et massez doucement le visage et le décolleté. Rincer",
+  "prix": 49,
+  "solde": false,
+  "mainPicture": "uploads/products/file-f746e5eb5643a9bc.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "671a561b3db49da5789a6a2c"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE CORPS",
+  "createdAt": {
+    "$date": "2024-10-24T14:11:54.766Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:18.501Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a57e33db49da5789a6a36"
+  },
+  "nom": "Body Hydrator Milk Mist",
+  "description": "Brume hydratante au lait, grâce à sa texture veloutée et émolliente, procure à la peau une sensation immédiate de fraîcheur et d'hydratation. La formule, enrichie en hamamélis et en camomille hydrophile, aide à apaiser et rafraîchir la peau pour un confort instantané. Le produit s'absorbe rapidement, sans alourdir ni laisser de sensation grasse, et convient à tous les types de peau.",
+  "prix": 64,
+  "solde": false,
+  "mainPicture": "uploads/products/file-bd9ad7de0137408b.png",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "671a58183db49da5789a6a43"
+    }
+  ],
+  "retings": [],
+  "categorie": "Produits de soin",
+  "subCategorie": "SOIN DE VISAGE",
+  "createdAt": {
+    "$date": "2024-10-24T14:21:23.491Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:18.823Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671a5aa23db49da5789a6acf"
+  },
+  "nom": "Cats tongue synthetic Lip Brush",
+  "description": "Pinceau pour produits à lèvres\r\nPinceau aux finitions raffinées et à la pointe fuselée, parfait pour l'application de rouges et d’autres produits pour les lèvres.\r\nComposé d'un mélange doux de fibres synthétiques testées sous contrôle dermatologique.",
+  "prix": 38,
+  "solde": false,
+  "mainPicture": "uploads/products/file-583b0cc12ec85e07.jpeg",
+  "soldePourcentage": 0,
+  "variants": [
+    {
+      "$oid": "671a5acc3db49da5789a6ada"
+    }
+  ],
+  "retings": [],
+  "categorie": "Brush",
+  "subCategorie": "PINCEAUX DES LÈVRES",
+  "createdAt": {
+    "$date": "2024-10-24T14:33:06.689Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-19T16:00:19.181Z"
+  },
+  "__v": 1,
+  "metaFields": []
+}]

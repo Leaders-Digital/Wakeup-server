@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate:mainPicture": "node scripts/updateMainPictureFromVariant.js",
     "migrate:handles": "node scripts/generateHandles.js",
-    "reset:solde": "node scripts/resetSoldePourcentage.js"
+    "reset:solde": "node scripts/resetSoldePourcentage.js",
+    "fix:images": "node scripts/fixImagePaths.js"
   },
   "keywords": [],
   "author": "",
