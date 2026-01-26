@@ -1,36 +1,44 @@
-name: Build and Deploy Frontend
+name: Build and Deploy Wakeup Backend
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-    
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      
+
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           push: true
           tags: |
-            leadersdigital/wakeup-server:latest
+            bangov2/wakeup-backend:latest
 
-      
+      - name: Copy docker-compose to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          source: "docker-compose.yml"
+          target: "/home/ubuntu/wakeup-backend"
+
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
@@ -38,10 +46,60 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            # Copy docker-compose file from repo to server
-            cd /home/ubuntu/workspace
-            
-            # Pull the latest image and restart the service
-            sudo docker-compose down
-            sudo docker-compose pull
-            sudo docker-compose up -d
+            # Create directory if it doesn't exist
+            mkdir -p /home/ubuntu/wakeup-backend
+
+            cd /home/ubuntu/wakeup-backend
+
+            # Create uploads directory if it doesn't exist
+            mkdir -p uploads
+
+            # Create minimal .env file if it doesn't exist
+            if [ ! -f .env ]; then
+              echo "WARNING: .env file not found! Creating minimal .env file."
+              echo "IMPORTANT: You must update .env with your actual environment variables!"
+              echo "# Minimal .env file - UPDATE WITH YOUR ACTUAL VALUES!" > .env
+              echo "MONGODB_URI=mongodb://localhost:27017/wakeup-db" >> .env
+              echo "PORT=3000" >> .env
+              echo "NODE_ENV=production" >> .env
+              echo "JWT_SECRET=change-me-please" >> .env
+              echo "FRONTEND_URL=http://localhost:5173" >> .env
+              echo "Created minimal .env file. Please update it with your actual values!"
+            else
+              echo ".env file found"
+            fi
+
+            # Stop and remove containers
+            sudo docker compose down || true
+
+            # Remove old images to force pull of new version
+            sudo docker rmi bangov2/wakeup-backend:latest || true
+
+            # Pull the latest image
+            sudo docker compose pull
+
+            # Start with the new image
+            sudo docker compose up -d
+
+            # Wait a few seconds for container to start
+            sleep 10
+
+            # Check container status
+            echo "=== Container Status ==="
+            sudo docker ps -a | grep wakeup-backend || echo "Container not found!"
+
+            # Show container logs for debugging
+            echo "=== Container Logs ==="
+            sudo docker logs wakeup-backend 2>&1 || echo "Could not retrieve logs"
+
+            # Check if container is running
+            if sudo docker ps | grep -q wakeup-backend; then
+              echo "Container is running!"
+            else
+              echo "Container is not running. Check logs above for errors."
+              exit 1
+            fi
+
+            # Clean up unused images
+            sudo docker image prune -f
+
