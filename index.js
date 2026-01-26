@@ -29,7 +29,7 @@ app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors(
   {
-    origin: "*", // Allow all origins
+    origin: ["https://www.wakeup-cosmetics.tn", "https://admin.wakeup-cosmetics.tn"], // Allow all origins
     credentials: false, // Must be false when origin is "*"
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
