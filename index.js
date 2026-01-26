@@ -5,7 +5,10 @@ require("./Models/index");
 const cors = require("cors");
 const port = 7000;
 const app = express();
-app.use(express.json());
+
+// Increase payload size limits for file uploads
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Routers
 const ProductRouter = require("./Routers/Product.router");
@@ -26,20 +29,22 @@ const clientRoutes = require("./Routers/client.router");
 const venteRoutes = require("./Routers/vente.router");
 
 app.use("/uploads", express.static("uploads"));
-app.use(express.json());
 
 // Handle CORS manually for better control
 app.use((req, res, next) => {
   const allowedOrigins = [
     "https://www.wakeup-cosmetics.tn",
+    "https://api.wakeup-cosmetics.tn",
     "https://admin.wakeup-cosmetics.tn",
     "http://localhost:3000",
     "http://localhost:5173"
   ];
   
   const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
+  
+  // If no origin header (direct access or same-origin), allow it
+  if (!origin || allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin || "*");
   }
   
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
