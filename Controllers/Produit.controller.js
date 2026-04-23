@@ -552,6 +552,7 @@ module.exports = {
       const category = req.query.categorie; // Get category from query (if provided)
       const solde = req.query.solde; // Get solde (sale) from query if provided
       const search = req.query.search;
+      const normalizedSearch = typeof search === "string" ? search.trim() : "";
       const sortByPrice = req.query.sortByPrice || "desc"; // Default to sorting by price descending
 
       // Create a filter object to apply category filtering if a category is provided
@@ -565,12 +566,21 @@ module.exports = {
       }
 
       // Fetch products with pagination and optional category and solde filter
-      if (search) {
+      if (normalizedSearch) {
+        const matchingVariants = await Variant.find({
+          $or: [
+            { codeAbarre: { $regex: normalizedSearch, $options: "i" } },
+            { reference: { $regex: normalizedSearch, $options: "i" } },
+          ],
+        }).select("_id");
+        const matchingVariantIds = matchingVariants.map((variant) => variant._id);
+
         filter.$or = [
-          { nom: { $regex: search, $options: "i" } },
-          { description: { $regex: search, $options: "i" } },
-          { categorie: { $regex: search, $options: "i" } },
-          { subCategorie: { $regex: search, $options: "i" } },
+          { nom: { $regex: normalizedSearch, $options: "i" } },
+          { description: { $regex: normalizedSearch, $options: "i" } },
+          { categorie: { $regex: normalizedSearch, $options: "i" } },
+          { subCategorie: { $regex: normalizedSearch, $options: "i" } },
+          ...(matchingVariantIds.length ? [{ variants: { $in: matchingVariantIds } }] : []),
         ];
       }
       let sortOption = { createdAt: -1 };

@@ -32,6 +32,25 @@ const ordersSchema = new mongoose.Schema(
     codePostal: { type: String, required: true },
     note: { type: String },
     prixTotal: { type: Number, required: true },
+    /** Merchandise subtotal from DB prices before any order-level discount (excludes shipping). */
+    merchandiseSubtotal: { type: Number },
+    hasDiscount: { type: Boolean, default: false },
+    discountType: {
+      type: String,
+      enum: ["none", "cnrps"],
+      default: "none",
+    },
+    discountPercentApplied: { type: Number, default: 0 },
+    discountAmount: { type: Number, default: 0 },
+    /** Raw / normalized CNRPS identifier stored when a CNRPS discount is applied. */
+    cnrpsCode: { type: String },
+    cnrpsCodeNormalized: { type: String },
+    /** True when this order received the one-time CNRPS percentage discount. */
+    cnrpsDiscountApplied: { type: Boolean, default: false },
+    /** Snapshot: external eligibility API returned true at order creation. */
+    cnrpsEligibleAtCheckout: { type: Boolean },
+    /** True when this order consumed the single allowed discounted purchase for that CNRPS. */
+    cnrpsOneTimeConsumedByThisOrder: { type: Boolean, default: false },
     statut: {
       type: String,
       enum: ["en cours", "validé", "annulé", "livré"],
@@ -52,6 +71,14 @@ ordersSchema.pre("save", function (next) {
   }
   next();
 });
+
+ordersSchema.index(
+  { cnrpsCodeNormalized: 1 },
+  {
+    unique: true,
+    partialFilterExpression: { cnrpsDiscountApplied: true },
+  }
+);
 
 const Order = mongoose.model("Order", ordersSchema);
 module.exports = Order;

@@ -19,6 +19,7 @@ const BlogRouter = require("./Routers/blog.router");
 const InternUserRouter = require("./Routers/InternUser.router");
 const reclamationRouter = require("./Routers/Reclamation.router");
 const promoRouters = require("./Routers/promoCode.router");
+const cnrpsRouter = require("./Routers/cnrps.router");
 const infoRouters = require("./Routers/info.router");
 const userRouter = require("./Routers/user.router");
 const bannerRouter = require("./Routers/banner.router");
@@ -38,6 +39,7 @@ app.use((req, res, next) => {
     "https://api.wakeup-cosmetics.tn",
     "https://admin.wakeup-cosmetics.tn",
     "http://localhost:3000",
+    "http://localhost:3001",
     "http://localhost:5173"
   ];
   
@@ -84,6 +86,7 @@ app.use("/api/blog", BlogRouter);
 app.use("/api/internUser", InternUserRouter);
 app.use("/api/reclamation", reclamationRouter);
 app.use("/api/promo", promoRouters);
+app.use("/api/cnrps", cnrpsRouter);
 app.use("/api/info", infoRouters);
 app.use("/api/user", userRouter);
 app.use("/api/banner", bannerRouter);

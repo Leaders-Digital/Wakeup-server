@@ -3,6 +3,11 @@ const { sendOrderEmail } = require("../helpers/email");
 const { sendOwnerEmail } = require("../helpers/orderMail");
 const Order = require("../Models/orders.model");
 const Variant = require("../Models/variant.model");
+const { computeMerchandiseSubtotal } = require("../services/orderPricing.service");
+const {
+  checkMemberEligibility,
+  normalizeCnrpsCode,
+} = require("../services/cnrpsApi.service");
 
 module.exports = {
   createOrder: async (req, res) => {
@@ -18,12 +23,11 @@ module.exports = {
       codePostal,
       note,
       withOffer,
-      prixTotal,
       listeDesPack,
+      cnrpsCode: cnrpsCodeRaw,
     } = req.body;
 
     try {
-      // Check if all required fields are present
       if (
         !nom ||
         !prenom ||
@@ -33,17 +37,101 @@ module.exports = {
         !gouvernorat ||
         !ville ||
         !codePostal ||
-        !prixTotal ||
-        !listeDesProduits ||
-        !listeDesPack
+        listeDesProduits == null ||
+        listeDesPack == null
       ) {
         return res
           .status(400)
           .json({ message: "Tous les champs sont obligatoires" });
       }
 
-      // Loop through the products to check stock and reduce quantities
-      for (const item of listeDesProduits) {
+      const listeDesProduitsArr = Array.isArray(listeDesProduits)
+        ? listeDesProduits
+        : [];
+      const listeDesPackArr = Array.isArray(listeDesPack) ? listeDesPack : [];
+
+      let merchandiseSubtotal;
+      try {
+        merchandiseSubtotal = await computeMerchandiseSubtotal(
+          listeDesProduitsArr,
+          listeDesPackArr
+        );
+      } catch (e) {
+        return res.status(400).json({
+          message:
+            e.code === "INVALID_LINE"
+              ? "Un ou plusieurs articles du panier sont invalides."
+              : "Impossible de calculer le total du panier.",
+        });
+      }
+
+      if (merchandiseSubtotal <= 0) {
+        return res.status(400).json({
+          message: "Le total des articles doit être supérieur à zéro.",
+        });
+      }
+
+      let discountType = "none";
+      let hasDiscount = false;
+      let discountPercentApplied = 0;
+      let discountAmount = 0;
+      let cnrpsDiscountApplied = false;
+      let cnrpsCode;
+      let cnrpsCodeNormalized;
+      let cnrpsEligibleAtCheckout;
+      let cnrpsOneTimeConsumedByThisOrder = false;
+
+      const cnrpsNormalized = normalizeCnrpsCode(
+        cnrpsCodeRaw == null ? "" : String(cnrpsCodeRaw)
+      );
+
+      if (cnrpsNormalized) {
+        const prior = await Order.findOne({
+          cnrpsCodeNormalized: cnrpsNormalized,
+          cnrpsDiscountApplied: true,
+        });
+        if (prior) {
+          return res.status(400).json({
+            message:
+              "Ce numéro CNRPS a déjà été utilisé pour une commande avec remise.",
+          });
+        }
+
+        let eligible;
+        try {
+          eligible = await checkMemberEligibility(cnrpsNormalized);
+        } catch (e) {
+          console.error("CNRPS eligibility at checkout:", e.message);
+          return res.status(503).json({
+            message:
+              "Vérification CNRPS indisponible. Réessayez plus tard ou commandez sans remise.",
+          });
+        }
+
+        if (!eligible) {
+          return res.status(400).json({
+            message: "Ce numéro CNRPS n'est pas éligible à la remise.",
+          });
+        }
+
+        discountType = "cnrps";
+        hasDiscount = true;
+        discountPercentApplied = 20;
+        cnrpsEligibleAtCheckout = true;
+        cnrpsDiscountApplied = true;
+        cnrpsOneTimeConsumedByThisOrder = true;
+        cnrpsCode = cnrpsNormalized;
+        cnrpsCodeNormalized = cnrpsNormalized;
+        discountAmount =
+          Math.round(
+            merchandiseSubtotal * (discountPercentApplied / 100) * 100
+          ) / 100;
+      }
+
+      const prixTotal =
+        Math.round((merchandiseSubtotal - discountAmount) * 100) / 100;
+
+      for (const item of listeDesProduitsArr) {
         const variant = await Variant.findById(item.variant);
         if (!variant) {
           return res
@@ -51,45 +139,77 @@ module.exports = {
             .json({ message: `Variant with ID ${item.variant} not found` });
         }
 
-        // Check if there's enough stock
         if (variant.quantity < item.quantite) {
           return res.status(400).json({
             message: `Not enough stock for variant ${variant.reference}`,
           });
         }
 
-        // Reduce the stock quantity
         variant.quantity -= item.quantite;
-        await variant.save(); // Save the updated variant quantity
+        await variant.save();
       }
 
-      // Create a new order instance
       const newOrder = new Order({
         nom,
         prenom,
         email,
         numTelephone,
         adresse,
-        listeDesProduits,
-        listeDesPack,
+        listeDesProduits: listeDesProduitsArr,
+        listeDesPack: listeDesPackArr,
         gouvernorat,
         withOffer,
         ville,
         codePostal,
         note,
         prixTotal,
+        merchandiseSubtotal,
+        hasDiscount,
+        discountType,
+        discountPercentApplied,
+        discountAmount,
+        cnrpsDiscountApplied,
+        cnrpsCode,
+        cnrpsCodeNormalized,
+        cnrpsEligibleAtCheckout,
+        cnrpsOneTimeConsumedByThisOrder,
       });
 
-      // Save the order to the database
-      const savedOrder = await newOrder.save();
+      let savedOrder;
+      try {
+        savedOrder = await newOrder.save();
+      } catch (error) {
+        if (error && error.code === 11000) {
+          const dupField = error.keyPattern && Object.keys(error.keyPattern)[0];
+          if (dupField === "cnrpsCodeNormalized") {
+            return res.status(400).json({
+              message:
+                "Ce numéro CNRPS a déjà été utilisé pour une commande avec remise.",
+            });
+          }
+          return res.status(409).json({
+            message: "Conflit lors de l'enregistrement. Réessayez.",
+          });
+        }
+        throw error;
+      }
+
       await sendOrderEmail(email, savedOrder.orderCode);
       await sendOwnerEmail({ nom, prenom, prixTotal });
 
-      // Return the created order and the generated custom order code
       return res.status(201).json({
         message: "Commande ajoutée avec succès",
         data: savedOrder,
-        orderCode: savedOrder.orderCode, // Return the custom order code
+        orderCode: savedOrder.orderCode,
+        pricing: {
+          merchandiseSubtotal,
+          discountType,
+          hasDiscount,
+          discountPercentApplied,
+          discountAmount,
+          prixTotal: savedOrder.prixTotal,
+          cnrpsDiscountApplied: savedOrder.cnrpsDiscountApplied,
+        },
       });
     } catch (error) {
       console.error("Error while creating order: ", error);
