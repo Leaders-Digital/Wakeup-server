@@ -4,7 +4,8 @@ const {
   getInventaireSessions,
   getInventaireSessionById,
   deleteInventaireSession,
-  deleteAllInventaireSessions
+  deleteAllInventaireSessions,
+  applySessionQuantitiesToVariants
 } = require("../Controllers/inventaire.controller");
 
 const router = express.Router();
@@ -12,6 +13,7 @@ const router = express.Router();
 router.post("/session", createInventaireSession);
 router.get("/session", getInventaireSessions);
 router.get("/session/:id", getInventaireSessionById);
+router.patch("/session/:id/apply-quantities", applySessionQuantitiesToVariants);
 router.delete("/session/:id", deleteInventaireSession);
 router.delete("/session", deleteAllInventaireSessions);
 

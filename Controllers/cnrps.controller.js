@@ -36,9 +36,27 @@ async function validateCnrpsForCart(req, res) {
 
     return res.status(200).json({
       eligible: true,
-      discountPercent: 20,
       cnrpsCode: cnrps,
-      message: "Éligible : remise de 20% appliquée au panier (montant final confirmé à la commande).",
+      message:
+        "Éligible : choisissez le type d'achat pour appliquer la remise correspondante.",
+      options: [
+        {
+          type: "direct_comptant",
+          label: "Achat direct au comptant",
+          discountPercent: 20,
+          minSubtotal: 0,
+          description:
+            "Remise de 20% pour un achat direct au comptant.",
+        },
+        {
+          type: "compte_amicale",
+          label: "Achat sur le compte de l'Amicale",
+          discountPercent: 5,
+          minSubtotal: 0,
+          description:
+            "Remise de 5% pour tout achat effectué sur le compte de l'Amicale.",
+        },
+      ],
     });
   } catch (err) {
     console.error("CNRPS validate error:", err.message);

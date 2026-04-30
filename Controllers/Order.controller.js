@@ -9,6 +9,11 @@ const {
   normalizeCnrpsCode,
 } = require("../services/cnrpsApi.service");
 
+const CNRPS_PURCHASE_TYPES = {
+  direct_comptant: { discountPercent: 20, minSubtotal: 0 },
+  compte_amicale: { discountPercent: 5, minSubtotal: 0 },
+};
+
 module.exports = {
   createOrder: async (req, res) => {
     const {
@@ -25,6 +30,7 @@ module.exports = {
       withOffer,
       listeDesPack,
       cnrpsCode: cnrpsCodeRaw,
+      cnrpsPurchaseType: cnrpsPurchaseTypeRaw,
     } = req.body;
 
     try {
@@ -80,12 +86,34 @@ module.exports = {
       let cnrpsCodeNormalized;
       let cnrpsEligibleAtCheckout;
       let cnrpsOneTimeConsumedByThisOrder = false;
+      let cnrpsPurchaseType = null;
 
       const cnrpsNormalized = normalizeCnrpsCode(
         cnrpsCodeRaw == null ? "" : String(cnrpsCodeRaw)
       );
 
       if (cnrpsNormalized) {
+        const purchaseType =
+          typeof cnrpsPurchaseTypeRaw === "string"
+            ? cnrpsPurchaseTypeRaw.trim()
+            : "";
+        const purchaseConfig = CNRPS_PURCHASE_TYPES[purchaseType];
+        if (!purchaseConfig) {
+          return res.status(400).json({
+            message:
+              "Type d'achat CNRPS invalide. Choisissez 'achat direct au comptant' ou 'achat sur le compte de l'Amicale'.",
+          });
+        }
+
+        if (
+          purchaseConfig.minSubtotal > 0 &&
+          merchandiseSubtotal <= purchaseConfig.minSubtotal
+        ) {
+          return res.status(400).json({
+            message: `La remise CNRPS est disponible uniquement pour un total articles supérieur à ${purchaseConfig.minSubtotal} TND.`,
+          });
+        }
+
         const prior = await Order.findOne({
           cnrpsCodeNormalized: cnrpsNormalized,
           cnrpsDiscountApplied: true,
@@ -116,12 +144,13 @@ module.exports = {
 
         discountType = "cnrps";
         hasDiscount = true;
-        discountPercentApplied = 20;
+        discountPercentApplied = purchaseConfig.discountPercent;
         cnrpsEligibleAtCheckout = true;
         cnrpsDiscountApplied = true;
         cnrpsOneTimeConsumedByThisOrder = true;
         cnrpsCode = cnrpsNormalized;
         cnrpsCodeNormalized = cnrpsNormalized;
+        cnrpsPurchaseType = purchaseType;
         discountAmount =
           Math.round(
             merchandiseSubtotal * (discountPercentApplied / 100) * 100
@@ -171,6 +200,7 @@ module.exports = {
         cnrpsDiscountApplied,
         cnrpsCode,
         cnrpsCodeNormalized,
+        cnrpsPurchaseType,
         cnrpsEligibleAtCheckout,
         cnrpsOneTimeConsumedByThisOrder,
       });
@@ -209,6 +239,7 @@ module.exports = {
           discountAmount,
           prixTotal: savedOrder.prixTotal,
           cnrpsDiscountApplied: savedOrder.cnrpsDiscountApplied,
+          cnrpsPurchaseType: savedOrder.cnrpsPurchaseType,
         },
       });
     } catch (error) {

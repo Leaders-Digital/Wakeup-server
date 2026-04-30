@@ -45,6 +45,16 @@ const ordersSchema = new mongoose.Schema(
     /** Raw / normalized CNRPS identifier stored when a CNRPS discount is applied. */
     cnrpsCode: { type: String },
     cnrpsCodeNormalized: { type: String },
+    /**
+     * Which CNRPS purchase channel was selected by the buyer:
+     *  - direct_comptant : achat direct au comptant (20%)
+     *  - compte_amicale  : achat sur le compte de l'Amicale (5%)
+     */
+    cnrpsPurchaseType: {
+      type: String,
+      enum: ["direct_comptant", "compte_amicale", null],
+      default: null,
+    },
     /** True when this order received the one-time CNRPS percentage discount. */
     cnrpsDiscountApplied: { type: Boolean, default: false },
     /** Snapshot: external eligibility API returned true at order creation. */

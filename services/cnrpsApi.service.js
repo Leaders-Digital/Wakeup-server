@@ -16,11 +16,21 @@ function getBaseUrl() {
   return (process.env.CNRPS_API_BASE_URL || DEFAULT_BASE).replace(/\/$/, "");
 }
 
+function shortBody(data) {
+  if (data == null) return "";
+  if (typeof data === "string") return data.replace(/\s+/g, " ").slice(0, 400);
+  try {
+    return JSON.stringify(data).slice(0, 400);
+  } catch {
+    return String(data).slice(0, 400);
+  }
+}
+
 function extractToken(data) {
   if (!data || typeof data !== "object") return null;
   return (
-    data.access_token ||
     data.token ||
+    data.access_token ||
     data.accessToken ||
     data.bearerToken ||
     (data.data && (data.data.token || data.data.access_token)) ||
@@ -29,11 +39,21 @@ function extractToken(data) {
 }
 
 /**
- * Authenticates against the external CNRPS API and returns a Bearer token.
- * Contract v2.0 expects POST /auth/tokens with JSON payload { email, password }.
+ * Authenticates against the AAFCME / ConvAmi API and returns a Bearer token.
+ *
+ * Per AAFCME / Leaders Digital integration update (Avril 2026):
+ *   POST https://intconvamiaafcmeapi.azurewebsites.net/v2/auth/tokens
+ *   Content-Type: application/json
+ *   Body: { email, password }
+ *   Returns: { token, validity?, status? }
+ *
+ * Override the base URL with CNRPS_API_BASE_URL when needed.
  */
 async function fetchCnrpsBearerToken() {
-  if (tokenCache.token && Date.now() < tokenCache.expiresAtMs - TOKEN_EXPIRY_SKEW_MS) {
+  if (
+    tokenCache.token &&
+    Date.now() < tokenCache.expiresAtMs - TOKEN_EXPIRY_SKEW_MS
+  ) {
     return tokenCache.token;
   }
 
@@ -41,42 +61,51 @@ async function fetchCnrpsBearerToken() {
   const email = process.env.CNRPS_EMAIL || process.env.CNRPS_USERNAME;
   const password = process.env.CNRPS_PASSWORD;
   if (!email || !password) {
-    throw new Error("CNRPS_EMAIL and CNRPS_PASSWORD must be set in environment");
+    throw new Error(
+      "CNRPS_EMAIL (or CNRPS_USERNAME) and CNRPS_PASSWORD must be set in environment"
+    );
   }
 
-  const url = `${base}/auth/tokens`;
+  const url = `${base}/v2/auth/tokens`;
   const payload = { email, password };
-  const headers = { "Content-Type": "application/json" };
   const timeout = Number(process.env.CNRPS_HTTP_TIMEOUT_MS) || 20000;
 
   const res = await axios.request({
     method: "POST",
     url,
     data: payload,
-    headers,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
     timeout,
     validateStatus: () => true,
   });
 
   if (res.status < 200 || res.status >= 300) {
     throw new Error(
-      `CNRPS auth failed: HTTP ${res.status} ${typeof res.data === "string" ? res.data : JSON.stringify(res.data)}`
+      `CNRPS auth failed: POST ${url} -> HTTP ${res.status} (content-type=${res.headers["content-type"] || "-"}) body=${shortBody(res.data)}`
     );
   }
 
   const token = extractToken(res.data);
-  if (!token) {
-    throw new Error("CNRPS auth response did not include a recognizable token field");
-  }
   const statusValue = Number(res.data?.status);
-  if (!Number.isNaN(statusValue) && statusValue !== 1) {
-    throw new Error("CNRPS auth rejected credentials (status != 1)");
+  if (!Number.isNaN(statusValue) && statusValue !== 1 && !token) {
+    throw new Error(
+      `CNRPS auth rejected credentials (status=${statusValue}) body=${shortBody(res.data)}`
+    );
+  }
+  if (!token) {
+    throw new Error(
+      `CNRPS auth response did not include a token field. body=${shortBody(res.data)}`
+    );
   }
 
   const validityMinutes = Number(res.data?.validity);
-  const ttlMs = !Number.isNaN(validityMinutes) && validityMinutes > 0
-    ? validityMinutes * 60 * 1000
-    : 5 * 60 * 1000;
+  const ttlMs =
+    !Number.isNaN(validityMinutes) && validityMinutes > 0
+      ? validityMinutes * 60 * 1000
+      : 5 * 60 * 1000;
 
   tokenCache = {
     token,
@@ -87,34 +116,45 @@ async function fetchCnrpsBearerToken() {
 }
 
 /**
- * Calls CheckMemberEligibility. CNRPS is sent in the URL path; optional JSON body is sent if CNRPS_SEND_ELIGIBILITY_BODY=1.
+ * Per AAFCME / Leaders Digital integration update (Avril 2026):
+ *   GET https://intconvamiaafcmeapi.azurewebsites.net/v2/auth/{cnrps}/eligibility
+ *   Authorization: Bearer {token}
+ *   Returns: { result: true | false }
  */
 async function checkMemberEligibility(cnrps) {
   const base = getBaseUrl();
   const token = await fetchCnrpsBearerToken();
-  const url = `${base}/auth/${encodeURIComponent(cnrps)}/eligibility`;
+  const url = `${base}/v2/auth/${encodeURIComponent(cnrps)}/eligibility`;
   const timeout = Number(process.env.CNRPS_HTTP_TIMEOUT_MS) || 20000;
-  const sendBody = process.env.CNRPS_SEND_ELIGIBILITY_BODY === "1";
 
-  const res = await axios({
+  const res = await axios.request({
     method: "get",
     url,
-    ...(sendBody ? { data: { cnrps } } : {}),
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
+      Accept: "application/json",
     },
     timeout,
     validateStatus: () => true,
   });
 
+  if (res.status === 401 || res.status === 403) {
+    tokenCache = { token: null, expiresAtMs: 0 };
+  }
+
   if (res.status < 200 || res.status >= 300) {
     throw new Error(
-      `CNRPS eligibility HTTP ${res.status}: ${typeof res.data === "string" ? res.data : JSON.stringify(res.data)}`
+      `CNRPS eligibility GET ${url} -> HTTP ${res.status} (content-type=${res.headers["content-type"] || "-"}) body=${shortBody(res.data)}`
     );
   }
 
-  return !!res.data?.result;
+  if (res.data && typeof res.data === "object") {
+    return !!res.data.result;
+  }
+
+  throw new Error(
+    `CNRPS eligibility unexpected response (content-type=${res.headers["content-type"] || "-"}) body=${shortBody(res.data)}`
+  );
 }
 
 module.exports = {
