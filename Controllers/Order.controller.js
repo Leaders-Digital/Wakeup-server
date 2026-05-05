@@ -3,6 +3,7 @@ const { sendOrderEmail } = require("../helpers/email");
 const { sendOwnerEmail } = require("../helpers/orderMail");
 const Order = require("../Models/orders.model");
 const Variant = require("../Models/variant.model");
+const InventaireSession = require("../Models/InventaireSession");
 const { computeMerchandiseSubtotal } = require("../services/orderPricing.service");
 const {
   checkMemberEligibility,
@@ -12,6 +13,45 @@ const {
 const CNRPS_PURCHASE_TYPES = {
   direct_comptant: { discountPercent: 20, minSubtotal: 0 },
   compte_amicale: { discountPercent: 5, minSubtotal: 0 },
+};
+
+const getLatestBoxesByBarcode = async (barcodes) => {
+  const cleanBarcodes = Array.from(
+    new Set((barcodes || []).map((barcode) => String(barcode || "").trim()).filter(Boolean))
+  );
+
+  const boxesByBarcode = new Map();
+  if (!cleanBarcodes.length) return boxesByBarcode;
+
+  const pending = new Set(cleanBarcodes);
+  const sessions = await InventaireSession.find({
+    "rows.barcode": { $in: cleanBarcodes },
+  })
+    .sort({ createdAt: -1 })
+    .select("rows createdAt")
+    .lean();
+
+  for (const session of sessions) {
+    if (!pending.size) break;
+    const local = new Map();
+    const rows = Array.isArray(session.rows) ? session.rows : [];
+
+    for (const row of rows) {
+      const barcode = String(row?.barcode || "").trim();
+      if (!barcode || !pending.has(barcode)) continue;
+      const box = String(row?.box || "").trim();
+      if (!box) continue;
+      if (!local.has(barcode)) local.set(barcode, new Set());
+      local.get(barcode).add(box);
+    }
+
+    for (const [barcode, boxesSet] of local.entries()) {
+      boxesByBarcode.set(barcode, Array.from(boxesSet));
+      pending.delete(barcode);
+    }
+  }
+
+  return boxesByBarcode;
 };
 
 module.exports = {
@@ -298,11 +338,22 @@ module.exports = {
         return res.status(404).json({ message: "Commande non trouvée" });
       }
 
-      // Combine listeDesProduits and listeDesPack into one array
-      return res.status(200).json({
-        data: order,
-        // Include the combined list in the response
+      const orderObject =
+        typeof order.toObject === "function" ? order.toObject() : order;
 
+      const barcodes = (orderObject.listeDesProduits || [])
+        .map((item) => item?.variant?.codeAbarre)
+        .filter(Boolean);
+      const boxesByBarcode = await getLatestBoxesByBarcode(barcodes);
+
+      for (const item of orderObject.listeDesProduits || []) {
+        const barcode = String(item?.variant?.codeAbarre || "").trim();
+        if (!item.variant) continue;
+        item.variant.inventoryBoxes = barcode ? boxesByBarcode.get(barcode) || [] : [];
+      }
+
+      return res.status(200).json({
+        data: orderObject,
         message: "Commande récupérée avec succès",
       });
     } catch (error) {
