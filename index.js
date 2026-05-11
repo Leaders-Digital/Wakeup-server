@@ -29,6 +29,7 @@ const achatRoutes = require("./Routers/achat.router");
 const clientRoutes = require("./Routers/client.router");
 const venteRoutes = require("./Routers/vente.router");
 const inventaireRoutes = require("./Routers/inventaire.router");
+const paymentRouter = require("./Routers/payment.router");
 
 app.use("/uploads", express.static("uploads"));
 
@@ -96,6 +97,7 @@ app.use("/api/dashboard", dashboardRouter);
 app.use("/api/client", clientRoutes);
 app.use("/api/vente", venteRoutes);
 app.use("/api/inventaire", inventaireRoutes);
+app.use("/api/payment", paymentRouter);
 
 // server listening
 app.listen(port, () => {
