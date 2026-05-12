@@ -11,6 +11,8 @@ const productSchema = new Schema({
   prixAchat: { type: Number, required: true },
   prixGros: { type: Number, required: true },
   soldePourcentage: { type: Number },
+  /** Stock at product level when `categorie` is PACK (no variants). */
+  quantite: { type: Number, min: 0, required: false },
   variants: [{ type: Schema.Types.ObjectId, ref: 'Variant' }], // Array of variant references
   retings: [{ type: Schema.Types.ObjectId, ref: 'Review' }], // Array of variant references
   metaFields: [{ type: String, required: false }],

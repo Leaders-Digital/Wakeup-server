@@ -1,7 +1,9 @@
 const { default: axios } = require("axios");
+const { default: mongoose } = require("mongoose");
 const { sendOrderEmail } = require("../helpers/email");
 const { sendOwnerEmail } = require("../helpers/orderMail");
 const Order = require("../Models/orders.model");
+const Product = require("../Models/Produit.model");
 const Variant = require("../Models/variant.model");
 const InventaireSession = require("../Models/InventaireSession");
 const { computeMerchandiseSubtotal } = require("../services/orderPricing.service");
@@ -216,6 +218,49 @@ module.exports = {
 
         variant.quantity -= item.quantite;
         await variant.save();
+      }
+
+      const packDemand = new Map();
+      for (const item of listeDesPackArr) {
+        const pid =
+          item.pack != null ? String(item.pack).trim() : "";
+        if (!mongoose.Types.ObjectId.isValid(pid)) {
+          return res.status(400).json({
+            message: "Un article pack du panier est invalide.",
+          });
+        }
+        const lineQty = Number(item.quantite);
+        if (!Number.isFinite(lineQty) || lineQty < 1) {
+          return res.status(400).json({
+            message: "Quantité invalide pour un pack.",
+          });
+        }
+        packDemand.set(pid, (packDemand.get(pid) || 0) + lineQty);
+      }
+
+      for (const [packId, needQty] of packDemand) {
+        const updated = await Product.findOneAndUpdate(
+          {
+            _id: packId,
+            categorie: "PACK",
+            $expr: { $gte: [{ $ifNull: ["$quantite", 0] }, needQty] },
+          },
+          { $inc: { quantite: -needQty } },
+          { new: true }
+        );
+        if (!updated) {
+          const fallback = await Product.findById(packId).select(
+            "nom categorie quantite"
+          );
+          if (!fallback || fallback.categorie !== "PACK") {
+            return res.status(400).json({
+              message: "Pack introuvable ou type de produit incorrect.",
+            });
+          }
+          return res.status(400).json({
+            message: `Stock insuffisant pour le pack « ${fallback.nom} ».`,
+          });
+        }
       }
 
       const newOrder = new Order({

@@ -18,6 +18,7 @@ module.exports = {
         soldePourcentage,
         prixAchat,
         prixGros,
+        quantite: quantiteRaw,
       } = req.body;
       const mainPicture = req.file ? req.file.path : null; // Get the file path if a file was uploaded
       // Validate input
@@ -28,6 +29,15 @@ module.exports = {
       }
       if (categorie === "PACK") {
         subCategorie = "PACK";
+      }
+
+      let quantite;
+      if (categorie === "PACK") {
+        const q =
+          quantiteRaw === undefined || quantiteRaw === "" || quantiteRaw === null
+            ? 0
+            : Number(quantiteRaw);
+        quantite = Number.isFinite(q) ? Math.max(0, Math.floor(q)) : 0;
       }
       
       // Generate unique handle for SEO-friendly URLs
@@ -47,6 +57,7 @@ module.exports = {
         metaFields,
         prixAchat,
         prixGros,
+        ...(categorie === "PACK" ? { quantite } : {}),
       });
       // Save the product to the database
       await product.save();
@@ -189,9 +200,9 @@ module.exports = {
             totalVariantQuantity: { $sum: "$variantDetails.quantity" },
             enRupture: {
               $cond: {
-                if: { $eq: [{ $sum: "$variantDetails.quantity" }, 0] },
-                then: true,
-                else: false,
+                if: { $eq: ["$categorie", "PACK"] },
+                then: { $lte: [{ $ifNull: ["$quantite", 0] }, 0] },
+                else: { $eq: [{ $sum: "$variantDetails.quantity" }, 0] },
               },
             },
           },
@@ -487,7 +498,14 @@ module.exports = {
         (sum, variant) => sum + variant.quantity,
         0
       );
-      const enRupture = totalVariantQuantity === 0;
+      const packQty = Math.max(
+        0,
+        Math.floor(Number(product.quantite ?? 0)) || 0
+      );
+      const enRupture =
+        product.categorie === "PACK"
+          ? packQty <= 0
+          : totalVariantQuantity === 0;
 
       // Convert Mongoose document to plain object to add new fields
       const productObject = product.toObject();
@@ -667,10 +685,20 @@ module.exports = {
             totalVariantQuantity: { $sum: "$variantDetails.quantity" },
           },
         },
-        // 4) Keep only products whose totalVariantQuantity is > 0
+        // 4) In stock: variants with qty, or PACK with product-level quantite
         {
           $match: {
-            totalVariantQuantity: { $gt: 0 },
+            $expr: {
+              $or: [
+                {
+                  $and: [
+                    { $eq: ["$categorie", "PACK"] },
+                    { $gt: [{ $ifNull: ["$quantite", 0] }, 0] },
+                  ],
+                },
+                { $gt: ["$totalVariantQuantity", 0] },
+              ],
+            },
           },
         },
         // 5) Limit to first 6
@@ -697,7 +725,14 @@ module.exports = {
           (sum, variant) => sum + variant.quantity,
           0
         );
-        const enRupture = totalVariantQuantity === 0;
+        const packQ = Math.max(
+          0,
+          Math.floor(Number(product.quantite ?? 0)) || 0
+        );
+        const enRupture =
+          product.categorie === "PACK"
+            ? packQ <= 0
+            : totalVariantQuantity === 0;
 
         return {
           ...product,
@@ -727,8 +762,8 @@ module.exports = {
         metaFields,
         prixAchat,
         prixGros,
+        quantite: quantiteRaw,
       } = req.body;
-      console.log(req.body);
 
       // Validate product ID
       if (!mongoose.Types.ObjectId.isValid(productId)) {
@@ -748,7 +783,12 @@ module.exports = {
       product.prix = prix || product.prix;
       product.metaFields = metaFields || product.metaFields;
       product.categorie = categorie || product.categorie;
-      product.subCategorie = subCategorie || product.subCategorie;
+      const effectiveCategorie = product.categorie;
+      let nextSub = subCategorie || product.subCategorie;
+      if (effectiveCategorie === "PACK") {
+        nextSub = "PACK";
+      }
+      product.subCategorie = nextSub;
       product.solde = solde !== undefined ? solde : product.solde; // Allow for false solde values
       product.soldePourcentage =
         soldePourcentage !== undefined
@@ -757,6 +797,17 @@ module.exports = {
       product.mainPicture = mainPicture;
       product.prixAchat = prixAchat || product.prixAchat;
       product.prixGros = prixGros || product.prixGros;
+
+      if (effectiveCategorie === "PACK") {
+        if (quantiteRaw !== undefined && quantiteRaw !== "") {
+          const q = Number(quantiteRaw);
+          product.quantite = Number.isFinite(q)
+            ? Math.max(0, Math.floor(q))
+            : product.quantite;
+        }
+      } else {
+        product.quantite = undefined;
+      }
       // Save the updated product to the database
       const updatedProduct = await product.save();
       // Send a success response
@@ -893,9 +944,18 @@ module.exports = {
           .json({ products: [], message: "No Packs found" });
       }
 
+      const productsPayload = products.map((p) => {
+        const o = typeof p.toObject === "function" ? p.toObject() : p;
+        const q = Math.max(
+          0,
+          Math.floor(Number(o.quantite ?? 0)) || 0
+        );
+        return { ...o, enRupture: q <= 0, variantDetails: [] };
+      });
+
       // Return paginated response including the total number of products and price stats
       res.status(200).json({
-        products,
+        products: productsPayload,
         totalPages: Math.ceil(totalProducts / limit),
         currentPage: page,
         totalProducts,

@@ -36,8 +36,8 @@ async function computeMerchandiseSubtotal(listeDesProduits = [], listeDesPack = 
 
   for (const item of listeDesPack) {
     const pack = await Product.findById(item.pack);
-    if (!pack) {
-      const err = new Error(`Pack/product ${item.pack} not found`);
+    if (!pack || pack.categorie !== "PACK") {
+      const err = new Error(`Pack/product ${item.pack} not found or not a pack`);
       err.code = "INVALID_LINE";
       throw err;
     }
