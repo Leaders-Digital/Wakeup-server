@@ -44,6 +44,7 @@ app.use((req, res, next) => {
     "http://localhost:5173"
   ];
   
+  
   const origin = req.headers.origin;
   
   // If no origin header (direct access or same-origin), allow it
