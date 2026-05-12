@@ -66,6 +66,10 @@ async function fetchCnrpsBearerToken() {
     );
   }
 
+  console.log("[CNRPS AUTH] email:", email);
+  console.log("[CNRPS AUTH] password length:", password.length, "| first 4 chars:", password.slice(0, 4));
+  console.log("[CNRPS AUTH] base URL:", base);
+
   const url = `${base}/v2/auth/tokens`;
   const payload = { email, password };
   const timeout = Number(process.env.CNRPS_HTTP_TIMEOUT_MS) || 20000;
