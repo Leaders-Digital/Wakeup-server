@@ -156,17 +156,6 @@ module.exports = {
           });
         }
 
-        const prior = await Order.findOne({
-          cnrpsCodeNormalized: cnrpsNormalized,
-          cnrpsDiscountApplied: true,
-        });
-        if (prior) {
-          return res.status(400).json({
-            message:
-              "Ce numéro CNRPS a déjà été utilisé pour une commande avec remise.",
-          });
-        }
-
         let eligible;
         try {
           eligible = await checkMemberEligibility(cnrpsNormalized);
@@ -190,7 +179,7 @@ module.exports = {
         hasDiscount = appliesDiscount;
         cnrpsEligibleAtCheckout = true;
         cnrpsDiscountApplied = appliesDiscount;
-        cnrpsOneTimeConsumedByThisOrder = appliesDiscount;
+        cnrpsOneTimeConsumedByThisOrder = false;
         cnrpsCode = cnrpsNormalized;
         cnrpsCodeNormalized = cnrpsNormalized;
         cnrpsPurchaseType = purchaseType;

@@ -1,4 +1,3 @@
-const Order = require("../Models/orders.model");
 const {
   checkMemberEligibility,
   normalizeCnrpsCode,
@@ -13,19 +12,6 @@ async function validateCnrpsForCart(req, res) {
   }
 
   try {
-    const alreadyUsed = await Order.findOne({
-      cnrpsCodeNormalized: cnrps,
-      cnrpsDiscountApplied: true,
-    }).lean();
-
-    if (alreadyUsed) {
-      return res.status(400).json({
-        message:
-          "Ce numéro CNRPS a déjà bénéficié de la remise unique. Vous ne pouvez pas l'utiliser à nouveau.",
-        eligible: false,
-      });
-    }
-
     const eligible = await checkMemberEligibility(cnrps);
     if (!eligible) {
       return res.status(400).json({

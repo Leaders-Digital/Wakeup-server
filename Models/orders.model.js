@@ -55,11 +55,11 @@ const ordersSchema = new mongoose.Schema(
       enum: ["direct_comptant", "compte_amicale", null],
       default: null,
     },
-    /** True when this order received the one-time CNRPS percentage discount. */
+    /** True when this order received a CNRPS percentage discount (direct au comptant). */
     cnrpsDiscountApplied: { type: Boolean, default: false },
     /** Snapshot: external eligibility API returned true at order creation. */
     cnrpsEligibleAtCheckout: { type: Boolean },
-    /** True when this order consumed the single allowed discounted purchase for that CNRPS. */
+    /** @deprecated Legacy flag; remise CNRPS is no longer limited to one order per number. */
     cnrpsOneTimeConsumedByThisOrder: { type: Boolean, default: false },
     statut: {
       type: String,
@@ -82,13 +82,26 @@ ordersSchema.pre("save", function (next) {
   next();
 });
 
-ordersSchema.index(
-  { cnrpsCodeNormalized: 1 },
-  {
-    unique: true,
-    partialFilterExpression: { cnrpsDiscountApplied: true },
-  }
-);
-
 const Order = mongoose.model("Order", ordersSchema);
+
+/** Remove legacy one-CNRPS-per-number unique index if it still exists in MongoDB. */
+async function dropLegacyCnrpsUniqueIndex() {
+  try {
+    await Order.collection.dropIndex("cnrpsCodeNormalized_1");
+    console.log("[Order] Dropped legacy unique CNRPS index (cnrpsCodeNormalized_1)");
+  } catch (err) {
+    const missing =
+      err?.code === 27 || /index not found|ns not found/i.test(String(err?.message));
+    if (!missing) {
+      console.warn("[Order] Could not drop legacy CNRPS index:", err.message);
+    }
+  }
+}
+
+if (mongoose.connection.readyState === 1) {
+  dropLegacyCnrpsUniqueIndex();
+} else {
+  mongoose.connection.once("open", dropLegacyCnrpsUniqueIndex);
+}
+
 module.exports = Order;
