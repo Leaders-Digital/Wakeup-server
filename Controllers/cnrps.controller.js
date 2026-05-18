@@ -43,18 +43,18 @@ async function validateCnrpsForCart(req, res) {
         {
           type: "direct_comptant",
           label: "Achat direct au comptant",
-          discountPercent: 20,
+          discountPercent: 25,
           minSubtotal: 0,
           description:
-            "Remise de 20% pour un achat direct au comptant.",
+            "Remise de 25% pour un achat direct au comptant.",
         },
         {
           type: "compte_amicale",
           label: "Achat sur le compte de l'Amicale",
-          discountPercent: 5,
+          discountPercent: 0,
           minSubtotal: 0,
           description:
-            "Remise de 5% pour tout achat effectué sur le compte de l'Amicale.",
+            "Aucune remise pour un achat sur le compte de l'Amicale.",
         },
       ],
     });

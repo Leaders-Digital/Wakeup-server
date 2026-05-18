@@ -11,7 +11,7 @@ const axios = require("axios");
 
 const base = (
   process.env.CNRPS_API_BASE_URL ||
-  "https://intconvamiaafcmeapi.azurewebsites.net"
+  "https://prodconvamiaafcmeapi.azurewebsites.net"
 ).replace(/\/$/, "");
 const email = process.env.CNRPS_EMAIL || process.env.CNRPS_USERNAME;
 const password = process.env.CNRPS_PASSWORD;

@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const DEFAULT_BASE = "https://intconvamiaafcmeapi.azurewebsites.net";
+const DEFAULT_BASE = "https://prodconvamiaafcmeapi.azurewebsites.net";
 const TOKEN_EXPIRY_SKEW_MS = 10000;
 let tokenCache = {
   token: null,
@@ -41,8 +41,8 @@ function extractToken(data) {
 /**
  * Authenticates against the AAFCME / ConvAmi API and returns a Bearer token.
  *
- * Per AAFCME / Leaders Digital integration update (Avril 2026):
- *   POST https://intconvamiaafcmeapi.azurewebsites.net/v2/auth/tokens
+ * Production AAFCME / ConvAmi API:
+ *   POST https://prodconvamiaafcmeapi.azurewebsites.net/v2/auth/tokens
  *   Content-Type: application/json
  *   Body: { email, password }
  *   Returns: { token, validity?, status? }
@@ -65,10 +65,6 @@ async function fetchCnrpsBearerToken() {
       "CNRPS_EMAIL (or CNRPS_USERNAME) and CNRPS_PASSWORD must be set in environment"
     );
   }
-
-  console.log("[CNRPS AUTH] email:", email);
-  console.log("[CNRPS AUTH] password length:", password.length, "| first 4 chars:", password.slice(0, 4));
-  console.log("[CNRPS AUTH] base URL:", base);
 
   const url = `${base}/v2/auth/tokens`;
   const payload = { email, password };
@@ -120,8 +116,8 @@ async function fetchCnrpsBearerToken() {
 }
 
 /**
- * Per AAFCME / Leaders Digital integration update (Avril 2026):
- *   GET https://intconvamiaafcmeapi.azurewebsites.net/v2/auth/{cnrps}/eligibility
+ * Production AAFCME / ConvAmi API:
+ *   GET https://prodconvamiaafcmeapi.azurewebsites.net/v2/auth/{cnrps}/eligibility
  *   Authorization: Bearer {token}
  *   Returns: { result: true | false }
  */

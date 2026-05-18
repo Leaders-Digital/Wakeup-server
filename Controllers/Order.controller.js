@@ -13,8 +13,8 @@ const {
 } = require("../services/cnrpsApi.service");
 
 const CNRPS_PURCHASE_TYPES = {
-  direct_comptant: { discountPercent: 20, minSubtotal: 0 },
-  compte_amicale: { discountPercent: 5, minSubtotal: 0 },
+  direct_comptant: { discountPercent: 25, minSubtotal: 0 },
+  compte_amicale: { discountPercent: 0, minSubtotal: 0 },
 };
 
 const getLatestBoxesByBarcode = async (barcodes) => {
@@ -184,12 +184,13 @@ module.exports = {
           });
         }
 
-        discountType = "cnrps";
-        hasDiscount = true;
         discountPercentApplied = purchaseConfig.discountPercent;
+        const appliesDiscount = discountPercentApplied > 0;
+        discountType = appliesDiscount ? "cnrps" : "none";
+        hasDiscount = appliesDiscount;
         cnrpsEligibleAtCheckout = true;
-        cnrpsDiscountApplied = true;
-        cnrpsOneTimeConsumedByThisOrder = true;
+        cnrpsDiscountApplied = appliesDiscount;
+        cnrpsOneTimeConsumedByThisOrder = appliesDiscount;
         cnrpsCode = cnrpsNormalized;
         cnrpsCodeNormalized = cnrpsNormalized;
         cnrpsPurchaseType = purchaseType;
