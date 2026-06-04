@@ -37,10 +37,10 @@ async function validateCnrpsForCart(req, res) {
         {
           type: "compte_amicale",
           label: "Achat sur le compte de l'Amicale",
-          discountPercent: 0,
+          discountPercent: 10,
           minSubtotal: 0,
           description:
-            "Aucune remise pour un achat sur le compte de l'Amicale.",
+            "Remise de 10% pour un achat sur le compte de l'Amicale.",
         },
       ],
     });

@@ -14,7 +14,7 @@ const {
 
 const CNRPS_PURCHASE_TYPES = {
   direct_comptant: { discountPercent: 25, minSubtotal: 0 },
-  compte_amicale: { discountPercent: 0, minSubtotal: 0 },
+  compte_amicale: { discountPercent: 10, minSubtotal: 0 },
 };
 
 const getLatestBoxesByBarcode = async (barcodes) => {

@@ -48,7 +48,7 @@ const ordersSchema = new mongoose.Schema(
     /**
      * Which CNRPS purchase channel was selected by the buyer:
      *  - direct_comptant : achat direct au comptant (25%)
-     *  - compte_amicale  : achat sur le compte de l'Amicale (aucune remise)
+     *  - compte_amicale  : achat sur le compte de l'Amicale (10%)
      */
     cnrpsPurchaseType: {
       type: String,
