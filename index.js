@@ -40,7 +40,7 @@ app.use((req, res, next) => {
     "https://api.wakeup-cosmetics.tn",
     "https://admin.wakeup-cosmetics.tn",
     "http://localhost:3000",
-    "http://localhost:3001",
+    "http://localhost:3002",
     "http://localhost:5173"
   ];
   
